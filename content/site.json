@@ -1,0 +1,22 @@
+{
+  "name": "Michael Nault",
+  "headline": "IT and GRC, built hands-on.",
+  "subline": "Six years in Amazon operations taught me that a control only works when people follow it and you can prove it. Now I build the systems and the evidence, for employers and for small businesses.",
+  "nav": [
+    { "label": "Work", "href": "/work/" },
+    { "label": "Work with me", "href": "/work-with-me/" },
+    { "label": "About", "href": "/about/" },
+    { "label": "Resume", "href": "/resume/" }
+  ],
+  "social": {
+    "email": "TODO(michael): add the email address this site should show (not the account email this session runs under — confirm which address you want public)",
+    "linkedin": "TODO(michael): add LinkedIn profile URL",
+    "github": "https://github.com/MgnCoding2020",
+    "tryhackme": "TODO(michael): add TryHackMe profile URL"
+  },
+  "lookingFor": "Entry-level roles in GRC and compliance, IT audit, Microsoft 365 administration or identity and access, in Orlando or remote. I'd especially value a team that mentors.",
+  "footer": {
+    "privacyNote": "No cookies, no trackers, no third-party requests.",
+    "lastUpdated": "TODO(michael): set at each content update, or have build.mjs stamp it automatically"
+  }
+}
