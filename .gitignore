@@ -5,3 +5,8 @@ dist/
 Thumbs.db
 *.log
 .env
+
+# Private source material for Claude Code's context only -- never the
+# face of the site, never committed. See CLAUDE.md working agreement.
+Michael_Nault_Resume.md
+*_Resume_private.*
