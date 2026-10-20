@@ -9,10 +9,10 @@
     { "label": "Resume", "href": "/resume/" }
   ],
   "social": {
-    "email": "TODO(michael): add the email address this site should show (not the account email this session runs under — confirm which address you want public)",
-    "linkedin": "TODO(michael): add LinkedIn profile URL",
+    "email": "naultmichael@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/michael-nault-mgncoding2020",
     "github": "https://github.com/MgnCoding2020",
-    "tryhackme": "TODO(michael): add TryHackMe profile URL"
+    "tryhackme": "https://tryhackme.com/p/naultmichael"
   },
   "lookingFor": "Entry-level roles in GRC and compliance, IT audit, Microsoft 365 administration or identity and access, in Orlando or remote. I'd especially value a team that mentors.",
   "footer": {
