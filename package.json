@@ -1,0 +1,18 @@
+{
+  "name": "portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Michael Nault's portfolio: IT/GRC case studies and client work.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node check.mjs",
+    "preview": "npm run build && npx wrangler dev"
+  },
+  "dependencies": {
+    "marked": "18.1.1"
+  },
+  "devDependencies": {
+    "wrangler": "4.151.3"
+  }
+}
