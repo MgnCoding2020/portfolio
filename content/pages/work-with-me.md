@@ -19,8 +19,6 @@ If you need a site you actually own, or a process that's eating up time with spr
 
 ## Proof
 
-<!-- TODO(michael): link the Little Saporito Press case study here once it's written (Phase 2, item 5). Permission is already in hand. -->
-
 Little Saporito Press — a children's author's site, built from a messy planning brief to a secure, accessible, live site. [Read the case study →](/work/little-saporito-press/)
 
 ## How it works
