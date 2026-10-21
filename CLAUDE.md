@@ -58,9 +58,9 @@ Use this, or Michael's own rewrite, as the home page headline and subline. Every
 
 | Decision | Choice | Why |
 |---|---|---|
-| Host | **Cloudflare Pages** (free) | Michael already deploys Gina's site there; `_headers` lets the site send real security headers, which GitHub Pages can't; branch preview deployments for free |
+| Host | **Cloudflare Workers (static assets)** (free) | Updated 2026-10-20: Cloudflare now steers new Git-connected projects here instead of classic Pages ("start new projects with Workers" per their own docs). Same `_headers`/`_redirects` support as Pages, same free branch previews; needs one extra `wrangler.jsonc` (`assets.directory: "./dist"`) that Pages didn't require. Local preview is `npx wrangler dev` (was `wrangler pages dev dist`). Deploy command in the Cloudflare dashboard: `npx wrangler deploy`; build command: `npm ci && npm run build` |
 | Fallback host | GitHub Pages (`mgncoding2020.github.io`) | Zero setup, but no custom headers (CSP only via `<meta>`, no `frame-ancestors`, no HSTS control) |
-| Address | Free `*.pages.dev` subdomain first (for example `michaelnault.pages.dev` if available) | Free. A custom domain (about $10–15/year at cost through Cloudflare Registrar) can come later and redirect from the old address |
+| Address | Free `portfolio.mgncoding2020.workers.dev` first (Workers' free address: `<worker-name>.<account-subdomain>.workers.dev`; decided 2026-10-20 to reuse the existing GitHub account subdomain rather than pick a new one) | Free, no new name to reserve. A custom domain (about $10–15/year at cost through Cloudflare Registrar) can come later and redirect from this address |
 | Stack | **Plain HTML + CSS, built by one small Node script** | Matches Michael's existing style (vanilla, no framework); nothing new to learn; every page is real HTML, so it works with no JavaScript, prints well, and is easy for search engines |
 | Content format | Markdown files with a small front-matter block, plus `projects.json` | Content stays separate from code, the same principle as Workspace's `config/` + `data/seed/` |
 | Dependencies | `marked` (Markdown → HTML), and nothing else at runtime | One small, well-known dependency, pinned exactly |
@@ -159,8 +159,8 @@ Status as of 2026-10-09. "Ready" means the project itself is ready; the write-up
 | 3 | **STIG / NIST 800-171 Lab** | Windows hardening with PowerShell enforcement, validation and evidence export; CMMC context | GRC (DoD), endpoint | No | Yes (small; frame it as a focused lab) |
 | 4 | **IAM Access Review Lab** | Quarterly access certification across 5 systems; least privilege, inactive accounts, SoD | IAM, GRC | No | Yes; could be a section inside #2 |
 | 5 | **WinSysConfig** | Windows settings with a paper trail: catalog, journal, verification states, safety rules, no network listener | Endpoint, IT, security | Later: mock-bridge demo | After its writes and profiles are pushed |
-| 6 | **Payroll timesheet system** (built for a small engineering firm) | From emailed spreadsheets to a validated QuickBooks import: Excel templates → Python consolidator → IIF export → implementation guide | Business automation, side business | No (screenshots with fake data) | **Needs permission + anonymising** |
-| 7 | **Little Saporito Press** (client site) | See the angle below | Web, side business (and a hiring signal) | **Live site link** | **Needs Gina's permission** |
+| 6 | **Payroll timesheet system** (a prototype, never deployed to the engineering firm) | From emailed spreadsheets to a validated QuickBooks import: Excel templates → Python consolidator → IIF export → implementation guide | Business automation, side business | No (screenshots with fake data) | No permission needed (never used by the firm) — still needs anonymising and reframing as a prototype, not client work |
+| 7 | **Little Saporito Press** (client site) | See the angle below | Web, side business (and a hiring signal) | **Live site link** | **Ready — Gina's permission obtained 2026-10-20** |
 | 8 | **Home EDR** (baseline + drift detection for his own PC) | See the angle below | Endpoint, GRC (continuous control validation) | Sample reports (sanitised) | Yes |
 | 8b | **Cybersecurity Monitoring Lab** (Sysmon, Wireshark, Nmap, Nessus) | Short "lab notes" entry, linked from the Home EDR case study | SOC-adjacent | No | Yes |
 | 9 | **Timesheets in Workspace** (future) | The multi-user rebuild of #6, with segregation-of-duties controls and an audit log | GRC, M365 | Yes, via the Workspace demo | After Workspace U3/U4 |
@@ -402,13 +402,15 @@ portfolio/
 
 ---
 
-## 7. Hosting and deploy (Cloudflare Pages)
+## 7. Hosting and deploy (Cloudflare Workers, static assets)
 
-1. Push the repo to GitHub (public).
-2. Cloudflare dashboard → Workers & Pages → Create → Pages → connect to Git → pick `portfolio`.
-3. Build command `npm ci && npm run build`; output directory `dist`.
-4. Production branch: `main`. Every other branch gets its own preview URL, so check those before merging.
-5. Local preview: `npm run build && npx wrangler pages dev dist` (the same tool Michael uses for Gina's site; it honours `_headers`).
+Updated 2026-10-20: the repo is pushed and connected. Cloudflare's dashboard now defaults new Git-connected projects to **Workers with static assets** rather than classic Pages (Cloudflare: "start new projects with Workers"). `_headers`/`_redirects` behave the same as Pages; the only addition is `wrangler.jsonc` in the repo root (`assets.directory: "./dist"`).
+
+1. Repo pushed to GitHub (public): `MgnCoding2020/portfolio`.
+2. Cloudflare dashboard → Workers & Pages → Create → connect to Git → pick `portfolio`.
+3. Build command `npm ci && npm run build`; deploy command `npx wrangler deploy` (reads `wrangler.jsonc`, which points at `dist`).
+4. Production branch: `main`. "Enable Preview builds" on, so every other branch gets its own preview URL — check those before merging. Leave "Protect with Cloudflare Access" off (the site is meant to be public).
+5. Local preview: `npm run build && npx wrangler dev` (honours `_headers`).
 
 **Workflow (same rule as Gina's site):** all work on a branch, preview it, and only merge to `main` with Michael's sign-off, because Cloudflare deploys `main` automatically.
 
@@ -516,15 +518,18 @@ Michael has about **5 hours a week**, shared with the Workspace and WinSysConfig
 
 ### Phase 0: Prepare (week 1, about 4 h)
 
-- [ ] Pick the `*.pages.dev` name (check availability in the Cloudflare dashboard) and decide whether a custom domain comes later.
+- [x] **Subdomain — decided 2026-10-20.** Reuse `mgncoding2020` as the Workers account subdomain; the site will live at `portfolio.mgncoding2020.workers.dev` until/unless a custom domain is added. No Cloudflare account exists yet — nothing to create until there's a `dist/` to deploy, so this step is a decision, not an action.
 - [ ] Open the old Claude Design draft; note 3–5 layout ideas worth keeping in `docs/old-draft-notes.md`. Don't copy content.
-- [ ] Ask Gina for permission to feature littlesaporitopress.com: screenshots, the link, her first name, and a description of the work. Get it in writing (a text or email is fine). If she'd like to offer a sentence about working together, use her exact words; never draft one for her.
-- [ ] Check Amazon's outside-employment policy before the `/work-with-me/` page goes public.
-- [ ] Ask Michael's wife whether her employer (the engineering firm) is comfortable with an **anonymised** payroll case study: no firm name, no employee names, fake data in screenshots. If unsure, describe it as "a small civil engineering firm" and use only mock data.
+- [x] **Gina's permission — obtained 2026-10-20.** She's Michael's mother-in-law and has consented to featuring littlesaporitopress.com: screenshots, the link, her first name, a description of the work. No further ask needed before writing the case study.
+- [x] **Amazon outside-employment check — not needed.** The site doesn't use Amazon's brand, name, or any internal information beyond what's already on the resume (role names, published metrics); it isn't soliciting Amazon clients or competing with Amazon's business. No conflict with their code of conduct.
+- [x] **Payroll case study permission — not needed.** It was never deployed to or used by the engineering firm; it exists only as a standalone `.html` file Michael built. Reframe the eventual write-up as a personal/prototype project rather than "client work" — not "built for a small engineering firm" in the case-study sense, since the firm never received or ran it. Revisit the angle (section 4, item #6) when it's written.
+- [ ] **Resume — needs consolidation.** Michael currently has multiple versions (IT/M365-leaning and GRC-leaning). Before `/resume/` can be built, pick or draft one resume strong enough to serve both doors, rather than publishing several. Flag as open.
 - [ ] Write the position line and the "What I'm looking for" paragraph in Michael's own words.
-- [ ] Collect: both resume PDFs (current versions), a headshot (optional), GitHub/LinkedIn/TryHackMe URLs.
+- [ ] Collect: the consolidated resume PDF once it exists, a headshot (optional), GitHub/LinkedIn/TryHackMe URLs.
 
-**Done when** names are chosen, both permissions are asked, and the copy is drafted.
+**Note on Workspace (2026-10-20):** F1–F10 are done and U1–U3 are underway, ahead of where section 4 assumed. SharePoint connectivity hasn't been re-tested since the 2026-09-29 verification, so don't reuse that date as current without re-checking it when the Workspace case study is written.
+
+**Done when** the name is chosen and the resume is consolidated — the permission asks are already resolved.
 
 ### Phase 1: Design and skeleton, live (weeks 2–3, about 8 h)
 
@@ -536,7 +541,7 @@ Michael has about **5 hours a week**, shared with the Workspace and WinSysConfig
 - [ ] Connect Cloudflare Pages; confirm the preview deploy works; merge to `main`.
 - [ ] **Ship it, quietly.** Don't announce yet; just have it live.
 
-**Done when** the site is live at its `pages.dev` address, passes the header scan with CSP present, and Lighthouse is 95+ on the home page.
+**Done when** the site is live at its `workers.dev` address, passes the header scan with CSP present, and Lighthouse is 95+ on the home page.
 
 *Why ship this early:* the old draft stalled because it never felt ready. A live, small, honest site removes that pressure. Everything after this is improving something real.
 
