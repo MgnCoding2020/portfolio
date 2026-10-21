@@ -3,7 +3,9 @@ title: "Resume"
 description: "Michael Nault's resume: IT and GRC, built hands-on."
 ---
 
-<!-- DRAFT: ported from the private master resume (6th pass, 2026-10-21), phone number dropped per CLAUDE.md §1. PDF versions still needed per the Phase 3 checklist (§11) -- not attached yet. Trimmed to 4 projects to match the master resume -- Michael's call after reviewing a PDF export end to end (too dense for a resume read), dropping Little Saporito Press and the "other builds" line. -->
+<!-- DRAFT: ported from the private master resume (6th pass, 2026-10-21), phone number dropped per CLAUDE.md §1. PDF attached 2026-10-21 (generated via reportlab from this same content, phone dropped the same way). -->
+
+<a href="/resume/Michael_Nault_Resume.pdf" class="btn btn-primary">Download PDF</a>
 
 # Michael Nault
 

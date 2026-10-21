@@ -1,2 +1,12 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Binary files -- never line-ending-convert these, regardless of auto-detection
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
