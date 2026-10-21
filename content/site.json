@@ -15,6 +15,11 @@
     "tryhackme": "https://tryhackme.com/p/naultmichael"
   },
   "lookingFor": "Entry-level roles in GRC and compliance, IT audit, Microsoft 365 administration or identity and access, in Orlando or remote. I'd especially value a team that mentors.",
+  "proofStrip": [
+    { "stat": "63–70% → 99%+", "label": "SOX audit compliance, in one month", "source": "Amazon, 2023" },
+    { "stat": "454", "label": "automated checks in Workspace, a SharePoint-style platform", "source": "verified Oct 2026" },
+    { "stat": "6", "label": "GRC labs mapped to NIST 800-53, NIST 800-171, and PCI DSS 4.0.1", "source": "TODO(michael): confirm this count — counted: GRC program (coffee shop), vendor risk lab, IAM access review lab, STIG/800-171 lab, STIG baseline scan, Home EDR governance mapping" }
+  ],
   "footer": {
     "privacyNote": "No cookies, no trackers, no third-party requests.",
     "lastUpdated": "TODO(michael): set at each content update, or have build.mjs stamp it automatically"
