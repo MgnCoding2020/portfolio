@@ -25,7 +25,42 @@ A STIG scan tells you where a system stands against a benchmark, but a list of 1
 
 ## What I built
 
-[diagram: SCAP scan → 225 rules → 137 open findings, alongside a separate track: 4 controls → implement → validate → evidence export, both mapped to NIST SP 800-171]
+<figure>
+<svg viewBox="0 0 562 166" role="img" aria-labelledby="dtitle2 ddesc2" xmlns="http://www.w3.org/2000/svg">
+  <title id="dtitle2">Baseline scan and hardening lab, run separately</title>
+  <desc id="ddesc2">A SCAP benchmark scan assesses 225 rules and finds 137 open. Separately, 4 controls are implemented, validated, and their evidence exported. Both map to NIST SP 800-171, but are two distinct efforts, not one pipeline.</desc>
+  <defs>
+    <marker id="mb2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--brand)"/>
+    </marker>
+    <marker id="mm2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--text-muted)"/>
+    </marker>
+  </defs>
+  <text x="10" y="10" text-anchor="start" font-family="var(--font-sans)" font-size="10" fill="var(--text-muted)">BASELINE SCAN</text>
+  <rect x="10" y="20" width="100" height="46" rx="8" fill="var(--surface)" stroke="var(--text-muted)" stroke-width="1.5"/>
+  <text x="60" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">SCAP scan</text>
+  <rect x="138" y="20" width="100" height="46" rx="8" fill="var(--surface)" stroke="var(--text-muted)" stroke-width="1.5"/>
+  <text x="188" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">225 rules</text>
+  <rect x="266" y="20" width="151" height="46" rx="8" fill="var(--surface)" stroke="var(--text-muted)" stroke-width="1.5"/>
+  <text x="342" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">137 open findings</text>
+  <line x1="110" y1="43" x2="138" y2="43" stroke="var(--text-muted)" stroke-width="1.5" marker-end="url(#mm2)"/>
+  <line x1="238" y1="43" x2="266" y2="43" stroke="var(--text-muted)" stroke-width="1.5" marker-end="url(#mm2)"/>
+  <text x="10" y="100" text-anchor="start" font-family="var(--font-sans)" font-size="10" fill="var(--text-muted)">HARDENING LAB</text>
+  <rect x="10" y="110" width="103" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="62" y="133" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">4 controls</text>
+  <rect x="141" y="110" width="100" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="191" y="133" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Implement</text>
+  <rect x="269" y="110" width="100" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="319" y="133" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Validate</text>
+  <rect x="397" y="110" width="137" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="466" y="133" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Evidence export</text>
+  <line x1="113" y1="133" x2="141" y2="133" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb2)"/>
+  <line x1="241" y1="133" x2="269" y2="133" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb2)"/>
+  <line x1="369" y1="133" x2="397" y2="133" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb2)"/>
+</svg>
+<figcaption>Two separate efforts, both mapping to NIST SP 800-171: a broad automated scan (top), and a small set of hand-validated controls (bottom).</figcaption>
+</figure>
 
 **The baseline scan** (`windows10-stig-baseline-assessment`): a SCAP Compliance Checker scan against a pre-hardening Windows 10 VM, using the DISA Windows 10 STIG Benchmark V3R7. Full results: 225 rules assessed, 137 open, 75 not-a-finding, 13 not applicable, about 35% compliance. Five of the highest-severity findings (password history, account lockout threshold, audit logon events, firewall, SMBv1) are documented in detail as a curated sample, not all 137 individually.
 

@@ -28,9 +28,9 @@
      specific color, so match it rather than leave the gap). */
   --brand-on-tint: #1F3A5F;
 
-  /* Type -- system stack until §5.2 step 5 decides on self-hosted fonts */
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  /* Type -- self-hosted IBM Plex Sans/Mono (CLAUDE.md §2), weights 400/600 only (§5.3) */
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
   --fs-display: clamp(2rem, 5vw, 2.75rem);
   --lh-display: 1.15;

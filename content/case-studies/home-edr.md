@@ -26,7 +26,44 @@ After hardening my own Windows 10 machine — least-privilege accounts, a deny-b
 
 ## What I built
 
-[diagram: PC → scheduled scan → compare to baseline → drift report → archive; separately, a dedicated VM feeds a NIST 800-53 evidence pipeline → POA&M; the same baseline work evolved into a 20-script triage toolkit and a 13-document playbook series]
+<figure>
+<svg viewBox="0 0 761 176" role="img" aria-labelledby="dtitle3 ddesc3" xmlns="http://www.w3.org/2000/svg">
+  <title id="dtitle3">Baseline, drift, governance, and the triage toolkit</title>
+  <desc id="ddesc3">A PC is scheduled-scanned, compared to a baseline, and drift is reported and archived. Separately, that same scanning feeds a NIST 800-53 evidence pipeline into a POA&amp;M. The work evolved into a 20-script triage toolkit and a 13-document playbook series.</desc>
+  <defs>
+    <marker id="mb3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--brand)"/>
+    </marker>
+    <marker id="mm3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--text-muted)"/>
+    </marker>
+  </defs>
+  <rect x="10" y="20" width="100" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="60" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">PC</text>
+  <rect x="138" y="20" width="130" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="203" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Scheduled scan</text>
+  <rect x="296" y="20" width="165" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="378" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Compare to baseline</text>
+  <rect x="489" y="20" width="116" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="547" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Drift report</text>
+  <rect x="633" y="20" width="100" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="683" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Archive</text>
+  <line x1="110" y1="43" x2="138" y2="43" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb3)"/>
+  <line x1="268" y1="43" x2="296" y2="43" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb3)"/>
+  <line x1="461" y1="43" x2="489" y2="43" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb3)"/>
+  <line x1="605" y1="43" x2="633" y2="43" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb3)"/>
+  <rect x="138" y="120" width="172" height="46" rx="8" fill="var(--surface)" stroke="var(--text-muted)" stroke-width="1.5"/>
+  <text x="224" y="143" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">NIST 800-53 evidence</text>
+  <rect x="338" y="120" width="100" height="46" rx="8" fill="var(--surface)" stroke="var(--text-muted)" stroke-width="1.5"/>
+  <text x="388" y="143" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">POA&amp;M</text>
+  <line x1="310" y1="143" x2="338" y2="143" stroke="var(--text-muted)" stroke-width="1.5" marker-end="url(#mm3)"/>
+  <line x1="177" y1="66" x2="168" y2="120" stroke="var(--text-muted)" stroke-width="1.5" marker-end="url(#mm3)"/>
+  <rect x="478" y="120" width="213" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="584" y="143" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Triage toolkit + playbooks</text>
+  <line x1="693" y1="66" x2="584.5" y2="120" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb3)"/>
+</svg>
+<figcaption>A PC is scheduled-scanned, compared to a baseline, and drift is reported and archived. Separately, that scanning feeds a NIST 800-53 evidence pipeline into a POA&amp;M. The same work evolved into a 20-script triage toolkit and a 13-document playbook series.</figcaption>
+</figure>
 
 **Monitoring:** 12 PowerShell scripts (health snapshots, service/scheduled-task/persistence posture, network audit, installed-app inventory, certificate expiry, privileged-group drift) that capture a baseline, run on a schedule via Task Scheduler, compare against it, and write drift reports. This started on my own PC — the README's own account is scripts that "slowly turned into a structured monitoring workflow."
 

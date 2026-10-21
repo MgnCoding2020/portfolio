@@ -26,7 +26,39 @@ Most small businesses that take card payments have no formal security program �
 
 ## What I built
 
-[diagram: risk → control → evidence → validation → POA&M, with the vendor risk assessment feeding in as POAM-013]
+<figure>
+<svg viewBox="0 0 635 178" role="img" aria-labelledby="dtitle ddesc" xmlns="http://www.w3.org/2000/svg">
+  <title id="dtitle">Risk to evidence flow</title>
+  <desc id="ddesc">Risk leads to a control, which produces evidence, which is validated, and tracked in a POA&amp;M. A separate vendor risk assessment feeds into the same POA&amp;M as item POAM-013.</desc>
+  <defs>
+    <marker id="mb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--brand)"/>
+    </marker>
+    <marker id="mm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--text-muted)"/>
+    </marker>
+  </defs>
+  <rect x="10" y="20" width="100" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="60" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Risk</text>
+  <rect x="138" y="20" width="100" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="188" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Control</text>
+  <rect x="266" y="20" width="100" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="316" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Evidence</text>
+  <rect x="394" y="20" width="103" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="446" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Validation</text>
+  <rect x="525" y="20" width="100" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="575" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">POA&amp;M</text>
+  <line x1="110" y1="43" x2="138" y2="43" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb)"/>
+  <line x1="238" y1="43" x2="266" y2="43" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb)"/>
+  <line x1="366" y1="43" x2="394" y2="43" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb)"/>
+  <line x1="497" y1="43" x2="525" y2="43" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb)"/>
+  <rect x="148" y="122" width="185" height="46" rx="8" fill="var(--surface)" stroke="var(--text-muted)" stroke-width="1.5"/>
+  <text x="240" y="145" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Vendor risk assessment</text>
+  <line x1="333" y1="122" x2="555" y2="66" stroke="var(--text-muted)" stroke-width="1.5" marker-end="url(#mm)"/>
+  <text x="300.5" y="114" text-anchor="middle" font-family="var(--font-sans)" font-size="11.5" fill="var(--text-muted)">POAM-013</text>
+</svg>
+<figcaption>Risk leads to a control, which produces evidence, which is validated and tracked in a POA&amp;M. A separate vendor risk assessment feeds into the same POA&amp;M as POAM-013.</figcaption>
+</figure>
 
 The program has five pieces that connect to each other rather than standing alone:
 

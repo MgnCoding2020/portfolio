@@ -26,7 +26,29 @@ Gina needed a home for *The Selena Stories*, her children's book series — book
 
 ## What I built
 
-[diagram: planning brief → spec → static site (book pages, printables, trailer) + a separate, toggleable seasonal layer]
+<figure>
+<svg viewBox="0 0 506 176" role="img" aria-labelledby="dtitle5 ddesc5" xmlns="http://www.w3.org/2000/svg">
+  <title id="dtitle5">Brief to spec to site, with a separate seasonal layer</title>
+  <desc id="ddesc5">A planning brief becomes a spec, which becomes the static site. A seasonal decoration layer connects to it but stays separate and toggleable, never part of the permanent design.</desc>
+  <defs>
+    <marker id="mb5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--brand)"/>
+    </marker>
+  </defs>
+  <rect x="10" y="20" width="130" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="75" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Planning brief</text>
+  <rect x="168" y="20" width="100" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="218" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Spec</text>
+  <rect x="296" y="20" width="109" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="350" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Static site</text>
+  <line x1="140" y1="43" x2="168" y2="43" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb5)"/>
+  <line x1="268" y1="43" x2="296" y2="43" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb5)"/>
+  <rect x="276" y="120" width="220" height="46" rx="8" fill="var(--surface)" stroke="var(--text-muted)" stroke-width="1.5"/>
+  <text x="386" y="143" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Seasonal layer (toggleable)</text>
+  <line x1="350.5" y1="66" x2="386" y2="120" stroke="var(--text-muted)" stroke-width="1.5" stroke-dasharray="4 4"/>
+</svg>
+<figcaption>A planning brief becomes a spec, which becomes the static site. A seasonal decoration layer connects to it but stays separate and toggleable, never part of the permanent design.</figcaption>
+</figure>
 
 The live site has a page for the first book (*A Puppy for Selena*), a teaser card for the second (*Selena and the Storm*, "currently in development," with a "be the first to know" contact link rather than a fake release date), an embedded trailer with a plain download link for browsers that can't play it inline, two printables (coloring pages, bookmarks) with a click-to-preview step before download, and a dated privacy page. A seasonal decoration layer — currently a Halloween theme — lives in its own folder with its own CSS/JS, separate from the permanent site design.
 
