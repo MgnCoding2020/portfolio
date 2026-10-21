@@ -26,7 +26,32 @@ Building something that's supposed to behave like SharePoint usually means eithe
 
 ## What I built
 
-[diagram: UI → one provider interface → three backends (memory / IndexedDB / SharePoint REST + Graph)]
+<figure>
+<svg viewBox="0 0 468 166" role="img" aria-labelledby="dtitle4 ddesc4" xmlns="http://www.w3.org/2000/svg">
+  <title id="dtitle4">One provider interface, three backends</title>
+  <desc id="ddesc4">The UI talks to one provider interface, which is implemented three interchangeable ways: in-memory, browser storage via IndexedDB, or a real SharePoint tenant over REST and Graph.</desc>
+  <defs>
+    <marker id="mb4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="var(--brand)"/>
+    </marker>
+  </defs>
+  <rect x="10" y="20" width="100" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="60" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">UI</text>
+  <rect x="138" y="20" width="158" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="217" y="43" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Provider interface</text>
+  <line x1="110" y1="43" x2="138" y2="43" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb4)"/>
+  <rect x="10" y="110" width="100" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="60" y="133" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">Memory</text>
+  <rect x="138" y="110" width="100" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="188" y="133" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">IndexedDB</text>
+  <rect x="266" y="110" width="192" height="46" rx="8" fill="var(--surface)" stroke="var(--brand)" stroke-width="1.5"/>
+  <text x="362" y="133" text-anchor="middle" dominant-baseline="middle" font-family="var(--font-sans)" font-size="13.5" fill="var(--text)">SharePoint REST + Graph</text>
+  <line x1="217" y1="66" x2="60" y2="110" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb4)"/>
+  <line x1="217" y1="66" x2="188" y2="110" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb4)"/>
+  <line x1="217" y1="66" x2="362" y2="110" stroke="var(--brand)" stroke-width="1.5" marker-end="url(#mb4)"/>
+</svg>
+<figcaption>The UI talks to one provider interface, implemented three interchangeable ways: in-memory, browser storage via IndexedDB, or a real SharePoint tenant over REST and Graph.</figcaption>
+</figure>
 
 One provider interface sits behind the entire UI — lists, a document library, a command palette, a Workflow Builder, Teams-style channels, a timesheet module with manager approvals. Three backends implement that interface: `memory` (nothing persists, instant), `local` (persists in the browser via IndexedDB), and `sharepoint` (a real tenant, via MSAL sign-in and the SharePoint REST API plus Microsoft Graph for identity). Switching backends doesn't change the UI code at all — the same bugs show up (or don't) regardless of which one is running, which is what let the stored-XSS bug below get caught in the first place.
 
