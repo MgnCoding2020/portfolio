@@ -578,6 +578,7 @@ One case study per 1–2 sessions: write → diagram → screenshots → review.
 
 ### Phase 5: Launch (week 11, about 2 h)
 
+- [x] Flip the `workspace` repo from private to public -- done by Michael 2026-10-21, ahead of actual launch.
 - [ ] Put the site URL on both resumes, the GitHub profile README, the LinkedIn "Featured" section and contact info, and the email signature.
 - [ ] One LinkedIn post: what the site is, the case studies (job and client work), the link. Short.
 - [ ] Optional: share it in the ISACA Central Florida community when joining.

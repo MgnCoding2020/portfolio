@@ -11,7 +11,7 @@ repo: https://github.com/MgnCoding2020/workspace
 featured: 2
 ---
 
-<!-- DRAFT: fourth case study, written per CLAUDE.md §3 template. Diagram is a placeholder -- no visual design yet (content-first step, §5.2 step 3). NOTE: the workspace repo is currently PRIVATE -- the Links section below will 404 for a visitor until that changes. Flagged for Michael, not changed here. -->
+<!-- DRAFT: fourth case study, written per CLAUDE.md §3 template. Repo made public by Michael 2026-10-21. -->
 
 ## At a glance
 
@@ -85,4 +85,4 @@ I fixed it across all 60 `innerHTML`/`insertAdjacentHTML` sinks that existed in 
 
 ## Links
 
-- Repo: [github.com/MgnCoding2020/workspace](https://github.com/MgnCoding2020/workspace) *(currently private — see note to Michael)*
+- Repo: [github.com/MgnCoding2020/workspace](https://github.com/MgnCoding2020/workspace)

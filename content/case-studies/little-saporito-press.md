@@ -52,6 +52,8 @@ Gina needed a home for *The Selena Stories*, her children's book series — book
 
 The live site has a page for the first book (*A Puppy for Selena*), a teaser card for the second (*Selena and the Storm*, "currently in development," with a "be the first to know" contact link rather than a fake release date), an embedded trailer with a plain download link for browsers that can't play it inline, two printables (coloring pages, bookmarks) with a click-to-preview step before download, and a dated privacy page. A seasonal decoration layer — currently a Halloween theme — lives in its own folder with its own CSS/JS, separate from the permanent site design.
 
+The domain itself was already registered through Squarespace before this project started; rather than migrate registrars, I pointed its DNS at Cloudflare so the site could be hosted and served there instead — the kind of unglamorous setup work that's still part of delivering a real site to a real client.
+
 ## Decisions and trade-offs
 
 - **Chose a hand-built static site over a website builder or CMS**, because it gave direct control over real security headers (`_headers`, which a page builder generally won't let you touch) and avoids platform risk and recurring fees.
