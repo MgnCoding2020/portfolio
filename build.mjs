@@ -67,7 +67,7 @@ function renderGlance(sectionBody) {
   while ((m = re.exec(sectionBody))) {
     rows.push(`<div class="glance-row"><dt>${esc(m[1])}</dt><dd>${marked.parseInline(m[2])}</dd></div>`);
   }
-  return `<div class="glance"><dl style="margin:0">${rows.join("")}</dl></div>`;
+  return `<div class="glance"><dl>${rows.join("")}</dl></div>`;
 }
 
 function renderCaseStudyBody(body) {
@@ -158,10 +158,10 @@ const caseStudies = readdirSync("content/case-studies").filter((f) => f.endsWith
 caseStudies.forEach((cs) => {
   const badge = `<span class="badge ${badgeClass(cs.data.status)}">${esc(cs.data.status)}</span>`;
   const tags = (cs.data.audience || []).map((a) => `<span class="tag">${esc(a)}</span>`).join(" ");
-  const content = `<div style="display:flex; align-items:center; gap:var(--space-3); flex-wrap:wrap">
-    <h1 style="margin-bottom:0">${esc(cs.data.title)}</h1>${badge}</div>
-    <p style="color:var(--text-muted)">${esc(cs.data.summary)}</p>
-    <div class="card-tags" style="margin-bottom:var(--space-6)">${tags}</div>
+  const content = `<div class="case-header">
+    <h1 class="mb-0">${esc(cs.data.title)}</h1>${badge}</div>
+    <p class="text-muted">${esc(cs.data.summary)}</p>
+    <div class="card-tags mb-6">${tags}</div>
     ${renderCaseStudyBody(cs.body)}`;
   writePage(`work/${cs.data.slug}`, {
     title: `${cs.data.title} — Michael Nault`,
@@ -207,20 +207,20 @@ const proof = (site.proofStrip || []).map((p) =>
 writePage("", {
   title: `${site.name} — IT and GRC, built hands-on`,
   description: site.subline,
-  content: `<h1 style="font-size:var(--fs-display); line-height:var(--lh-display)">${esc(site.headline)}</h1>
-    <p style="font-size:var(--fs-h3); color:var(--text-muted); max-width:var(--measure)">${esc(site.subline)}</p>
-    <div style="display:flex; gap:var(--space-3); flex-wrap:wrap; margin:var(--space-5) 0 var(--space-7)">
+  content: `<h1 class="display-heading">${esc(site.headline)}</h1>
+    <p class="subline">${esc(site.subline)}</p>
+    <div class="cta-row">
       <a href="/work/" class="btn btn-primary">See the work</a>
       <a href="/resume/" class="btn btn-secondary">Resume</a>
       <a href="mailto:${site.social.email}" class="btn btn-secondary">Email me</a>
     </div>
-    <div class="proof-strip" style="margin-bottom:var(--space-7)">${proof}</div>
+    <div class="proof-strip mb-7">${proof}</div>
     <h2>Featured case studies</h2>
-    <div class="card-grid" style="margin-bottom:var(--space-7)">${featured.map(cardHtml).join("\n")}</div>
-    <div class="callout" style="margin-bottom:var(--space-7)"><p>${esc(site.lookingFor)}</p></div>
-    <div style="background:var(--surface); border-radius:var(--radius); padding:var(--space-6)">
-      <h2 style="margin-top:0">Also: websites and tools for small businesses</h2>
-      <p style="margin-bottom:0">I also build small, working things for real people. <a href="/work-with-me/">See how I work with small businesses &rarr;</a></p>
+    <div class="card-grid mb-7">${featured.map(cardHtml).join("\n")}</div>
+    <div class="callout mb-7"><p>${esc(site.lookingFor)}</p></div>
+    <div class="panel">
+      <h2 class="mt-0">Also: websites and tools for small businesses</h2>
+      <p class="mb-0">I also build small, working things for real people. <a href="/work-with-me/">See how I work with small businesses &rarr;</a></p>
     </div>`,
   activeHref: "/",
 }, site);
