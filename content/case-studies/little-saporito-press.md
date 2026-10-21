@@ -4,13 +4,14 @@ slug: little-saporito-press
 summary: "A static site for an independent children's author — book pages, a trailer, printable activities with in-page previews, real security headers, and accessibility-safe seasonal decorations that can be switched off."
 date: 2026-10
 status: "Client work"
-verified: "Confirmed directly against the live repo as of 2026-10-21 (13 commits, most recent 2026-10-17): the security headers in _headers, reduced-motion handling (covers the seasonal twinkle animation via a sitewide rule), the decorations on/off toggle, in-page PDF preview and download for both current printables, and the privacy page's own disclosure of Cloudflare Web Analytics and Google Fonts. Featured with the author's (Gina's) written permission — screenshots, the live-site link, her first name, and a description of the work."
+verified: "Confirmed directly against the live repo as of 2026-10-21 (13 commits, most recent 2026-10-17): the security headers in _headers, reduced-motion handling (covers the seasonal twinkle animation via a sitewide rule), the decorations on/off toggle, in-page PDF preview and download for both current printables, and the privacy page's own disclosure of Cloudflare Web Analytics and Google Fonts. Featured with the author's (Gina's) written permission — screenshots, the live-site link, her first name, and a description of the work. The repo link is also included since that repo is itself public (confirmed 2026-10-21)."
 audience: [web]
 stack: [HTML, CSS, JavaScript, Cloudflare Pages]
-site: https://www.littlesaporitopress.com
+repo: https://github.com/MgnCoding2020/gina-author-site
+demo: https://www.littlesaporitopress.com
 ---
 
-<!-- DRAFT: fifth and final launch-set case study, written per CLAUDE.md §3 template. Diagram is a placeholder -- no visual design yet (content-first step, §5.2 step 3). NOTE: "site" front matter points at the live deployed site, not a GitHub repo link -- Gina's permission covers the live-site link, not necessarily exposing her source repo publicly, so no repo link is included here. Flag if that reading is wrong. -->
+<!-- DRAFT: fifth and final launch-set case study, written per CLAUDE.md §3 template. Diagram is a placeholder -- no visual design yet (content-first step, §5.2 step 3). Repo link included -- the gina-author-site repo is public, confirmed 2026-10-21. -->
 
 ## At a glance
 
@@ -35,12 +36,7 @@ The live site has a page for the first book (*A Puppy for Selena*), a teaser car
 - **Chose to keep the seasonal layer in its own folder rather than build it into the main design**, so the permanent site never depends on whatever's seasonally live. The project's own planning notes describe new seasonal work as "additive, not a redesign" — a constraint the file structure enforces, not just a stated intention.
 - **Chose Cloudflare Web Analytics over something like Google Analytics** for the site's one piece of visit measurement, since it's cookieless and collects no personal information — consistent with the privacy page's promise of no tracking cookies. (Google Fonts is also loaded for typography — both are disclosed plainly on the privacy page rather than left for a visitor to discover themselves.)
 - **Chose an in-page preview before download for the printables**, so a parent can see what they're getting before committing to a PDF.
-
-## What went wrong, and what I changed
-
-The site's first Halloween matching-game printable used shapes that were too similar to tell apart — the project's own planning notes describe it plainly: "'same shape repeated' read as low-effort/hard-to-tell-apart." A worksheet where a child can solve a matching puzzle by process of elimination instead of actually matching shapes isn't doing its job, even if it looks fine at a glance.
-
-I rebuilt it: six genuinely distinct hand-drawn icon shapes instead of one shape recolored, and a derangement algorithm (a shuffle that guarantees nothing lands back in its own starting position) so every page's pairing is a real puzzle, not a pattern a kid could shortcut. That specific lesson — distinct shapes, not palette swaps — is now written into the planning notes for every future seasonal activity, not just applied once and forgotten.
+- **Chose six genuinely distinct hand-drawn icon shapes for the matching-game printable, instead of one shape recolored** — plus a derangement algorithm (a shuffle that guarantees nothing lands back in its own starting position) — so a child matches by shape, not by process of elimination. That lesson is now written into the planning notes for every future seasonal activity, not just applied once.
 
 ## What's verified, and what isn't
 
@@ -56,3 +52,4 @@ I rebuilt it: six genuinely distinct hand-drawn icon shapes instead of one shape
 ## Links
 
 - Live site: [littlesaporitopress.com](https://www.littlesaporitopress.com)
+- Repo: [github.com/MgnCoding2020/gina-author-site](https://github.com/MgnCoding2020/gina-author-site)
