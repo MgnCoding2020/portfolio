@@ -7,6 +7,7 @@
 <title>Styleguide — tokens</title>
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
 <style>
   /* Styleguide-only presentation -- not part of the real site's CSS */
   .sg-section { margin-bottom: var(--space-8); }
@@ -26,6 +27,7 @@
   .sg-toggle { position: fixed; top: var(--space-4); right: var(--space-4); display: flex; gap: var(--space-2); z-index: 10; }
   .sg-toggle button { font-family: var(--font-sans); font-size: var(--fs-small); padding: var(--space-2) var(--space-3); border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); cursor: pointer; }
   .sg-toggle button[aria-pressed="true"] { background: var(--brand); color: var(--bg); border-color: var(--brand); }
+  .sg-note { font-size: var(--fs-small); color: var(--text-muted); margin-top: var(--space-2); }
 </style>
 </head>
 <body>
@@ -37,8 +39,8 @@
 </div>
 
 <div class="container" style="padding-top: var(--space-8); padding-bottom: var(--space-8)">
-  <h1>Styleguide — design tokens</h1>
-  <p>Design step 5 (CLAUDE.md §5.2). Values come straight from §5.3 — nothing here is a new decision, just a check that the tokens read correctly before step 6 builds real components on top of them. <code>noindex</code>, not part of the real site.</p>
+  <h1>Styleguide — tokens &amp; components</h1>
+  <p>Design steps 5–6 (CLAUDE.md §5.2). Tokens come straight from §5.3; components below are built once here, per §5.6, then reused everywhere rather than styled per-page. <code>noindex</code>, not part of the real site.</p>
 
   <section class="sg-section">
     <h2>Color</h2>
@@ -96,6 +98,165 @@
       <p style="margin-bottom:0">This box uses <code>--radius</code> and <code>--shadow-card</code> — the same shape every case study's summary box will use.</p>
     </div>
   </section>
+
+  <section class="sg-section">
+    <h2>Header / nav</h2>
+    <p>Real component (not a mockup) — tab into it to check focus order and the current-page state.</p>
+    <header class="site-header" style="border-top:1px solid var(--border); border-radius:var(--radius); overflow:hidden">
+      <div class="container">
+        <a href="#" class="brand">Michael Nault</a>
+        <nav class="site-nav" aria-label="Main">
+          <a href="#" aria-current="page">Work</a>
+          <a href="#">Work with me</a>
+          <a href="#">About</a>
+          <a href="#">Resume</a>
+          <button type="button" class="theme-toggle" data-theme-toggle>Dark mode</button>
+        </nav>
+      </div>
+    </header>
+    <p class="sg-note">No hamburger menu (§5.4) — on a narrow viewport the nav just wraps to a second row.</p>
+  </section>
+
+  <section class="sg-section">
+    <h2>Buttons</h2>
+    <div class="sg-row">
+      <a href="#" class="btn btn-primary">Primary button</a>
+      <a href="#" class="btn btn-secondary">Secondary button</a>
+      <button type="button" class="btn btn-primary">Primary (button)</button>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Tags</h2>
+    <div class="sg-row">
+      <span class="tag">grc</span>
+      <span class="tag">m365</span>
+      <span class="tag">iam</span>
+      <span class="tag">endpoint</span>
+      <span class="tag">security</span>
+      <span class="tag">web</span>
+      <span class="tag">automation</span>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Case-study card</h2>
+    <p>The whole card is one link — nothing nested is separately clickable. Tab to it and check the focus ring.</p>
+    <div class="card-grid" style="max-width:720px">
+      <a href="#" class="case-card">
+        <h3>GRC Security Program: Burn and Churn Coffee</h3>
+        <p>A full security program for a fictional coffee shop — risk register, 11 controls, evidence pack, POA&amp;M.</p>
+        <div class="card-tags">
+          <span class="badge badge-simulation">Simulation</span>
+          <span class="tag">grc</span>
+          <span class="tag">iam</span>
+        </div>
+      </a>
+      <a href="#" class="case-card">
+        <h3>Workspace</h3>
+        <p>A SharePoint-style intranet on three interchangeable backends.</p>
+        <div class="card-tags">
+          <span class="badge badge-progress">In progress</span>
+          <span class="tag">m365</span>
+          <span class="tag">security</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>At a glance box</h2>
+    <div class="glance" style="max-width:640px">
+      <dl style="margin:0">
+        <div class="glance-row"><dt>Problem</dt><dd>A small card-accepting business has no documented security program.</dd></div>
+        <div class="glance-row"><dt>Built</dt><dd>Risk register, an 11-control matrix, policies, an evidence pack, a POA&amp;M.</dd></div>
+        <div class="glance-row"><dt>Evidence</dt><dd>4 policies, 4 procedures, 4 playbooks, 11 controls.</dd></div>
+        <div class="glance-row"><dt>Status</dt><dd><span class="badge badge-simulation">Simulation</span> — the status/verified row stays this size always, never shrunk.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Proof strip</h2>
+    <div class="proof-strip" style="max-width:800px">
+      <div class="proof-stat">
+        <div class="stat-number">63–70% → 99%+</div>
+        <div class="stat-label">SOX audit compliance, in one month</div>
+        <div class="stat-source">Amazon, 2023</div>
+      </div>
+      <div class="proof-stat">
+        <div class="stat-number">454</div>
+        <div class="stat-label">automated checks in Workspace</div>
+        <div class="stat-source">verified Oct 2026</div>
+      </div>
+      <div class="proof-stat">
+        <div class="stat-number">6</div>
+        <div class="stat-label">GRC labs mapped to NIST/PCI</div>
+        <div class="stat-source">see site.json</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Callout</h2>
+    <div class="callout" style="max-width:640px">
+      <p>I'm early in this work and take on a small number of projects alongside my full-time job, so I can give each one proper attention.</p>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Table</h2>
+    <div class="table-wrap" style="max-width:640px">
+      <table>
+        <thead><tr><th>Control</th><th>Finding</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>AC-2</td><td>Privileged access not reviewed</td><td>Open</td></tr>
+          <tr><td>IA-2</td><td>MFA disabled on 2 accounts</td><td>Open</td></tr>
+          <tr><td>AU-6</td><td>Audit logs centrally reviewed</td><td>Closed</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Figure</h2>
+    <figure style="max-width:480px">
+      <svg viewBox="0 0 480 160" role="img" aria-labelledby="sg-fig-title">
+        <title id="sg-fig-title">Risk to evidence flow</title>
+        <rect x="8" y="60" width="100" height="40" rx="8" fill="none" stroke="var(--brand)" stroke-width="1.5"/>
+        <text x="58" y="85" text-anchor="middle" font-size="12" fill="var(--text)">Risk</text>
+        <line x1="108" y1="80" x2="148" y2="80" stroke="var(--brand)" stroke-width="1.5"/>
+        <rect x="148" y="60" width="100" height="40" rx="8" fill="none" stroke="var(--brand)" stroke-width="1.5"/>
+        <text x="198" y="85" text-anchor="middle" font-size="12" fill="var(--text)">Control</text>
+        <line x1="248" y1="80" x2="288" y2="80" stroke="var(--brand)" stroke-width="1.5"/>
+        <rect x="288" y="60" width="100" height="40" rx="8" fill="none" stroke="var(--brand)" stroke-width="1.5"/>
+        <text x="338" y="85" text-anchor="middle" font-size="12" fill="var(--text)">Evidence</text>
+      </svg>
+      <figcaption>Diagrams use <code>currentColor</code>/tokens so they follow the dark theme (§5.7) — try the toggle above.</figcaption>
+    </figure>
+  </section>
+
+  <section class="sg-section">
+    <h2>Code / path</h2>
+    <p>Inline: <code>HKLM\Software\Policies\Microsoft\Windows Defender</code> wraps instead of overflowing.</p>
+    <pre><code>python3 access_review_check.py
+Flag Reason(s): Review status is 'Review Required'</code></pre>
+  </section>
+
+  <section class="sg-section">
+    <h2>Footer</h2>
+    <footer class="site-footer" style="border-top:1px solid var(--border); border-radius:var(--radius); overflow:hidden">
+      <div class="container">
+        <span>No cookies, no trackers, no third-party requests. Last updated: 2026-10-21.</span>
+        <div class="footer-links">
+          <a href="#">Email</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">GitHub</a>
+          <a href="#">TryHackMe</a>
+        </div>
+      </div>
+    </footer>
+  </section>
 </div>
 
 <script>
@@ -127,5 +288,6 @@
     refreshHexLabels();
   })();
 </script>
+<script src="js/theme.js"></script>
 </body>
 </html>
