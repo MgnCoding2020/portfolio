@@ -3,7 +3,7 @@ title: "Resume"
 description: "Michael Nault's resume: IT and GRC, built hands-on."
 ---
 
-<!-- DRAFT: ported from the private master resume (5th pass, 2026-10-21), phone number dropped per CLAUDE.md §1. PDF versions still needed per the Phase 3 checklist (§11) -- not attached yet. Trimmed to 4 projects to match the master resume -- Michael's call after reviewing a PDF export end to end (too dense for a resume read), dropping Little Saporito Press and the "other builds" line. The Workspace bullet's live-tenant test date is still unconfirmed -- see the private master resume's header note for why neither "Sept" nor "Oct" 2026 is actually backed by the repo. -->
+<!-- DRAFT: ported from the private master resume (6th pass, 2026-10-21), phone number dropped per CLAUDE.md §1. PDF versions still needed per the Phase 3 checklist (§11) -- not attached yet. Trimmed to 4 projects to match the master resume -- Michael's call after reviewing a PDF export end to end (too dense for a resume read), dropping Little Saporito Press and the "other builds" line. -->
 
 # Michael Nault
 
@@ -81,7 +81,7 @@ Hands-on projects in GRC control programs, Microsoft 365 and Windows security, a
 *2026*
 
 - Built a data-driven intranet in vanilla JavaScript (~4,700 lines) with one provider interface and three interchangeable backends: in-memory, browser storage, and a live SharePoint tenant.
-- Connected it to a live Microsoft 365 tenant via MSAL with no client secret — SharePoint REST reads/writes, a document library, and PowerShell provisioning scripts with a dry-run mode.
+- Connected it to and verified against a live Microsoft 365 tenant (Sept 2026, before the trial subscription lapsed) via MSAL with no client secret — SharePoint REST reads/writes, a document library, and PowerShell provisioning scripts with a dry-run mode.
 - Found and fixed a stored XSS vulnerability across 60 unsafe HTML-insertion points app-wide, verified across 6 surfaces; backed by an automated Playwright suite now at 454 passing checks.
 
 ## Education and Certifications
