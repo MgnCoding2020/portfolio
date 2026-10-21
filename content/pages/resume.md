@@ -3,7 +3,7 @@ title: "Resume"
 description: "Michael Nault's resume: IT and GRC, built hands-on."
 ---
 
-<!-- DRAFT: ported from the private master resume, phone number dropped per CLAUDE.md §1 ("No phone number on the site" -- email and LinkedIn only). PDF versions still needed per the Phase 3 checklist (§11) -- not attached yet. -->
+<!-- DRAFT: ported from the private master resume (5th pass, 2026-10-21), phone number dropped per CLAUDE.md §1. PDF versions still needed per the Phase 3 checklist (§11) -- not attached yet. Trimmed to 4 projects to match the master resume -- Michael's call after reviewing a PDF export end to end (too dense for a resume read), dropping Little Saporito Press and the "other builds" line. The Workspace bullet's live-tenant test date is still unconfirmed -- see the private master resume's header note for why neither "Sept" nor "Oct" 2026 is actually backed by the repo. -->
 
 # Michael Nault
 
@@ -12,15 +12,15 @@ github.com/MgnCoding2020 | linkedin.com/in/michael-nault-mgncoding2020 | tryhack
 
 ## Summary
 
-IT and cybersecurity student (B.S. Cybersecurity and Information Assurance, WGU, expected January 2028), with six years in Amazon fulfillment operations — including two Process Assistant roles in floor leadership, quality, and SOX audit compliance.
+IT and cybersecurity student (B.S. Cybersecurity and Information Assurance, WGU, expected January 2028), with six years in Amazon fulfillment operations, including two Process Assistant roles in floor leadership, quality, and SOX audit compliance.
 
-I build the kind of work I want to do professionally: GRC control programs, Microsoft 365 and Windows security, and incident-response tooling, mapped to NIST SP 800-53, NIST SP 800-171, and PCI DSS.
+Hands-on projects in GRC control programs, Microsoft 365 and Windows security, and incident-response tooling, mapped to NIST SP 800-53, NIST SP 800-171, and PCI DSS.
 
 ## Skills
 
 - **Governance, risk & compliance:** Risk registers, control matrices, NIST SP 800-53 to PCI DSS 4.0.1 crosswalk, audit evidence, POA&M tracking, vendor risk assessment, access reviews, DISA STIG baselines and SCAP benchmark scanning, SOX audit compliance
 - **IT & Microsoft 365:** Microsoft 365 and SharePoint Online, Microsoft Entra ID, RBAC, least privilege, Conditional Access, Windows 10/11 and Server 2022, Hyper-V, Active Directory (fundamentals)
-- **Scripting & web:** PowerShell, Python (basic), JavaScript, HTML, CSS, Git and GitHub, Playwright testing, Cloudflare Workers
+- **Scripting & web:** PowerShell, Python (basic), JavaScript, HTML, CSS, Git and GitHub, Playwright testing, Cloudflare Pages
 - **Operations & leadership:** Start-up meetings, floor staffing, coaching, training, SOPs and standard work, 5S, quality metrics (DPMO), inventory counts and audits
 
 ## Professional Experience
@@ -70,7 +70,7 @@ I build the kind of work I want to do professionally: GRC control programs, Micr
 - Ran a SCAP benchmark scan (SCAP Compliance Checker, STIG Viewer, DISA Windows 10 STIG V3R7) against a pre-hardening Windows 10 VM: 225 rules assessed, 137 open findings, about 35% baseline compliance.
 - Separately hand-implemented and validated 4 Windows 10 STIG controls in the same problem areas the scan flagged — firewall, inbound traffic restriction, firewall logging, account lockout — mapped to NIST SP 800-171, with PowerShell for repeatable enforcement and evidence export.
 
-### Home Endpoint Security Program
+### HomeEDR: Endpoint Monitoring and Governance
 *2025 – 2026*
 
 - Wrote scheduled PowerShell monitoring that baselines a system and reports drift in services, scheduled tasks, and startup persistence, with reports sanitized before archiving.
@@ -81,15 +81,8 @@ I build the kind of work I want to do professionally: GRC control programs, Micr
 *2026*
 
 - Built a data-driven intranet in vanilla JavaScript (~4,700 lines) with one provider interface and three interchangeable backends: in-memory, browser storage, and a live SharePoint tenant.
-- Connected it to a live Microsoft 365 tenant (verified Oct 2026) via MSAL with no client secret — SharePoint REST reads/writes, a document library, and PowerShell provisioning scripts with a dry-run mode.
+- Connected it to a live Microsoft 365 tenant via MSAL with no client secret — SharePoint REST reads/writes, a document library, and PowerShell provisioning scripts with a dry-run mode.
 - Found and fixed a stored XSS vulnerability across 60 unsafe HTML-insertion points app-wide, verified across 6 surfaces; backed by an automated Playwright suite now at 454 passing checks.
-
-### Little Saporito Press: website for an independent children's author (client work)
-*Ongoing*
-
-- Turned a long, loosely organized planning brief into a clear spec and built a static client site on Cloudflare: book pages, a trailer, and printable PDFs, with real security headers, cookieless analytics, and accessibility-safe seasonal theming.
-
-**Other builds:** WinSysConfig, a Python Windows-settings manager with a strict CSP and journaled, undoable changes (in progress) · a Microsoft 365/Entra ID lab administering users, groups, and Conditional Access under least privilege.
 
 ## Education and Certifications
 
