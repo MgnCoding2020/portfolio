@@ -21,7 +21,12 @@
   --status-sim-bg: #F0EBFA;
   --status-progress-text: #8A5A00;
   --status-progress-bg: #FDF3E1;
-  /* Client work / Personal project reuse --brand / --brand-tint directly */
+  /* Client work / Personal project badges use --brand-tint directly for the
+     fill; text uses --brand-on-tint, which equals --brand in light mode but
+     gets a lighter override in dark (plain --brand only hits 7.04:1 on
+     --brand-tint there -- still AA, but §5.3 documents 9.41:1 via this
+     specific color, so match it rather than leave the gap). */
+  --brand-on-tint: #1F3A5F;
 
   /* Type -- system stack until §5.2 step 5 decides on self-hosted fonts */
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -93,6 +98,7 @@
     --status-sim-bg: #231B38;
     --status-progress-text: #F2C46B;
     --status-progress-bg: #2E2410;
+    --brand-on-tint: #B9CDE8;
 
     --shadow-card: none; /* §5.3: soft shadow is light-mode only; borders do the work in dark */
   }
@@ -114,6 +120,7 @@
   --status-sim-bg: #231B38;
   --status-progress-text: #F2C46B;
   --status-progress-bg: #2E2410;
+  --brand-on-tint: #B9CDE8;
 
   --shadow-card: none;
 }
@@ -135,6 +142,7 @@
   --status-sim-bg: #F0EBFA;
   --status-progress-text: #8A5A00;
   --status-progress-bg: #FDF3E1;
+  --brand-on-tint: #1F3A5F;
 
   --shadow-card: 0 1px 2px rgba(26, 26, 26, 0.06), 0 2px 8px rgba(26, 26, 26, 0.05);
 }
