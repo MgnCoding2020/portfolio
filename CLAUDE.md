@@ -139,7 +139,7 @@ Body sections, in this order:
 2. **The problem**: who has it and why it matters, in 3–5 sentences.
 3. **What I built**: one diagram (SVG, with alt text) and a short tour.
 4. **Decisions and trade-offs**: 3–5 bullets, each "chose X over Y because Z."
-5. **What went wrong and what I changed**: one honest story (for example the seed-date aging bug, or the XSS fix). Hiring managers trust this section most.
+5. **What went wrong and what I changed**: one honest story (for example the seed-date aging bug, or the XSS fix). Hiring managers trust this section most. **Client-work case studies are the exception** (confirmed with Michael 2026-10-21): the goal there is showing the work, not critiquing it or the client — a client only ever approved what they were shown or asked for updates, so there's no "went wrong" to report on their end. Omit this section entirely for client work, or fold a genuine craftsmanship detail into "Decisions and trade-offs" instead, framed positively (what was chosen and why), never as a mistake.
 6. **What's verified, and what isn't**: plain list.
 7. **What I'd do next**.
 8. **Links**: repo, demo, related case studies.
