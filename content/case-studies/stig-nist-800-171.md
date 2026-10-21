@@ -64,7 +64,27 @@ A STIG scan tells you where a system stands against a benchmark, but a list of 1
 
 **The baseline scan** (`windows10-stig-baseline-assessment`): a SCAP Compliance Checker scan against a pre-hardening Windows 10 VM, using the DISA Windows 10 STIG Benchmark V3R7. Full results: 225 rules assessed, 137 open, 75 not-a-finding, 13 not applicable, about 35% compliance. Five of the highest-severity findings (password history, account lockout threshold, audit logon events, firewall, SMBv1) are documented in detail as a curated sample, not all 137 individually.
 
+<figure>
+<img src="/img/stig-nist-800-171/stig-compliance-chart.webp" alt="STIG Viewer compliance donut chart showing 225 total rules: 137 open, 75 not a finding, 13 not applicable, 0 not reviewed, for a 35% compliance score." width="382" height="384">
+<figcaption>The actual STIG Viewer compliance chart from the baseline scan — these are the real numbers cited above, not a reconstruction.</figcaption>
+</figure>
+
+<figure>
+<img src="/img/stig-nist-800-171/stig-findings-list.webp" alt="STIG Viewer rule list for the baseline scan, showing a long column of individually color-coded pass (green) and fail (red) results across the 225 assessed rules." width="856" height="755">
+<figcaption>The scan's full rule list — every one of the 225 rules gets an individual pass/fail result, not just a summary count.</figcaption>
+</figure>
+
+<figure>
+<img src="/img/stig-nist-800-171/stig-rule-detail.webp" alt="STIG Viewer detail view for rule V-220742, WN10-AC-000020, 'The password history must be configured to 24 passwords remembered,' showing a failed result with its CAT II severity and full remediation text." width="1391" height="749">
+<figcaption>One rule's full detail view — this is the level of specificity behind every one of the 137 open findings, not just a number.</figcaption>
+</figure>
+
 **The hardening lab** (`stig-800-171-compliance-lab`): 4 specific DISA STIG controls — firewall enabled, inbound traffic restricted, firewall logging enabled, and account lockout policy — each implemented via local policy/PowerShell, validated, and backed by exported evidence, mapped to NIST SP 800-171. Its own README is upfront that this is a narrow slice: "Additional control families planned."
+
+<figure>
+<img src="/img/stig-nist-800-171/firewall-hardening-evidence.webp" alt="Windows Defender Firewall with Advanced Security console showing the Domain, Private, and Public profiles all enabled, with inbound connections blocked by default — the exported evidence for the firewall control." width="1310" height="545">
+<figcaption>Exported evidence from the hardening lab: all three firewall profiles on, inbound blocked by default — the control this case study's firewall bullet is actually describing.</figcaption>
+</figure>
 
 ## Decisions and trade-offs
 
