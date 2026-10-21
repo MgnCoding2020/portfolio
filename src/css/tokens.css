@@ -1,0 +1,146 @@
+/*
+  Design tokens -- CLAUDE.md §5.3. Values are fixed there (contrast-checked);
+  this file only translates that table into CSS custom properties. Don't
+  hand-edit a color here without updating the contrast numbers in §5.3 too.
+*/
+
+:root {
+  /* Color -- light (default) */
+  --bg: #FFFFFF;
+  --surface: #F5F7FA;
+  --text: #1A1A1A;
+  --text-muted: #4A4F57;
+  --brand: #1F3A5F;
+  --brand-tint: #E8EEF6;
+  --border: #D9DEE5;
+
+  /* Status badges -- light */
+  --status-verified-text: #1E6B3A;
+  --status-verified-bg: #E8F3EC;
+  --status-sim-text: #5B3E99;
+  --status-sim-bg: #F0EBFA;
+  --status-progress-text: #8A5A00;
+  --status-progress-bg: #FDF3E1;
+  /* Client work / Personal project reuse --brand / --brand-tint directly */
+
+  /* Type -- system stack until §5.2 step 5 decides on self-hosted fonts */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --fs-display: clamp(2rem, 5vw, 2.75rem);
+  --lh-display: 1.15;
+  --fs-h1: 2rem;
+  --lh-h1: 1.2;
+  --fs-h2: 1.5rem;
+  --lh-h2: 1.3;
+  --fs-h3: 1.2rem;
+  --lh-h3: 1.35;
+  --fs-body: 1.0625rem; /* 17px */
+  --lh-body: 1.6;
+  --fs-small: 0.875rem;
+  --lh-small: 1.5;
+  --fs-mono: 0.9375rem;
+  --lh-mono: 1.5;
+
+  --fw-regular: 400;
+  --fw-semibold: 600;
+
+  --measure: 68ch;
+
+  /* Spacing scale -- use only these */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Radius / shadow */
+  --radius: 8px;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px rgba(26, 26, 26, 0.06), 0 2px 8px rgba(26, 26, 26, 0.05);
+
+  /* Layout */
+  --container-max: 1100px;
+  --gutter: 16px;
+
+  /* Motion */
+  --transition-fast: 150ms ease;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 24px;
+  }
+}
+
+/* Dark theme: system preference, unless an explicit choice overrides it */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1720;
+    --surface: #16212E;
+    --text: #E6EAF0;
+    --text-muted: #A9B4C2;
+    --brand: #8FB3E0;
+    --brand-tint: #18263A;
+    --border: #2A3646;
+
+    --status-verified-text: #8FD1A5;
+    --status-verified-bg: #14281C;
+    --status-sim-text: #C7B5F2;
+    --status-sim-bg: #231B38;
+    --status-progress-text: #F2C46B;
+    --status-progress-bg: #2E2410;
+
+    --shadow-card: none; /* §5.3: soft shadow is light-mode only; borders do the work in dark */
+  }
+}
+
+/* Explicit theme toggle wins over system preference in both directions */
+:root[data-theme="dark"] {
+  --bg: #0F1720;
+  --surface: #16212E;
+  --text: #E6EAF0;
+  --text-muted: #A9B4C2;
+  --brand: #8FB3E0;
+  --brand-tint: #18263A;
+  --border: #2A3646;
+
+  --status-verified-text: #8FD1A5;
+  --status-verified-bg: #14281C;
+  --status-sim-text: #C7B5F2;
+  --status-sim-bg: #231B38;
+  --status-progress-text: #F2C46B;
+  --status-progress-bg: #2E2410;
+
+  --shadow-card: none;
+}
+
+:root[data-theme="light"] {
+  /* Re-asserts the light values from :root above, so an explicit light
+     choice wins even when the OS is set to dark (§5.8). */
+  --bg: #FFFFFF;
+  --surface: #F5F7FA;
+  --text: #1A1A1A;
+  --text-muted: #4A4F57;
+  --brand: #1F3A5F;
+  --brand-tint: #E8EEF6;
+  --border: #D9DEE5;
+
+  --status-verified-text: #1E6B3A;
+  --status-verified-bg: #E8F3EC;
+  --status-sim-text: #5B3E99;
+  --status-sim-bg: #F0EBFA;
+  --status-progress-text: #8A5A00;
+  --status-progress-bg: #FDF3E1;
+
+  --shadow-card: 0 1px 2px rgba(26, 26, 26, 0.06), 0 2px 8px rgba(26, 26, 26, 0.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+  }
+}
