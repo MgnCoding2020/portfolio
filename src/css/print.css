@@ -1,0 +1,62 @@
+/* Print only -- loaded with media="print" (§5.8). Black text on white,
+   regardless of the theme the page was viewed in on screen. */
+
+@media print {
+  * {
+    background: none !important;
+    box-shadow: none !important;
+    color: #000 !important;
+    border-color: #999 !important;
+  }
+
+  body {
+    font-size: 11pt;
+  }
+
+  .site-header,
+  .site-footer,
+  .theme-toggle,
+  .skip-link,
+  .sg-toggle {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  /* Show the real destination after any link to another host -- useless
+     for same-page jump links (#grc) or an already-visible bare URL. */
+  a[href^="http"]::after,
+  a[href^="mailto:"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #333 !important;
+  }
+
+  /* Keep the things that give a case study its shape from splitting
+     across a page break. */
+  .glance,
+  .case-card,
+  figure,
+  table,
+  .callout {
+    break-inside: avoid;
+  }
+
+  h1, h2, h3 {
+    break-after: avoid;
+  }
+
+  .badge {
+    border: 1px solid #000;
+  }
+
+  .table-wrap {
+    overflow: visible;
+  }
+}
