@@ -629,6 +629,7 @@ Weeks are a guide, not a deadline. If a week is lost, slip the whole schedule. D
 5. Write all site copy as a draft for Michael to edit. Never invent facts, numbers, dates, employers, clients or testimonials. If a fact is missing, leave a visible `TODO(michael): ...` and list it in your summary.
 6. Run `npm run build && node check.mjs` after every change.
 7. Keep this file current: tick roadmap boxes as work merges, and add decisions to section 2 when they change.
+8. **Verify before publishing.** Before any case study, resume line, or site content states a fact, number, date, or claim about a project, confirm it against the actual source — the repo's code, tests, commit/CI history, or committed evidence — never against an earlier draft, a prior resume, or this plan's own content inventory (which can go stale). `gh` is already authenticated with `repo` scope, including private repos. Follow `docs/verification-checklist.md` for the full process. This caught real errors twice already (Workspace's check count and connection date; the GRC evidence-pack script duplication) — it's a required step, not an optional pass.
 
 ---
 
