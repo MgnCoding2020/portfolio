@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /styleguide/
+
+Sitemap: https://portfolio.mgncoding2020.workers.dev/sitemap.xml
