@@ -111,6 +111,7 @@
 
 .btn-secondary:hover {
   background: var(--brand-tint);
+  color: var(--brand-on-tint);
 }
 
 /* ---------- Status badge ---------- */
@@ -129,7 +130,7 @@
 .badge-verified { background: var(--status-verified-bg); color: var(--status-verified-text); }
 .badge-simulation { background: var(--status-sim-bg); color: var(--status-sim-text); }
 .badge-progress { background: var(--status-progress-bg); color: var(--status-progress-text); }
-.badge-client, .badge-personal { background: var(--brand-tint); color: var(--brand); }
+.badge-client, .badge-personal { background: var(--brand-tint); color: var(--brand-on-tint); }
 
 /* ---------- Tag ---------- */
 /* Small label for audience (grc, m365, iam, ...) -- not a status, just a category */
