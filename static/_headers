@@ -5,3 +5,11 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
   Cross-Origin-Opener-Policy: same-origin
+
+# Hidden, noindex dev-tool page (CLAUDE.md §6) -- uses one-off inline
+# styles for its swatch/demo grids, which the main-site CSP above
+# forbids. Detach that header first so Cloudflare doesn't enforce both
+# policies on this path (see CLAUDE.md §8's note on this exact pattern).
+/styleguide/*
+  ! Content-Security-Policy
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'

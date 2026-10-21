@@ -400,3 +400,29 @@ pre code {
 .skip-link:focus {
   left: 0;
 }
+
+/* ---------- Page-level structural/utility classes ---------- */
+/* §8: no style="" attributes anywhere on the main site, so the strict
+   CSP (style-src 'self', no 'unsafe-inline') actually holds. Everything
+   build.mjs needs for one-off page layout lives here instead. */
+
+.text-muted { color: var(--text-muted); }
+
+.display-heading { font-size: var(--fs-display); line-height: var(--lh-display); }
+
+.subline { font-size: var(--fs-h3); color: var(--text-muted); max-width: var(--measure); }
+
+.cta-row { display: flex; gap: var(--space-3); flex-wrap: wrap; margin: var(--space-5) 0 var(--space-7); }
+
+.case-header { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+
+.panel { background: var(--surface); border-radius: var(--radius); padding: var(--space-6); }
+
+.glance dl { margin: 0; }
+
+.page-main { padding-top: var(--space-7); padding-bottom: var(--space-8); }
+
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.mb-6 { margin-bottom: var(--space-6); }
+.mb-7 { margin-bottom: var(--space-7); }
