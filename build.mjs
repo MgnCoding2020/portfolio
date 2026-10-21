@@ -128,6 +128,7 @@ function writePage(slug, { title, description, content, activeHref }, site) {
     .replaceAll("{{title}}", esc(title))
     .replaceAll("{{description}}", esc(description))
     .replaceAll("{{canonical}}", canonical)
+    .replaceAll("{{baseurl}}", BASE_URL)
     .replaceAll("{{header}}", renderHeader(site, activeHref))
     .replaceAll("{{content}}", content)
     .replaceAll("{{footer}}", renderFooter(site));
@@ -229,6 +230,7 @@ const notFoundHtml = layoutTpl
   .replaceAll("{{title}}", "Page not found")
   .replaceAll("{{description}}", "That page doesn't exist.")
   .replaceAll("{{canonical}}", `${BASE_URL}/404.html`)
+  .replaceAll("{{baseurl}}", BASE_URL)
   .replaceAll("{{header}}", renderHeader(site, ""))
   .replaceAll("{{content}}", `<h1>Page not found</h1><p>That page doesn't exist — <a href="/">back to the home page</a>.</p>`)
   .replaceAll("{{footer}}", renderFooter(site));
