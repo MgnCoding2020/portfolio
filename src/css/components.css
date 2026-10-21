@@ -1,0 +1,401 @@
+/*
+  Components -- CLAUDE.md §5.6. Each one built once, used everywhere.
+  Accessibility rules that apply to every component here (§5.6):
+  - visible focus ring: 2px solid var(--brand), 2px offset
+  - minimum 44x44px hit area on phones for anything interactive
+  - real <a>/<button> elements only, never a styled <div>
+*/
+
+/* ---------- Header / nav ---------- */
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  padding-top: var(--space-4);
+  padding-bottom: var(--space-4);
+}
+
+.site-header .brand {
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-h3);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  align-items: center;
+}
+
+.site-nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-small);
+  padding: var(--space-2) 0;
+  border-bottom: 2px solid transparent;
+}
+
+.site-nav a:hover {
+  color: var(--brand);
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--brand);
+  border-bottom-color: var(--brand);
+}
+
+.theme-toggle {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: var(--fs-small);
+  padding: var(--space-2) var(--space-3);
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: var(--brand);
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn-primary {
+  background: var(--brand);
+  color: var(--bg);
+  border-color: var(--brand);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  opacity: 0.92;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--brand);
+  border-color: var(--brand);
+}
+
+.btn-secondary:hover {
+  background: var(--brand-tint);
+}
+
+/* ---------- Status badge ---------- */
+/* Word + colour, never colour alone (§5.3) -- the word is part of the markup, not decorative */
+
+.badge {
+  display: inline-block;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  line-height: 1.4;
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.badge-verified { background: var(--status-verified-bg); color: var(--status-verified-text); }
+.badge-simulation { background: var(--status-sim-bg); color: var(--status-sim-text); }
+.badge-progress { background: var(--status-progress-bg); color: var(--status-progress-text); }
+.badge-client, .badge-personal { background: var(--brand-tint); color: var(--brand); }
+
+/* ---------- Tag ---------- */
+/* Small label for audience (grc, m365, iam, ...) -- not a status, just a category */
+
+.tag {
+  display: inline-block;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 1px var(--space-2);
+}
+
+/* ---------- Case-study card ---------- */
+/* Whole card is one link -- the <a> wraps everything, nothing nested is separately clickable */
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .card-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.case-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-5);
+  text-decoration: none;
+  color: var(--text);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.case-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--brand);
+}
+
+.case-card h3 {
+  margin-bottom: var(--space-2);
+}
+
+.case-card p {
+  color: var(--text-muted);
+  font-size: var(--fs-small);
+  margin-bottom: var(--space-3);
+}
+
+.case-card .card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+/* ---------- At a glance box ---------- */
+/* The status/verified row is never hidden, shrunk, or styled smaller than the rest */
+
+.glance {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+}
+
+.glance-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.glance-row:last-child {
+  border-bottom: none;
+}
+
+.glance-row dt {
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+.glance-row dd {
+  margin: 0;
+}
+
+@media print {
+  .glance { break-inside: avoid; }
+}
+
+/* ---------- Proof strip ---------- */
+
+.proof-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+@media (max-width: 767px) {
+  .proof-strip { grid-template-columns: 1fr; }
+}
+
+.proof-stat .stat-number {
+  font-size: var(--fs-display);
+  font-weight: var(--fw-semibold);
+  color: var(--brand);
+  line-height: 1.1;
+}
+
+.proof-stat .stat-label {
+  margin-top: var(--space-2);
+}
+
+.proof-stat .stat-source {
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  margin-top: var(--space-1);
+}
+
+/* ---------- Callout ---------- */
+/* Honest notes, caveats -- a visually distinct aside, never styled as an error */
+
+.callout {
+  background: var(--brand-tint);
+  border-left: 3px solid var(--brand);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: var(--space-4) var(--space-5);
+}
+
+.callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Table ---------- */
+/* Zebra-free, hairline rules; scrolls sideways inside its own box on phones, never the whole page */
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-small);
+}
+
+th, td {
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+thead th {
+  font-weight: var(--fw-semibold);
+  color: var(--text-muted);
+  background: var(--surface);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ---------- Figure ---------- */
+
+figure {
+  margin: var(--space-5) 0;
+}
+
+figure img, figure svg {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+figcaption {
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  margin-top: var(--space-2);
+}
+
+/* ---------- Code / path ---------- */
+
+:not(pre) > code {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  word-break: break-word;
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-8);
+}
+
+.site-footer .container {
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-5);
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+
+.site-footer .footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.site-footer a {
+  color: var(--text-muted);
+}
+
+.site-footer a:hover {
+  color: var(--brand);
+}
+
+/* ---------- Skip link ---------- */
+/* Required by §5.9's QA checklist; hidden until focused */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--brand);
+  color: var(--bg);
+  padding: var(--space-3) var(--space-4);
+  border-radius: 0 0 var(--radius) 0;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 0;
+}
