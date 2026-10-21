@@ -623,7 +623,7 @@ Weeks are a guide, not a deadline. If a week is lost, slip the whole schedule. D
 ## 13. Working agreement for Claude Code
 
 1. Michael is learning. Explain what you'll change and why before editing, and how to check it afterwards.
-2. One branch per task. Never push to `main` without Michael's explicit OK; Cloudflare deploys `main` automatically.
+2. One branch per task, PR for every change. **Updated 2026-10-21:** Michael has authorized merging PRs on this repo without waiting for his review each time -- default to merging once a PR is clean (no conflicts, build still works). Still use judgment: pause and flag rather than merge on autopilot if something looks genuinely consequential (e.g. the first real deploy once Cloudflare is connected, anything touching a client's or a third party's information). Delete merged branches (local and remote) as routine cleanup, no need to ask.
 3. Preview locally with `npx wrangler pages dev dist` before every merge.
 4. Keep the stack as decided in section 2. Don't add a framework, a CSS library, analytics or any third-party request without asking.
 5. Write all site copy as a draft for Michael to edit. Never invent facts, numbers, dates, employers, clients or testimonials. If a fact is missing, leave a visible `TODO(michael): ...` and list it in your summary.
