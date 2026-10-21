@@ -18,7 +18,7 @@
   "proofStrip": [
     { "stat": "63–70% → 99%+", "label": "SOX audit compliance, in one month", "source": "Amazon, 2023" },
     { "stat": "454", "label": "automated checks in Workspace, a SharePoint-style platform", "source": "verified Oct 2026" },
-    { "stat": "6", "label": "GRC labs mapped to NIST 800-53, NIST 800-171, and PCI DSS 4.0.1", "source": "count pending Michael's confirmation" }
+    { "stat": "6", "label": "GRC labs mapped to NIST 800-53, NIST 800-171, and PCI DSS 4.0.1", "source": "see /work/" }
   ],
   "footer": {
     "privacyNote": "No cookies, no trackers, no third-party requests.",

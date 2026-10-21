@@ -8,5 +8,7 @@ Thumbs.db
 
 # Private source material for Claude Code's context only -- never the
 # face of the site, never committed. See CLAUDE.md working agreement.
-Michael_Nault_Resume*
+# Anchored to the repo root (leading /) so this doesn't also swallow the
+# legitimate site PDF at static/resume/Michael_Nault_Resume.pdf.
+/Michael_Nault_Resume*
 *_Resume_private.*
