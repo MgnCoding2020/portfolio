@@ -44,19 +44,19 @@ The program has five pieces that connect to each other rather than standing alon
 
 ## What went wrong, and what I changed
 
-When I was fact-checking this case study against the actual repo, I found something I'd gotten wrong: the evidence pack claims four distinct automated checks, including one that flags accounts missing MFA. Looking at the actual code, three of the four scripts — the MFA check, the privileged-access check, and the segregation-of-duties check — are byte-for-byte identical. All three check privileged-access approval status. None of them actually reads `mfa-status.csv`, even though that file exists in the evidence folder with real exception data in it (two accounts with MFA disabled).
+When I was fact-checking this case study against the actual repo, I found something I'd gotten wrong: the evidence pack claims four distinct automated checks, including one that flags accounts missing MFA. Looking at the actual code, three of the four scripts — `mfa_review_check.py`, `access_review_check.py`, and `privileged_access_review_check.py` — are byte-for-byte identical. All three check privileged-access approval status against `user-access-review.csv`. None of them actually reads `mfa-status.csv`, even though that file exists in the evidence folder with real exception data in it (two accounts with MFA disabled).
 
 This is exactly the kind of gap the program is supposed to catch — a control that exists on paper (four named checks) but isn't actually doing four different things. I'm leaving it visible here rather than quietly fixing the repo and pretending the resume always said "two checks, not four": the honest version of this project includes catching my own mistake. The fix itself — differentiating the three scripts so each reads the file it's named for — is tracked below as a next step, not yet done.
 
 ## What's verified, and what isn't
 
 - **Verified (present in the repo, confirmed 2026-10-20):** the risk register, the 11-control matrix with the PCI crosswalk, all 4 policies/procedures/playbooks, the POA&M, the vendor risk assessment findings and residual-risk rating, and the 5-system access review.
-- **Verified by reading the code, not by running it:** the Python evidence checks. One script (incident-log review) is genuinely distinct and does what it claims. The other three currently duplicate the privileged-access check, as described above — they do not yet check MFA status or segregation of duties, despite their names.
+- **Verified by reading the code, not by running it:** the Python evidence checks. One script (incident-log review) is genuinely distinct and does what it claims. The other three currently duplicate the privileged-access check, as described above — the one named for MFA does not yet check MFA status, despite its name.
 - **Not yet done:** actually running the evidence checks end to end and capturing output as evidence, rather than just reading the source.
 
 ## What I'd do next
 
-- Differentiate the three duplicate scripts so the MFA check reads `mfa-status.csv` and the SoD check does its own real comparison, instead of all three repeating the privileged-access check.
+- Differentiate the three duplicate scripts so `mfa_review_check.py` reads `mfa-status.csv` and `access_review_check.py` does its own distinct comparison, instead of all three repeating `privileged_access_review_check.py`'s logic.
 - Run the evidence pack end to end and commit real output, not just source code, as evidence.
 - Add a short runbook so the quarterly access review and the evidence pack can be re-run by someone who isn't me.
 
