@@ -22,6 +22,6 @@
   ],
   "footer": {
     "privacyNote": "No cookies, no trackers, no third-party requests.",
-    "lastUpdated": "TODO(michael): set at each content update, or have build.mjs stamp it automatically"
+    "lastUpdated": null
   }
 }
