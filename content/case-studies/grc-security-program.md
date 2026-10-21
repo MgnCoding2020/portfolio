@@ -4,7 +4,7 @@ slug: grc-security-program
 summary: "A full security program for a fictional coffee shop: risk register, 11 NIST 800-53 controls crosswalked to PCI DSS 4.0.1, an evidence pack with automated checks, a vendor risk assessment, and quarterly access reviews."
 date: 2026-06
 status: "Simulation"
-verified: "Control matrix, policies, evidence pack, and POA&M confirmed present in the repo as of 2026-10-20. The Python evidence checks were verified by reading the code, not by running them — see 'What went wrong' below for what that review found."
+verified: "Control matrix, policies, evidence pack, and POA&M confirmed present in the repo as of 2026-10-20. The evidence-check fix described below is open as a pull request (2026-10-21), tested against real repo data, but not yet merged to main — see 'What went wrong' below."
 audience: [grc, iam]
 stack: [Python, Markdown, CSV]
 repo: https://github.com/MgnCoding2020/grc-paper-project-coffee-shop
@@ -46,18 +46,20 @@ The program has five pieces that connect to each other rather than standing alon
 
 When I was fact-checking this case study against the actual repo, I found something I'd gotten wrong: the evidence pack claims four distinct automated checks, including one that flags accounts missing MFA. Looking at the actual code, three of the four scripts — `mfa_review_check.py`, `access_review_check.py`, and `privileged_access_review_check.py` — are byte-for-byte identical. All three check privileged-access approval status against `user-access-review.csv`. None of them actually reads `mfa-status.csv`, even though that file exists in the evidence folder with real exception data in it (two accounts with MFA disabled).
 
-This is exactly the kind of gap the program is supposed to catch — a control that exists on paper (four named checks) but isn't actually doing four different things. I'm leaving it visible here rather than quietly fixing the repo and pretending the resume always said "two checks, not four": the honest version of this project includes catching my own mistake. The fix itself — differentiating the three scripts so each reads the file it's named for — is tracked below as a next step, not yet done.
+This is exactly the kind of gap the program is supposed to catch — a control that exists on paper (four named checks) but isn't actually doing four different things. I'm leaving it visible here rather than quietly fixing the repo and pretending it was always right: the honest version of this project includes catching my own mistake.
+
+The fix turned out to be simpler than expected: the scripts' own README already documented what each check was supposed to do — the code had just never caught up. `mfa_review_check.py` now reads `mfa-status.csv` and correctly flags both accounts with MFA disabled. `access_review_check.py` now checks all accounts (not just privileged ones) for incomplete review sign-off and stale login activity, instead of repeating the privileged-access logic. `privileged_access_review_check.py` turned out to be the one that was already correct — it's what got copy-pasted into the other two. All three were re-tested against the repo's real evidence data and produced the expected flags. The fix is [open as a pull request](https://github.com/MgnCoding2020/grc-paper-project-coffee-shop/pull/1), not yet merged — one open question in it: the staleness threshold `access_review_check.py` uses for login activity (30 days) isn't specified anywhere in the project's own procedures, so it's a judgment call pending review against `PR-003-quarterly-access-review.md`'s actual cadence.
 
 ## What's verified, and what isn't
 
 - **Verified (present in the repo, confirmed 2026-10-20):** the risk register, the 11-control matrix with the PCI crosswalk, all 4 policies/procedures/playbooks, the POA&M, the vendor risk assessment findings and residual-risk rating, and the 5-system access review.
-- **Verified by reading the code, not by running it:** the Python evidence checks. One script (incident-log review) is genuinely distinct and does what it claims. The other three currently duplicate the privileged-access check, as described above — the one named for MFA does not yet check MFA status, despite its name.
-- **Not yet done:** actually running the evidence checks end to end and capturing output as evidence, rather than just reading the source.
+- **Verified by running the fix against real repo data (2026-10-21):** `mfa_review_check.py`, `access_review_check.py`, and `privileged_access_review_check.py` are now distinct and each produces the expected flags. `incident_log_review_check.py` was already correct.
+- **Not yet done:** the fix is an open pull request, not yet merged to the project's main branch — so the repo's default branch still has the duplicated scripts until that's reviewed and merged. The 30-day login-staleness threshold in `access_review_check.py` also still needs checking against the project's own quarterly-review procedure.
 
 ## What I'd do next
 
-- Differentiate the three duplicate scripts so `mfa_review_check.py` reads `mfa-status.csv` and `access_review_check.py` does its own distinct comparison, instead of all three repeating `privileged_access_review_check.py`'s logic.
-- Run the evidence pack end to end and commit real output, not just source code, as evidence.
+- Review and merge the evidence-check fix, after checking the staleness threshold against `PR-003-quarterly-access-review.md`.
+- Run the full evidence pack end to end and commit real output, not just source code, as evidence.
 - Add a short runbook so the quarterly access review and the evidence pack can be re-run by someone who isn't me.
 
 ## Links
