@@ -541,7 +541,7 @@ Michael has about **5 hours a week**, shared with the Workspace and WinSysConfig
 - [ ] Home page with the real headline, proof strip and "looking for" paragraph. Case-study cards can link to "coming soon."
 - [ ] `_headers`, `robots.txt`, `security.txt`, `404.html`, favicon.
 - [x] **Connect Cloudflare; first deploy succeeded 2026-10-21.** Live at `portfolio.naultmichael.workers.dev`. CSP, HSTS, COOP, Permissions-Policy and nosniff all confirmed present on the live response headers; no `unsafe-inline` on the main site's `style-src`.
-- [ ] **Ship it, quietly.** Don't announce yet; just have it live.
+- [x] **Ship it, quietly -- live 2026-10-22.** `https://portfolio.naultmichael.workers.dev`. Not announced yet (Phase 5 does that).
 
 **Done when** the site is live at its `workers.dev` address, passes the header scan with CSP present, and Lighthouse is 95+ on the home page.
 
