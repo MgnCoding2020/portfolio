@@ -177,7 +177,7 @@ def render_company_section(content: str, styles, story):
     header_tbl = Table(
         [[Paragraph(inline_md(company), styles["company"]),
           Paragraph(esc(date_line), styles["company_date"])]],
-        colWidths=[4.6 * inch, 2.0 * inch],
+        colWidths=[5.46 * inch, 1.8 * inch], hAlign="LEFT",
     )
     header_tbl.setStyle(TableStyle([
         ("VALIGN", (0, 0), (-1, -1), "BOTTOM"),
@@ -194,7 +194,7 @@ def render_company_section(content: str, styles, story):
         role_tbl = Table(
             [[Paragraph(inline_md(entry["role"]), styles["job_role"]),
               Paragraph(esc(entry["dates"]), styles["job_date"])]],
-            colWidths=[4.6 * inch, 2.0 * inch],
+            colWidths=[5.46 * inch, 1.8 * inch], hAlign="LEFT",
         )
         role_tbl.setStyle(TableStyle([
             ("VALIGN", (0, 0), (-1, -1), "BOTTOM"),
@@ -243,7 +243,7 @@ def render_project_entries(content: str, styles, story):
         title_tbl = Table(
             [[Paragraph(inline_md(title), styles["company"]),
               Paragraph(esc(date_line), styles["company_date"])]],
-            colWidths=[4.6 * inch, 2.0 * inch],
+            colWidths=[5.46 * inch, 1.8 * inch], hAlign="LEFT",
         )
         title_tbl.setStyle(TableStyle([
             ("VALIGN", (0, 0), (-1, -1), "BOTTOM"),
