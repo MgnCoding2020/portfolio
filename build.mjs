@@ -120,7 +120,7 @@ function cardHtml(c) {
 
 const layoutTpl = readFileSync("src/templates/layout.html", "utf8");
 
-function writePage(slug, { title, description, content, activeHref }, site) {
+function writePage(slug, { title, description, content, activeHref, jsonLd }, site) {
   checkImagesHaveAlt(content, slug || "home");
   const canonical = `${BASE_URL}${slug ? "/" + slug + "/" : "/"}`;
   const html = layoutTpl
@@ -130,7 +130,8 @@ function writePage(slug, { title, description, content, activeHref }, site) {
     .replaceAll("{{baseurl}}", BASE_URL)
     .replaceAll("{{header}}", renderHeader(site, activeHref))
     .replaceAll("{{content}}", content)
-    .replaceAll("{{footer}}", renderFooter(site));
+    .replaceAll("{{footer}}", renderFooter(site))
+    .replaceAll("{{jsonld}}", jsonLd || "");
   const outDir = slug ? path.join(DIST, slug) : DIST;
   mkdirSync(outDir, { recursive: true });
   writeFileSync(path.join(outDir, "index.html"), html);
@@ -203,9 +204,18 @@ const featured = caseStudies.filter((c) => c.data.featured).sort((a, b) => a.dat
 const proof = (site.proofStrip || []).map((p) =>
   `<div class="proof-stat"><div class="stat-number">${esc(p.stat)}</div><div class="stat-label">${esc(p.label)}</div><div class="stat-source">${esc(p.source)}</div></div>`
 ).join("");
+const personJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  jobTitle: "IT and GRC, entry level",
+  url: BASE_URL + "/",
+  sameAs: [site.social.github, site.social.linkedin],
+});
 writePage("", {
   title: `${site.name} — IT and GRC, built hands-on`,
   description: site.subline,
+  jsonLd: `<script type="application/ld+json">${personJsonLd}</script>`,
   content: `<h1 class="display-heading">${esc(site.headline)}</h1>
     <p class="subline">${esc(site.subline)}</p>
     <div class="cta-row">
