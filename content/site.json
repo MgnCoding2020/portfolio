@@ -21,7 +21,7 @@
     { "stat": "6", "label": "GRC labs mapped to NIST 800-53, NIST 800-171, and PCI DSS 4.0.1", "source": "see /work/" }
   ],
   "footer": {
-    "privacyNote": "No cookies, no trackers, no third-party requests.",
+    "privacyNote": "No cookies, no ad trackers. Uses cookieless Cloudflare Web Analytics -- see /how-i-work/.",
     "lastUpdated": null
   }
 }

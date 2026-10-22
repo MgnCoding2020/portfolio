@@ -451,7 +451,7 @@ Add a reminder (calendar or a check in `check.mjs`) to refresh `Expires` before 
 
 ### Privacy
 
-No cookies, no trackers, no third-party requests. A one-paragraph privacy note in the footer or on `/how-i-work/` says exactly that.
+No cookies, no ad trackers. Updated 2026-10-21: Cloudflare Web Analytics (cookieless, see §2) is the one third-party request this site makes. A one-paragraph privacy note in the footer and on `/how-i-work/` says exactly that.
 
 ### SEO basics
 
