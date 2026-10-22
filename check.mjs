@@ -51,9 +51,14 @@ for (const file of htmlFiles) {
   // No third-party requests: scripts, stylesheets, and images must be self-hosted.
   // (rel="canonical"/"apple-touch-icon" aren't resource loads a browser fetches
   // for CSP purposes, and canonical URLs are always absolute by design -- excluded.)
+  // One deliberate exception: the Cloudflare Web Analytics beacon (cookieless,
+  // no personal data -- see /how-i-work/), matching _headers' CSP exactly.
+  const ALLOWED_THIRD_PARTY = ["https://static.cloudflareinsights.com/beacon.min.js"];
   for (const m of html.matchAll(/<script\b[^>]*\ssrc="([^"]+)"|<img\b[^>]*\ssrc="([^"]+)"|<link\b[^>]*\srel="stylesheet"[^>]*\shref="([^"]+)"/gi)) {
     const url = m[1] || m[2] || m[3];
-    if (/^https?:\/\//i.test(url)) errors.push(`${rel}: third-party resource loaded -- ${url}`);
+    if (/^https?:\/\//i.test(url) && !ALLOWED_THIRD_PARTY.includes(url)) {
+      errors.push(`${rel}: third-party resource loaded -- ${url}`);
+    }
   }
 
   // Collect external <a> links for the report (not a failure)

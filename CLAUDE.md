@@ -66,7 +66,7 @@ Use this, or Michael's own rewrite, as the home page headline and subline. Every
 | Dependencies | `marked` (Markdown → HTML), and nothing else at runtime | One small, well-known dependency, pinned exactly |
 | JavaScript on the page | Optional, only for the theme toggle | Content never depends on it |
 | Fonts | System font stack, or **self-hosted** IBM Plex Sans + Plex Mono (open licence) | No Google Fonts request (privacy, and it keeps the CSP strict) |
-| Analytics | None at launch. Optional later: Cloudflare Web Analytics (cookieless) | Privacy first; nothing to disclose |
+| Analytics | **Cloudflare Web Analytics, enabled 2026-10-21** (cookieless, manual JS-snippet setup since the site isn't a Cloudflare-proxied zone) | Privacy-respecting traffic visibility for Michael; CSP opened only for `static.cloudflareinsights.com` (script-src) and `cloudflareinsights.com` (connect-src), nothing broader. No public-facing visit counter on the site itself -- decided against: a vanity metric, not evidence, and off the site's "clear, credible, quiet" test (5.1) |
 | Contact | `mailto:` link + LinkedIn | No form to secure or spam-filter. A form (Pages Function + Turnstile) is a later option |
 
 ---
@@ -437,7 +437,7 @@ A GRC candidate's own site should pass the checks it would recommend to others. 
 
 Notes:
 - The Workspace demo is one file with inline script and styles, so its path needs `'unsafe-inline'`. It also has `connect-src 'none'`, because the demo talks to nothing. Write that trade-off down rather than hiding it. Check how Cloudflare combines headers when two rules match a path; if both policies apply, the browser enforces both and the demo breaks, so the demo rule may need to replace the `/*` CSP for that path (Cloudflare's `_headers` docs explain how to detach a header with `! Content-Security-Policy`).
-- If Cloudflare Web Analytics is ever enabled, the CSP needs its script and beacon hosts. Look them up then; don't loosen the policy in advance.
+- Cloudflare Web Analytics is enabled (2026-10-21; see §2). Its CSP hosts were looked up against Cloudflare's own docs rather than guessed: `script-src` allows `https://static.cloudflareinsights.com/beacon.min.js` exactly; `connect-src` allows `cloudflareinsights.com` (the manual-embedding host, since this site isn't a Cloudflare-proxied zone -- the `'self'`-only form in Cloudflare's docs is for automatic injection on a proxied zone, which doesn't apply here).
 - No `style=""` attributes and no inline `<script>` anywhere on the main site, so the strict CSP works.
 
 ### `.well-known/security.txt` (RFC 9116)
