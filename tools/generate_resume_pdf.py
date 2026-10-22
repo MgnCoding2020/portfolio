@@ -105,7 +105,7 @@ def build_styles():
                                    leading=13.5, textColor=TEXT, spaceAfter=6),
         "skill": ParagraphStyle("skill", fontName="Helvetica", fontSize=9.5,
                                  leading=13, textColor=TEXT, spaceAfter=4,
-                                 leftIndent=12, bulletIndent=0),
+                                 leftIndent=14, firstLineIndent=-10),
         "job_role": ParagraphStyle("job_role", fontName="Helvetica-Bold", fontSize=10,
                                     leading=12.5, textColor=TEXT),
         "job_date": ParagraphStyle("job_date", fontName="Helvetica-Oblique", fontSize=9,
