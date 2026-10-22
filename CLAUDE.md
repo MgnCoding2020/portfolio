@@ -60,7 +60,7 @@ Use this, or Michael's own rewrite, as the home page headline and subline. Every
 |---|---|---|
 | Host | **Cloudflare Workers (static assets)** (free) | Updated 2026-10-20: Cloudflare now steers new Git-connected projects here instead of classic Pages ("start new projects with Workers" per their own docs). Same `_headers`/`_redirects` support as Pages, same free branch previews; needs one extra `wrangler.jsonc` (`assets.directory: "./dist"`) that Pages didn't require. Local preview is `npx wrangler dev` (was `wrangler pages dev dist`). Deploy command in the Cloudflare dashboard: `npx wrangler deploy`; build command: `npm ci && npm run build` |
 | Fallback host | GitHub Pages (`mgncoding2020.github.io`) | Zero setup, but no custom headers (CSP only via `<meta>`, no `frame-ancestors`, no HSTS control) |
-| Address | Free `portfolio.mgncoding2020.workers.dev` first (Workers' free address: `<worker-name>.<account-subdomain>.workers.dev`; decided 2026-10-20 to reuse the existing GitHub account subdomain rather than pick a new one) | Free, no new name to reserve. A custom domain (about $10–15/year at cost through Cloudflare Registrar) can come later and redirect from this address |
+| Address | Free `portfolio.naultmichael.workers.dev` (Workers' free address: `<worker-name>.<account-subdomain>.workers.dev`; the Cloudflare account's subdomain turned out to be `naultmichael`, not the GitHub handle `mgncoding2020` as originally assumed on 2026-10-20 -- corrected 2026-10-21 after the first live deploy) | Free, no new name to reserve. A custom domain (about $10–15/year at cost through Cloudflare Registrar) can come later and redirect from this address |
 | Stack | **Plain HTML + CSS, built by one small Node script** | Matches Michael's existing style (vanilla, no framework); nothing new to learn; every page is real HTML, so it works with no JavaScript, prints well, and is easy for search engines |
 | Content format | Markdown files with a small front-matter block, plus `projects.json` | Content stays separate from code, the same principle as Workspace's `config/` + `data/seed/` |
 | Dependencies | `marked` (Markdown → HTML), and nothing else at runtime | One small, well-known dependency, pinned exactly |
@@ -518,7 +518,7 @@ Michael has about **5 hours a week**, shared with the Workspace and WinSysConfig
 
 ### Phase 0: Prepare (week 1, about 4 h)
 
-- [x] **Subdomain — decided 2026-10-20.** Reuse `mgncoding2020` as the Workers account subdomain; the site will live at `portfolio.mgncoding2020.workers.dev` until/unless a custom domain is added. No Cloudflare account exists yet — nothing to create until there's a `dist/` to deploy, so this step is a decision, not an action.
+- [x] **Subdomain — decided 2026-10-20, corrected 2026-10-21.** The Cloudflare account's Workers subdomain turned out to be `naultmichael`, not the GitHub handle `mgncoding2020` as assumed before an account existed. Live site: `portfolio.naultmichael.workers.dev`, until/unless a custom domain is added.
 - [ ] Open the old Claude Design draft; note 3–5 layout ideas worth keeping in `docs/old-draft-notes.md`. Don't copy content.
 - [x] **Gina's permission — obtained 2026-10-20.** She's Michael's mother-in-law and has consented to featuring littlesaporitopress.com: screenshots, the link, her first name, a description of the work. No further ask needed before writing the case study.
 - [x] **Amazon outside-employment check — not needed.** The site doesn't use Amazon's brand, name, or any internal information beyond what's already on the resume (role names, published metrics); it isn't soliciting Amazon clients or competing with Amazon's business. No conflict with their code of conduct.
@@ -538,7 +538,7 @@ Michael has about **5 hours a week**, shared with the Workspace and WinSysConfig
 - [ ] `build.mjs` with one layout, header, footer, `tokens.css` (light and dark), `base.css`.
 - [ ] Home page with the real headline, proof strip and "looking for" paragraph. Case-study cards can link to "coming soon."
 - [ ] `_headers`, `robots.txt`, `security.txt`, `404.html`, favicon.
-- [ ] Connect Cloudflare Pages; confirm the preview deploy works; merge to `main`.
+- [x] **Connect Cloudflare; first deploy succeeded 2026-10-21.** Live at `portfolio.naultmichael.workers.dev`. CSP, HSTS, COOP, Permissions-Policy and nosniff all confirmed present on the live response headers; no `unsafe-inline` on the main site's `style-src`.
 - [ ] **Ship it, quietly.** Don't announce yet; just have it live.
 
 **Done when** the site is live at its `workers.dev` address, passes the header scan with CSP present, and Lighthouse is 95+ on the home page.
