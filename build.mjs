@@ -6,7 +6,7 @@ import path from "node:path";
 import { marked } from "marked";
 
 const DIST = "dist";
-const BASE_URL = "https://portfolio.mgncoding2020.workers.dev";
+const BASE_URL = "https://portfolio.naultmichael.workers.dev";
 const sitemapUrls = [];
 
 function lastUpdated() {
