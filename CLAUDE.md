@@ -480,12 +480,12 @@ No cookies, no ad trackers. Updated 2026-10-21: Cloudflare Web Analytics (cookie
 
 ### Manual targets before launch
 
-- Lighthouse (Chrome DevTools): 95+ in Performance, Accessibility, Best Practices and SEO, on mobile and desktop.
-- Keyboard only: every page usable, visible focus, and a skip link.
-- Contrast: WCAG 2.2 AA in both themes.
-- Mozilla HTTP Observatory, or a security-headers scanner, run against the live site. Put the result on `/how-i-work/`.
-- Print preview of one case study.
-- Checked at 360 px wide (phone) and with JavaScript turned off.
+- [x] **Lighthouse (Chrome DevTools) -- confirmed 2026-10-22.** Mobile: Performance 99, Accessibility 100, Best Practices 100, SEO 100 (home page). Desktop: 100/100/100/100, confirmed on multiple pages. Run against the live `portfolio.naultmichael.workers.dev` by Michael directly.
+- [ ] Keyboard only: every page usable, visible focus, and a skip link.
+- [ ] Contrast: WCAG 2.2 AA in both themes.
+- [ ] Mozilla HTTP Observatory, or a security-headers scanner, run against the live site. Put the result on `/how-i-work/`.
+- [ ] Print preview of one case study.
+- [ ] Checked at 360 px wide (phone) and with JavaScript turned off.
 
 ### CI (`.github/workflows/check.yml`)
 
