@@ -96,7 +96,7 @@ Use this, or Michael's own rewrite, as the home page headline and subline. Every
 3. **Featured case studies**: three cards (GRC Security Program, Workspace, Home EDR). Each card: title, one line, audience tags, status badge. Workspace may show an **In progress** badge until its full case study is written.
 4. **What I'm looking for**: one honest paragraph (entry-level GRC/compliance, M365 admin or IAM; Orlando or remote; open to mentorship-heavy roles).
 5. **"Also: websites and tools for small businesses"**: a visually separate band with one line, the Little Saporito Press card, and a link to `/work-with-me/`.
-6. **Footer**: email, LinkedIn, GitHub, TryHackMe, "Last updated" date.
+6. **Footer**: email, LinkedIn, GitHub, "Last updated" date. (TryHackMe dropped 2026-10-22 -- inactive for months and Michael's not pursuing that direction; see §2-adjacent decision log below.)
 
 ### `/work-with-me/` (the client door)
 
@@ -270,7 +270,7 @@ Weights: 400 and 600 only. Reading measure: `max-width: 68ch` for text columns.
 - **Breakpoints:** 480px (small phones), 768px (tablets), 1024px (desktop). Design phone-first.
 - **Grid:** case-study cards in 1 column on phones, 2 from 768px, 3 from 1024px. Text pages are one column.
 - **Header:** name on the left; nav links (Work, Work with me, About, Resume) on the right; on phones they wrap to a second row. **No hamburger menu**, so no JavaScript is needed.
-- **Footer:** email, LinkedIn, GitHub, TryHackMe, privacy note, "Last updated."
+- **Footer:** email, LinkedIn, GitHub, privacy note, "Last updated."
 
 ### 5.5 Wireframes for the four key templates
 
@@ -527,7 +527,7 @@ Michael has about **5 hours a week**, shared with the Workspace and WinSysConfig
 - [x] **Payroll case study permission — not needed.** It was never deployed to or used by the engineering firm; it exists only as a standalone `.html` file Michael built. Reframe the eventual write-up as a personal/prototype project rather than "client work" — not "built for a small engineering firm" in the case-study sense, since the firm never received or ran it. Revisit the angle (section 4, item #6) when it's written.
 - [ ] **Resume — needs consolidation.** Michael currently has multiple versions (IT/M365-leaning and GRC-leaning). Before `/resume/` can be built, pick or draft one resume strong enough to serve both doors, rather than publishing several. Flag as open.
 - [ ] Write the position line and the "What I'm looking for" paragraph in Michael's own words.
-- [ ] Collect: the consolidated resume PDF once it exists, a headshot (optional), GitHub/LinkedIn/TryHackMe URLs.
+- [ ] Collect: the consolidated resume PDF once it exists, a headshot (optional), GitHub/LinkedIn URLs.
 
 **Note on Workspace (2026-10-20):** F1–F10 are done and U1–U3 are underway, ahead of where section 4 assumed. SharePoint connectivity hasn't been re-tested since the 2026-09-29 verification, so don't reuse that date as current without re-checking it when the Workspace case study is written.
 

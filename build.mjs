@@ -104,7 +104,6 @@ function renderFooter(site) {
       <a href="mailto:${s.email}">Email</a>
       <a href="${s.linkedin}">LinkedIn</a>
       <a href="${s.github}">GitHub</a>
-      <a href="${s.tryhackme}">TryHackMe</a>
     </div>
   </div>
 </footer>`;
