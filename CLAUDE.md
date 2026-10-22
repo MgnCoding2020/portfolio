@@ -414,6 +414,8 @@ Updated 2026-10-20: the repo is pushed and connected. Cloudflare's dashboard now
 
 **Workflow (same rule as Gina's site):** all work on a branch, preview it, and only merge to `main` with Michael's sign-off, because Cloudflare deploys `main` automatically.
 
+**Known failure mode (hit and fixed 2026-10-21):** the first live deploy worked, but three subsequent merges to `main` never triggered an automatic rebuild -- the project showed "This project is disconnected from your Git account" under Settings → Builds. Root cause: the **Cloudflare Workers and Pages GitHub App** (a separate authorization from the per-project Git connection) was installed with "Only select repositories" access, and `portfolio` had never actually been added to that list -- only `gina-author-site` was. Fixed via GitHub → Settings → Applications → Cloudflare Workers and Pages → Configure → add `portfolio` to Repository access (this does not remove other repos already listed there). If a future push doesn't trigger a build, check that GitHub App's repo-access list first, before assuming the per-project build settings are wrong.
+
 ---
 
 ## 8. Security, privacy and SEO
