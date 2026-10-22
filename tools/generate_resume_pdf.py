@@ -186,11 +186,15 @@ def render_company_section(content: str, styles, story):
         ("TOPPADDING", (0, 0), (-1, -1), 0),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
     ]))
-    story.append(header_tbl)
-
     rest = "\n".join(lines[body_start:])
-    for entry in parse_job_entries(rest):
+    entries = parse_job_entries(rest)
+    for i, entry in enumerate(entries):
         job_block = []
+        if i == 0:
+            # Glue the company header to its first role + bullet too, so
+            # a company name never gets orphaned alone at a page break
+            # (happened with Massey's single-role entries).
+            job_block.append(header_tbl)
         role_tbl = Table(
             [[Paragraph(inline_md(entry["role"]), styles["job_role"]),
               Paragraph(esc(entry["dates"]), styles["job_date"])]],
@@ -206,10 +210,11 @@ def render_company_section(content: str, styles, story):
         job_block.append(role_tbl)
         for b in entry["bullets"]:
             job_block.append(Paragraph("•&nbsp;&nbsp;" + inline_md(b), styles["bullet"]))
-        # Keep each role's heading glued to at least its first bullet,
-        # so a role title never gets orphaned alone at a page break.
-        story.append(KeepTogether(job_block[:2] if len(job_block) > 1 else job_block))
-        for extra in job_block[2:]:
+        # Keep the glued prefix (header, if present) + role heading + its
+        # first bullet together; let any remaining bullets flow normally.
+        glue_count = 3 if i == 0 else 2
+        story.append(KeepTogether(job_block[:glue_count] if len(job_block) > 1 else job_block))
+        for extra in job_block[glue_count:]:
             story.append(extra)
 
 

@@ -34,17 +34,14 @@ Now applying that discipline to hands-on GRC, Microsoft 365, and Windows securit
 - Pick and pack customer orders across singles, multi-item, and SLAM stations.
 
 **Quality Process Assistant, New Site Launch (TYS1)** | Jul 2023 – Apr 2024
-- Raised weekly SOX audit compliance from about 63–70% to 99%+ within one month, and held it there, by setting up structured tracking and training associates on every shift.
-- Analyzed error trends in ICQA counts and implemented process improvements, reducing ICQA DPMO from about 37k to 10k.
-- Wrote exception-handling SOPs that cut unresolved inventory exceptions from 50+ pods across four floors to 1–2 per floor.
-- Trained associates on simple bin, cycle, and simple record counts, and problem solvers on andon, pod, and CDC audit processes.
-- Walked the building daily to find stalled inventory and reported counts, photos, and changes to the Operations Manager and AGM; built an internal wiki page that gathered the quality links PAs and problem solvers used daily.
+- Raised weekly SOX audit compliance from about 63–70% to 99%+ within one month, and sustained it, through structured tracking and shift-by-shift associate training.
+- Analyzed ICQA error trends to cut DPMO from about 37k to 10k, and wrote exception-handling SOPs that reduced unresolved inventory exceptions from 50+ pods across four floors to 1–2 per floor.
+- Conducted daily floor audits to catch and report inventory discrepancies to site leadership, and built a shared documentation resource the quality team used daily.
 
 **Stow Process Assistant (MCO1)** | Jun 2021 – Jul 2023
 - Led daily start-ups for a team of 60–80 associates, staffed the floor, and coached on quality and productivity; the team ranked #1 in productivity among the building's departments.
 - Built and developed a team of water spiders and problem solvers to keep stations supplied with work, fix defects, and track time-sensitive inventory.
-- Kept stow DPMO at 5–7k, below the site's 10k limit, contributing to inbound quality ranking top 3 of 90+ sites in the network.
-- Tracked out-of-work andons each shift and reported to the Operations Manager whenever a shift passed 50; mentored newly promoted PAs and supported new Area Manager onboarding.
+- Kept stow DPMO at 5–7k, below the site's 10k limit and contributing to a top-3-of-90+ network ranking, while mentoring newly promoted PAs.
 
 **Fulfillment Associate (MCO1)** | Oct 2020 – Jun 2021
 - Worked stow, inbound dock, and problem solve; as a Process Guide, helped Area Managers and PAs with audits, floor readiness, and headcount moves.
@@ -62,29 +59,29 @@ Now applying that discipline to hands-on GRC, Microsoft 365, and Windows securit
 ### GRC Security Program: Burn and Churn Coffee (+ Vendor Risk & IAM Access Review)
 *2025 – 2026*
 
-- Built a security program for a fictional card-accepting small business: asset inventory, risk register, and an 11-control matrix mapped to NIST SP 800-53 and crosswalked to PCI DSS 4.0.1.
-- Wrote 4 policies, 4 procedures, and 4 incident-response playbooks, plus an evidence pack with Python checks for privileged-access and incident-log exceptions, tracked in a POA&M.
-- Assessed a simulated payroll vendor (inherent risk High, 4 findings, approved with conditions at Moderate residual risk) and ran a quarterly access review across 5 business systems.
+- Built a security program for a fictional card-accepting small business: asset inventory, risk register, and an **11-control matrix** mapped to NIST SP 800-53 and crosswalked to PCI DSS 4.0.1.
+- Wrote 4 policies, 4 procedures, and 4 incident-response playbooks, plus an **evidence pack with Python checks** for privileged-access and incident-log exceptions, tracked in a POA&M.
+- Assessed a simulated payroll vendor (inherent risk High, 4 findings, approved with conditions at Moderate residual risk) and ran a **quarterly access review across 5 business systems**.
 
 ### STIG / NIST SP 800-171 Hardening Lab
 *2025*
 
-- Ran a SCAP benchmark scan (SCAP Compliance Checker, STIG Viewer, DISA Windows 10 STIG V3R7) against a pre-hardening Windows 10 VM: 225 rules assessed, 137 open findings, about 35% baseline compliance.
-- Separately hand-implemented and validated 4 Windows 10 STIG controls in the same problem areas the scan flagged — firewall, inbound traffic restriction, firewall logging, account lockout — mapped to NIST SP 800-171, with PowerShell for repeatable enforcement and evidence export.
+- Ran a SCAP benchmark scan (SCAP Compliance Checker, STIG Viewer, DISA Windows 10 STIG V3R7) against a pre-hardening Windows 10 VM: **225 rules assessed, 137 open findings**, about 35% baseline compliance.
+- Separately hand-implemented and validated **4 Windows 10 STIG controls** in the same problem areas the scan flagged — firewall, inbound traffic restriction, firewall logging, account lockout — mapped to NIST SP 800-171, with PowerShell for repeatable enforcement and evidence export.
 
 ### HomeEDR: Endpoint Monitoring and Governance
 *2025 – 2026*
 
-- Wrote scheduled PowerShell monitoring that baselines a system and reports drift in services, scheduled tasks, and startup persistence, with reports sanitized before archiving.
-- Mapped the monitoring to NIST SP 800-53 with a generated evidence pack (control-evidence doc, POA&M, risk register) and a GitHub Action that regenerates the evidence automatically.
-- Grew it into a 20-script PowerShell triage toolkit, safety-tagged and NIST/CIS-mapped, plus a 13-document incident-response playbook series covering Sysmon analysis, IOC handling, and patch prioritization.
+- Wrote **scheduled PowerShell monitoring** that baselines a system and reports drift in services, scheduled tasks, and startup persistence, with reports sanitized before archiving.
+- Mapped the monitoring to NIST SP 800-53 with a generated evidence pack (control-evidence doc, POA&M, risk register) and a **GitHub Action that regenerates the evidence automatically**.
+- Grew it into a **20-script PowerShell triage toolkit**, safety-tagged and NIST/CIS-mapped, plus a 13-document incident-response playbook series covering Sysmon analysis, IOC handling, and patch prioritization.
 
 ### Workspace: SharePoint-style intranet platform
 *2026*
 
-- Built a data-driven intranet in vanilla JavaScript (~4,700 lines) with one provider interface and three interchangeable backends: in-memory, browser storage, and a live SharePoint tenant.
-- Connected it to and verified against a live Microsoft 365 tenant (Sept 2026, before the trial subscription lapsed) via MSAL with no client secret — SharePoint REST reads/writes, a document library, and PowerShell provisioning scripts with a dry-run mode.
-- Found and fixed a stored XSS vulnerability across 60 unsafe HTML-insertion points app-wide, verified across 6 surfaces; backed by an automated Playwright suite now at 454 passing checks.
+- Built a data-driven intranet in vanilla JavaScript (**~4,700 lines**) with one provider interface and three interchangeable backends: in-memory, browser storage, and a live SharePoint tenant.
+- Connected it to and verified against a **live Microsoft 365 tenant** (Sept 2026, before the trial subscription lapsed) via MSAL with no client secret — SharePoint REST reads/writes, a document library, and PowerShell provisioning scripts with a dry-run mode.
+- Found and fixed a **stored XSS vulnerability** across 60 unsafe HTML-insertion points app-wide, verified across 6 surfaces; backed by an automated Playwright suite now at **454 passing checks**.
 
 ## Education and Certifications
 
