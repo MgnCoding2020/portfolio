@@ -10,13 +10,13 @@ description: "Michael Nault's resume: IT and GRC, built hands-on."
 # Michael Nault
 
 Orlando, FL | naultmichael@gmail.com
-github.com/MgnCoding2020 | linkedin.com/in/michael-nault-mgncoding2020 | tryhackme.com/p/naultmichael
+github.com/MgnCoding2020 | linkedin.com/in/michael-nault-mgncoding2020
 
 ## Summary
 
-IT and cybersecurity student (B.S. Cybersecurity and Information Assurance, WGU, expected January 2028), with six years in Amazon fulfillment operations, including two Process Assistant roles in floor leadership, quality, and SOX audit compliance.
+Six years in Amazon fulfillment operations, including two Process Assistant roles in floor leadership and SOX audit compliance, built a practical understanding that a control only works when people follow it and someone can prove it — weekly SOX compliance went from the 60s to 99%+ within a month under that approach, and stayed there.
 
-Hands-on projects in GRC control programs, Microsoft 365 and Windows security, and incident-response tooling, mapped to NIST SP 800-53, NIST SP 800-171, and PCI DSS.
+Now applying that discipline to hands-on GRC, Microsoft 365, and Windows security projects mapped to NIST SP 800-53, NIST SP 800-171, and PCI DSS, while finishing a B.S. in Cybersecurity and Information Assurance at WGU (expected January 2028).
 
 ## Skills
 
@@ -53,7 +53,7 @@ Hands-on projects in GRC control programs, Microsoft 365 and Windows security, a
 *Feb 2017 – Aug 2020*
 
 **Pest Prevention Specialist and Customer Support**
-- Served a recurring base of 215–280 clients, and kept service and regulatory records for state compliance.
+- Managed a recurring base of 215–280 clients, resolving service issues directly and maintaining the regulatory compliance records required for state licensing.
 
 ## Projects
 
