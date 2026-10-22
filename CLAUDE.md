@@ -482,7 +482,7 @@ No cookies, no ad trackers. Updated 2026-10-21: Cloudflare Web Analytics (cookie
 
 - [x] **Lighthouse (Chrome DevTools) -- confirmed 2026-10-22.** Mobile: Performance 99, Accessibility 100, Best Practices 100, SEO 100 (home page). Desktop: 100/100/100/100, confirmed on multiple pages. Run against the live `portfolio.naultmichael.workers.dev` by Michael directly.
 - [ ] Keyboard only: every page usable, visible focus, and a skip link.
-- [ ] Contrast: WCAG 2.2 AA in both themes.
+- [x] **Contrast: WCAG 2.2 AA in both themes -- verified during the design phase (5.3's own table), script-checked per token pair, not by eye.** Current `tokens.css` values confirmed still matching that table 2026-10-22.
 - [x] **Mozilla HTTP Observatory -- confirmed 2026-10-22: A+ (11/12 checks passed).** Only open item is SRI on the Web Analytics script, deliberately skipped (Cloudflare serves it from a non-versioned URL; pinning a hash would make analytics silently break on their next update, for a cosmetic score gain on an already-top-tier grade). Result on `/how-i-work/`.
 - [ ] Print preview of one case study.
 - [ ] Checked at 360 px wide (phone) and with JavaScript turned off.
