@@ -481,11 +481,11 @@ No cookies, no ad trackers. Updated 2026-10-21: Cloudflare Web Analytics (cookie
 ### Manual targets before launch
 
 - [x] **Lighthouse (Chrome DevTools) -- confirmed 2026-10-22.** Mobile: Performance 99, Accessibility 100, Best Practices 100, SEO 100 (home page). Desktop: 100/100/100/100, confirmed on multiple pages. Run against the live `portfolio.naultmichael.workers.dev` by Michael directly.
-- [ ] Keyboard only: every page usable, visible focus, and a skip link.
+- [x] **Keyboard only -- confirmed 2026-10-22 by Michael on the live site.** Tab order reaches the skip link first, visible focus throughout, skip link correctly jumps to `#main`.
 - [x] **Contrast: WCAG 2.2 AA in both themes -- verified during the design phase (5.3's own table), script-checked per token pair, not by eye.** Current `tokens.css` values confirmed still matching that table 2026-10-22.
 - [x] **Mozilla HTTP Observatory -- confirmed 2026-10-22: A+ (11/12 checks passed).** Only open item is SRI on the Web Analytics script, deliberately skipped (Cloudflare serves it from a non-versioned URL; pinning a hash would make analytics silently break on their next update, for a cosmetic score gain on an already-top-tier grade). Result on `/how-i-work/`.
-- [ ] Print preview of one case study.
-- [ ] Checked at 360 px wide (phone) and with JavaScript turned off.
+- [x] **Print preview -- confirmed 2026-10-22 by Michael on a live case study.** Clean black-on-white, full content visible, no header/footer chrome.
+- [x] **360px and JavaScript-off -- confirmed 2026-10-22 by Michael on the live site.** No layout issues reported.
 
 ### CI (`.github/workflows/check.yml`)
 
@@ -575,7 +575,7 @@ One case study per 1–2 sessions: write → diagram → screenshots → review.
 
 - [ ] `check.mjs` complete, plus CI.
 - [ ] Full manual checklist from section 9.
-- [ ] Open Graph image; JSON-LD; sitemap.
+- [x] **Open Graph image; JSON-LD; sitemap.** JSON-LD was a real gap caught 2026-10-22 while verifying this checklist -- §8 called for it but it was never built. Added: a `Person` schema on the home page only (name, job title, `sameAs` to GitHub/LinkedIn), via a new `{{jsonld}}` layout slot. `check.mjs`'s inline-script ban gets one narrow exception for `type="application/ld+json"` (CSP's `script-src` doesn't apply to it -- inert data, not executable script). OG image and sitemap were already done.
 - [ ] Ask one person (ideally someone in IT or GRC) to read the home page and one case study, and note where they got confused.
 
 ### Phase 5: Launch (week 11, about 2 h)

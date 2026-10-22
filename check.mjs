@@ -41,8 +41,12 @@ for (const file of htmlFiles) {
     errors.push(`${rel}: inline style="" attribute found (breaks the main-site CSP)`);
   }
 
-  // No inline <script> (no src=) outside the styleguide
+  // No inline <script> (no src=) outside the styleguide. One deliberate
+  // exception: type="application/ld+json" -- CSP's script-src never
+  // applies to it (it's inert structured data, not executable script),
+  // and it's how the home page's JSON-LD Person schema ships (CLAUDE.md §8).
   for (const tag of html.match(/<script\b[^>]*>[\s\S]*?<\/script>/gi) || []) {
+    if (/\stype="application\/ld\+json"/i.test(tag)) continue;
     if (!/\ssrc=/.test(tag) && tag.replace(/<script\b[^>]*>|<\/script>/gi, "").trim()) {
       if (!isStyleguide) errors.push(`${rel}: inline <script> with no src= (breaks the main-site CSP)`);
     }
