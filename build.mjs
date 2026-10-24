@@ -3,7 +3,9 @@
 import { mkdirSync, writeFileSync, readFileSync, readdirSync, existsSync, cpSync } from "node:fs";
 import { execSync } from "node:child_process";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import { marked } from "marked";
+import { parseResume, renderResume } from "./src/resume.mjs";
 
 const DIST = "dist";
 const BASE_URL = "https://portfolio.naultmichael.workers.dev";
@@ -198,6 +200,38 @@ readdirSync("content/pages").filter((f) => f.endsWith(".md")).forEach((f) => {
     activeHref: `/${slug}/`,
   }, site);
 });
+
+// Resume: rendered from content/resume/, the same source the PDFs are printed
+// from (tools/build-resumes.mjs). The base marked `site: true` is the page;
+// every base with a PDF is offered as a download. The build stops if a PDF is
+// missing or older than its source, so the page and the PDF never disagree.
+const RESUME_DIR = "content/resume";
+const pdfManifest = existsSync(path.join(RESUME_DIR, "pdf-manifest.json"))
+  ? JSON.parse(readFileSync(path.join(RESUME_DIR, "pdf-manifest.json"), "utf8")) : {};
+const resumes = readdirSync(RESUME_DIR).filter((f) => f.endsWith(".md")).map((f) => {
+  const text = readFileSync(path.join(RESUME_DIR, f), "utf8");
+  const resume = parseResume(text);
+  const hash = createHash("sha256").update(text.replace(/\r\n/g, "\n")).digest("hex");
+  if (!existsSync(path.join("static", "resume", `${resume.meta.file}.pdf`)) || pdfManifest[f] !== hash)
+    throw new Error(`Build failed: the PDF for ${RESUME_DIR}/${f} is missing or out of date -- run "npm run resumes"`);
+  return resume;
+});
+const siteResume = resumes.find((r) => r.meta.site === "true");
+if (!siteResume) throw new Error(`Build failed: no resume in ${RESUME_DIR} is marked "site: true"`);
+const downloads = [siteResume, ...resumes.filter((r) => r !== siteResume)].map((r, i) =>
+  `<a href="/resume/${r.meta.file}.pdf" class="btn ${i ? "btn-secondary" : "btn-primary"}">Download PDF${r.meta.label ? ` (${esc(r.meta.label)})` : ""}</a>`
+).join("\n");
+writePage("resume", {
+  title: "Resume — Michael Nault",
+  description: `${siteResume.meta.name}'s resume: ${siteResume.meta.headline}.`,
+  content: `<div class="resume-actions">${downloads}</div>
+    ${renderResume(siteResume, { links: true })}
+    <div class="panel resume-next">
+      <h2 class="mt-0">The work behind the projects</h2>
+      <p class="mb-0">Each project above has a full write-up, with what's verified and what isn't. <a href="/work/">See the case studies &rarr;</a></p>
+    </div>`,
+  activeHref: "/resume/",
+}, site);
 
 // Home
 const featured = caseStudies.filter((c) => c.data.featured).sort((a, b) => a.data.featured - b.data.featured).slice(0, 3);
