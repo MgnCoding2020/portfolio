@@ -12,3 +12,6 @@ Thumbs.db
 # legitimate site PDF at static/resume/Michael_Nault_Resume.pdf.
 /Michael_Nault_Resume*
 *_Resume_private.*
+
+# Application resumes (with phone) and the local phone setting -- never committed.
+/private/

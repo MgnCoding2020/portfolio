@@ -7,12 +7,15 @@
   "scripts": {
     "build": "node build.mjs",
     "check": "node check.mjs",
-    "preview": "npm run build && npx wrangler dev"
+    "preview": "npm run build && npx wrangler dev",
+    "resumes": "node tools/build-resumes.mjs"
   },
   "dependencies": {
     "marked": "18.1.1"
   },
   "devDependencies": {
+    "pdfjs-dist": "4.10.38",
+    "playwright-core": "1.63.0",
     "wrangler": "4.151.3"
   }
 }
