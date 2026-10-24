@@ -68,4 +68,4 @@ IT support candidate with CompTIA A+, Network+, Security+ and ITIL 4, finishing 
 
 ### Windows Hardening and Monitoring Labs
 *2025 – 2026*
-- DISA STIG scan of a Windows 10 VM (137 of 225 rules open); fixed 4 with PowerShell; scheduled drift monitoring.
+- DISA STIG scan of a Windows 10 VM (137 of 225 rules open); a separate lab hardened 4 controls; scheduled drift monitoring.
