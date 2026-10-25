@@ -264,6 +264,28 @@
 /* ---------- Callout ---------- */
 /* Honest notes, caveats -- a visually distinct aside, never styled as an error */
 
+/* ---------- Verification line (case studies) ---------- */
+/* Renders the required `verified:` front-matter field. Several case-study
+   bodies say "see the verification line above" and point here. */
+
+.verified-line {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--brand);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-5);
+  max-width: var(--measure);
+}
+.verified-label {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--brand);
+  margin-bottom: var(--space-2);
+}
+
 .callout {
   background: var(--brand-tint);
   border-left: 3px solid var(--brand);
@@ -426,3 +448,37 @@ pre code {
 .mb-0 { margin-bottom: 0; }
 .mb-6 { margin-bottom: var(--space-6); }
 .mb-7 { margin-bottom: var(--space-7); }
+
+/* ---------- Resume page (/resume/) ---------- */
+/* Markup comes from src/resume.mjs -- the same markup the PDFs are printed
+   from (tools/build-resumes.mjs), so the page and the PDFs can't drift. */
+
+.resume-actions { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-6); }
+.resume-actions p { margin: 0; align-self: center; color: var(--text-muted); font-size: var(--fs-small); }
+
+.resume-header h1 { margin-bottom: var(--space-1); }
+.resume-headline { font-weight: var(--fw-semibold); font-size: var(--fs-h3); margin-bottom: var(--space-2); }
+.resume-contact { color: var(--text-muted); font-size: var(--fs-small); margin-bottom: var(--space-1); }
+.resume-sep { color: var(--text-muted); }
+
+.resume-section { margin-top: var(--space-6); }
+.resume-section h2 {
+  font-size: var(--fs-h3);
+  color: var(--brand);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.resume-entry { margin-top: var(--space-4); }
+.resume-row { margin: 0; }
+.resume-title { display: inline; margin: 0; font-size: var(--fs-body); font-weight: var(--fw-semibold); line-height: var(--lh-body); }
+.resume-entry-head .resume-title { color: var(--brand); }
+.resume-role { margin-top: var(--space-3); }
+.resume-date { color: var(--text-muted); font-size: var(--fs-small); white-space: nowrap; }
+.resume-note { color: var(--text-muted); font-size: var(--fs-small); }
+
+.resume ul { padding-left: 1.25em; margin: var(--space-2) 0 0; }
+.resume li { max-width: var(--measure); margin-bottom: var(--space-1); }
+
+.resume-next { margin-top: var(--space-7); }

@@ -1,11 +1,19 @@
 // build.mjs -- portfolio static site generator. content/ + src/ -> dist/.
 // See CLAUDE.md §6 for the intended shape; kept close to its ~200-line target.
-import { mkdirSync, writeFileSync, readFileSync, readdirSync, existsSync, cpSync } from "node:fs";
+import { mkdirSync, writeFileSync, readFileSync, readdirSync, existsSync, cpSync, rmSync } from "node:fs";
 import { execSync } from "node:child_process";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import { marked } from "marked";
+import { parseResume, renderResume } from "./src/resume.mjs";
 
 const DIST = "dist";
+// Build into a clean directory. Without this, anything ever deleted from
+// static/ or content/ lingers in a local dist/ forever -- so check.mjs and any
+// local inspection run against files that will not exist on the deployed site.
+// Cloudflare builds in a fresh container and never saw the stale copies, which
+// is exactly what makes the divergence easy to miss.
+rmSync(DIST, { recursive: true, force: true });
 const BASE_URL = "https://portfolio.naultmichael.workers.dev";
 const sitemapUrls = [];
 
@@ -158,9 +166,17 @@ const caseStudies = readdirSync("content/case-studies").filter((f) => f.endsWith
 caseStudies.forEach((cs) => {
   const badge = `<span class="badge ${badgeClass(cs.data.status)}">${esc(cs.data.status)}</span>`;
   const tags = (cs.data.audience || []).map((a) => `<span class="tag">${esc(a)}</span>`).join(" ");
+  // The `verified:` field is required of every case study (REQUIRED, below) and
+  // several bodies say "see the verification line above" -- so it has to be
+  // rendered here, above the At a glance box, or that instruction points at
+  // nothing and the site's core honesty claim is invisible to readers.
   const content = `<div class="case-header">
     <h1 class="mb-0">${esc(cs.data.title)}</h1>${badge}</div>
     <p class="text-muted">${esc(cs.data.summary)}</p>
+    <div class="verified-line">
+      <p class="verified-label">Verified</p>
+      <p class="mb-0">${esc(cs.data.verified)}</p>
+    </div>
     <div class="card-tags mb-6">${tags}</div>
     ${renderCaseStudyBody(cs.body)}`;
   writePage(`work/${cs.data.slug}`, {
@@ -171,19 +187,30 @@ caseStudies.forEach((cs) => {
   }, site);
 });
 
-// Work index, grouped by audience tag
-const TAG_ORDER = ["grc", "m365", "iam", "endpoint", "security", "web", "automation"];
-const TAG_LABELS = { grc: "GRC", m365: "M365", iam: "IAM", endpoint: "Endpoint", security: "Security", web: "Web", automation: "Automation" };
-const groups = {};
-caseStudies.forEach((c) => (c.data.audience || []).forEach((a) => (groups[a] = groups[a] || []).push(c)));
-const jump = TAG_ORDER.filter((t) => groups[t]).map((t) => `<a href="#${t}">${TAG_LABELS[t]}</a>`).join(" &middot; ");
-const sections = TAG_ORDER.filter((t) => groups[t]).map((t) =>
-  `<h2 id="${t}">${TAG_LABELS[t]}</h2><div class="card-grid">${groups[t].map(cardHtml).join("\n")}</div>`
-).join("\n");
+// Work index: the site's two doors (CLAUDE.md §1), each case study appearing
+// exactly once. This was previously grouped by audience tag, which rendered a
+// study once per tag -- Workspace showed up three times on a five-study page,
+// making the work look both larger than it is and visibly repetitive.
+// Tags stay on the cards, so the per-audience signal isn't lost.
+const isClientWork = (c) => (c.data.audience || []).includes("web");
+const byFeatured = (a, b) =>
+  (Number(a.data.featured) || 99) - (Number(b.data.featured) || 99) ||
+  a.data.title.localeCompare(b.data.title);
+const doorGroup = (id, heading, blurb, items) => items.length
+  ? `<h2 id="${id}">${heading}</h2><p class="text-muted">${blurb}</p>` +
+    `<div class="card-grid mb-7">${items.map(cardHtml).join("\n")}</div>`
+  : "";
+const sections =
+  doorGroup("for-employers", "For employers",
+    "GRC, compliance, and IT work — each one marks what's verified and what isn't.",
+    caseStudies.filter((c) => !isClientWork(c)).sort(byFeatured)) +
+  doorGroup("client-work", "Client work",
+    "Built and delivered for a real client, with their permission.",
+    caseStudies.filter(isClientWork).sort(byFeatured));
 writePage("work", {
   title: "Work — Michael Nault",
   description: "Case studies from GRC, IT, and client work, tagged by who each one speaks to most.",
-  content: `<h1>Work</h1><p>Case studies from GRC, IT, and client work — tagged by who each one speaks to most.</p><p>Jump to: ${jump}</p>${sections}`,
+  content: `<h1>Work</h1><p>Case studies from GRC, IT, and client work — tagged by who each one speaks to most.</p>${sections}`,
   activeHref: "/work/",
 }, site);
 
@@ -191,13 +218,54 @@ writePage("work", {
 readdirSync("content/pages").filter((f) => f.endsWith(".md")).forEach((f) => {
   const slug = f.replace(/\.md$/, "");
   const { data, body } = parseFrontMatter(readFileSync(path.join("content/pages", f), "utf8"));
+  // Every page needs exactly one h1 (CLAUDE.md §5.9). Pages that don't open
+  // with their own heading get one from the front-matter title they already
+  // declare, rather than each author remembering to add it.
+  let html = marked.parse(body);
+  if (!/<h1[\s>]/i.test(html)) html = `<h1>${esc(data.title)}</h1>\n${html}`;
   writePage(slug, {
     title: `${data.title} — Michael Nault`,
     description: data.description || "",
-    content: marked.parse(body),
+    content: html,
     activeHref: `/${slug}/`,
   }, site);
 });
+
+// Resume: rendered from content/resume/, the same source the PDFs are printed
+// from (tools/build-resumes.mjs). The base marked `site: true` is the page;
+// every base with a PDF is offered as a download. The build stops if a PDF is
+// missing or older than its source, so the page and the PDF never disagree.
+const RESUME_DIR = "content/resume";
+const pdfManifest = existsSync(path.join(RESUME_DIR, "pdf-manifest.json"))
+  ? JSON.parse(readFileSync(path.join(RESUME_DIR, "pdf-manifest.json"), "utf8")) : {};
+// Bases marked `private: true` are Michael's own: their source lives here for
+// version control and the PDF checks, but they build only into the gitignored
+// private/ directory, so they never appear on the site.
+const resumes = readdirSync(RESUME_DIR).filter((f) => f.endsWith(".md")).map((f) => {
+  const text = readFileSync(path.join(RESUME_DIR, f), "utf8");
+  const resume = parseResume(text);
+  const hash = createHash("sha256").update(text.replace(/\r\n/g, "\n")).digest("hex");
+  if (resume.meta.private === "true") return null;
+  if (!existsSync(path.join("static", "resume", `${resume.meta.file}.pdf`)) || pdfManifest[f] !== hash)
+    throw new Error(`Build failed: the PDF for ${RESUME_DIR}/${f} is missing or out of date -- run "npm run resumes"`);
+  return resume;
+}).filter(Boolean);
+const siteResume = resumes.find((r) => r.meta.site === "true");
+if (!siteResume) throw new Error(`Build failed: no resume in ${RESUME_DIR} is marked "site: true"`);
+const downloads = [siteResume, ...resumes.filter((r) => r !== siteResume)].map((r, i) =>
+  `<a href="/resume/${r.meta.file}.pdf" class="btn ${i ? "btn-secondary" : "btn-primary"}">Download PDF${r.meta.label ? ` (${esc(r.meta.label)})` : ""}</a>`
+).join("\n");
+writePage("resume", {
+  title: "Resume — Michael Nault",
+  description: `${siteResume.meta.name}'s resume: ${siteResume.meta.headline}.`,
+  content: `<div class="resume-actions">${downloads}</div>
+    ${renderResume(siteResume, { links: true })}
+    <div class="panel resume-next">
+      <h2 class="mt-0">The work behind the projects</h2>
+      <p class="mb-0">Each project above has a full write-up, with what's verified and what isn't. <a href="/work/">See the case studies &rarr;</a></p>
+    </div>`,
+  activeHref: "/resume/",
+}, site);
 
 // Home
 const featured = caseStudies.filter((c) => c.data.featured).sort((a, b) => a.data.featured - b.data.featured).slice(0, 3);

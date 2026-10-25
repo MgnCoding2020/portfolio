@@ -1,10 +1,10 @@
 ---
 title: "GRC Security Program: Burn and Churn Coffee"
 slug: grc-security-program
-summary: "A full security program for a fictional coffee shop: risk register, 11 NIST 800-53 controls crosswalked to PCI DSS 4.0.1, an evidence pack with automated checks, a vendor risk assessment, and quarterly access reviews."
+summary: "A full security program for a fictional coffee shop: risk register, 15 NIST 800-53 controls crosswalked to PCI DSS 4.0.1, an evidence pack with automated checks, a vendor risk assessment, and quarterly access reviews."
 date: 2026-06
 status: "Simulation"
-verified: "Control matrix, policies, evidence pack, and POA&M confirmed present in the repo as of 2026-10-20. The evidence-check fix described below is open as a pull request (2026-10-21), tested against real repo data, but not yet merged to main — see 'What went wrong' below."
+verified: "Control matrix, policies, evidence pack, and POA&M confirmed present in the repo as of 2026-10-20. Control count recounted row-by-row from control-matrix.md on 2026-10-25: 15 controls — 3 Implemented, 5 Partially Implemented, 7 Not Implemented, each open gap tracked to a POA&M item. An earlier pass said 11, taken from the repo README's summary line, which is stale relative to the matrix it describes. The evidence-check fix described below is open as a pull request (2026-10-21), tested against real repo data, but not yet merged to main — see 'What went wrong' below."
 audience: [grc, iam]
 stack: [Python, Markdown, CSV]
 repo: https://github.com/MgnCoding2020/grc-paper-project-coffee-shop
@@ -16,8 +16,8 @@ featured: 1
 ## At a glance
 
 - **Problem:** A small card-accepting business has no documented security program — no risk register, no mapped controls, no way to prove anything to an auditor or a partner.
-- **What I built:** A complete program for a fictional coffee shop — asset inventory, risk register, an 11-control matrix mapped to NIST SP 800-53 and crosswalked to PCI DSS 4.0.1, policies and procedures, an evidence pack with automated checks, a POA&M, a vendor risk assessment, and a quarterly access review.
-- **Evidence:** 4 policies, 4 procedures, 4 incident-response playbooks, 11 controls, a companion vendor assessment with 4 tracked findings, and an access review across 5 systems — all present in the repo.
+- **What I built:** A complete program for a fictional coffee shop — asset inventory, risk register, a 15-control matrix mapped to NIST SP 800-53 and crosswalked to PCI DSS 4.0.1, policies and procedures, an evidence pack with automated checks, a POA&M, a vendor risk assessment, and a quarterly access review.
+- **Evidence:** 4 policies, 4 procedures, 4 incident-response playbooks, 15 controls (3 implemented, 5 partially, 7 not — every gap tracked to a POA&M item), a companion vendor assessment with 4 tracked findings, and an access review across 5 systems — all present in the repo.
 - **Status:** Simulation, for a fictional business ("Burn and Churn Coffee"). See the verification line above.
 
 ## The problem
@@ -63,7 +63,7 @@ Most small businesses that take card payments have no formal security program �
 The program has five pieces that connect to each other rather than standing alone:
 
 1. **Risk register and asset inventory** — what the business has, what could go wrong.
-2. **An 11-control matrix**, mapped to NIST SP 800-53 and crosswalked to PCI DSS 4.0.1, so the controls answer to two audiences at once: a general security framework and the card-payment standard that actually applies to this business.
+2. **A 15-control matrix**, mapped to NIST SP 800-53 and crosswalked to PCI DSS 4.0.1, so the controls answer to two audiences at once: a general security framework and the card-payment standard that actually applies to this business.
 3. **Policies, procedures, and playbooks** — 4 of each, the documents a control matrix needs to actually mean something.
 4. **An evidence pack** — Python scripts that read the business's real operational data (an access-review CSV, an incident log) and flag exceptions automatically, instead of someone eyeballing a spreadsheet once a quarter.
 5. **A POA&M** that tracks every open gap, including the companion vendor risk assessment of a simulated payroll vendor (inherent risk High, 4 findings, approved with conditions at Moderate residual risk) rolled in as POAM-013.
@@ -84,7 +84,7 @@ The fix turned out to be simpler than expected: the scripts' own README already 
 
 ## What's verified, and what isn't
 
-- **Verified (present in the repo, confirmed 2026-10-20):** the risk register, the 11-control matrix with the PCI crosswalk, all 4 policies/procedures/playbooks, the POA&M, the vendor risk assessment findings and residual-risk rating, and the 5-system access review.
+- **Verified (present in the repo, confirmed 2026-10-20):** the risk register, the 15-control matrix with the PCI crosswalk, all 4 policies/procedures/playbooks, the POA&M, the vendor risk assessment findings and residual-risk rating, and the 5-system access review.
 - **Verified by running the fix against real repo data (2026-10-21):** `mfa_review_check.py`, `access_review_check.py`, and `privileged_access_review_check.py` are now distinct and each produces the expected flags. `incident_log_review_check.py` was already correct.
 - **Not yet done:** the fix is an open pull request, not yet merged to the project's main branch — so the repo's default branch still has the duplicated scripts until that's reviewed and merged. The 30-day login-staleness threshold in `access_review_check.py` also still needs checking against the project's own quarterly-review procedure.
 

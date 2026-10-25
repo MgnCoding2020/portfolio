@@ -75,6 +75,11 @@ for (const file of htmlFiles) {
     if (!pages.has(href)) errors.push(`${rel}: broken internal link -- ${href}`);
   }
 
+  // Exactly one h1 per page (CLAUDE.md §5.9). /about/ and /how-i-work/ both
+  // shipped with zero for weeks; this is the gate so it can't recur quietly.
+  const h1s = (html.match(/<h1[\s>]/gi) || []).length;
+  if (h1s !== 1) errors.push(`${rel}: has ${h1s} <h1> elements, expected exactly 1`);
+
   // Honesty: no inflated language anywhere on the site
   for (const word of ["expert", "mastery", "guru", "ninja"]) {
     if (new RegExp(`\\b${word}\\b`, "i").test(html.replace(/<[^>]+>/g, " "))) {

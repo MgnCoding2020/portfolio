@@ -68,6 +68,7 @@ Use this, or Michael's own rewrite, as the home page headline and subline. Every
 | Fonts | System font stack, or **self-hosted** IBM Plex Sans + Plex Mono (open licence) | No Google Fonts request (privacy, and it keeps the CSP strict) |
 | Analytics | **Cloudflare Web Analytics, enabled 2026-10-21** (cookieless, manual JS-snippet setup since the site isn't a Cloudflare-proxied zone) | Privacy-respecting traffic visibility for Michael; CSP opened only for `static.cloudflareinsights.com` (script-src) and `cloudflareinsights.com` (connect-src), nothing broader. No public-facing visit counter on the site itself -- decided against: a vanity metric, not evidence, and off the site's "clear, credible, quiet" test (5.1) |
 | Contact | `mailto:` link + LinkedIn | No form to secure or spam-filter. A form (Pages Function + Turnstile) is a later option |
+| Resumes | **One Markdown source per resume base in `content/resume/`**, rendered by `src/resume.mjs` into both `/resume/` and the PDFs. PDFs are printed by `tools/build-resumes.mjs` (`npm run resumes`) using the local Chrome via `playwright-core`, checked with `pdfjs-dist` (both exact-pinned **dev** dependencies, never shipped to the site). Phone only in gitignored `private/`. `build.mjs` fails if a PDF is older than its source (`content/resume/pdf-manifest.json`). Added 2026-10-24 | The old ReportLab PDF came from a separate private file, drifted from the web page, and right-aligned dates that screening software read apart from their jobs. See `docs/site-flow-plan.md` |
 
 ---
 
@@ -80,7 +81,7 @@ Use this, or Michael's own rewrite, as the home page headline and subline. Every
 /work-with-me/          The client door: what I build for small businesses, how it works, how to start
 /about/                 The story: operations → SOX → GRC; WGU; certifications
 /how-i-work/            AI-assisted, verification-first; how this site is built and secured
-/resume/                HTML resume + both PDFs (IT/M365 and GRC)
+/resume/                HTML resume (the `site: true` base, Entry IT) + a PDF per base in content/resume/
 /demo/workspace/        The Workspace single-file demo (memory provider, demo banner)
 /demo/winsysconfig/     The WinSysConfig UI with a mock bridge (later phase)
 (external link)          Burn and Churn Coffee demo site: its own repo and pages.dev address (after launch; see Phase 6)
