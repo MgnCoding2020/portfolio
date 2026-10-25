@@ -160,9 +160,17 @@ const caseStudies = readdirSync("content/case-studies").filter((f) => f.endsWith
 caseStudies.forEach((cs) => {
   const badge = `<span class="badge ${badgeClass(cs.data.status)}">${esc(cs.data.status)}</span>`;
   const tags = (cs.data.audience || []).map((a) => `<span class="tag">${esc(a)}</span>`).join(" ");
+  // The `verified:` field is required of every case study (REQUIRED, below) and
+  // several bodies say "see the verification line above" -- so it has to be
+  // rendered here, above the At a glance box, or that instruction points at
+  // nothing and the site's core honesty claim is invisible to readers.
   const content = `<div class="case-header">
     <h1 class="mb-0">${esc(cs.data.title)}</h1>${badge}</div>
     <p class="text-muted">${esc(cs.data.summary)}</p>
+    <div class="verified-line">
+      <p class="verified-label">Verified</p>
+      <p class="mb-0">${esc(cs.data.verified)}</p>
+    </div>
     <div class="card-tags mb-6">${tags}</div>
     ${renderCaseStudyBody(cs.body)}`;
   writePage(`work/${cs.data.slug}`, {

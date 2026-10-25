@@ -264,6 +264,28 @@
 /* ---------- Callout ---------- */
 /* Honest notes, caveats -- a visually distinct aside, never styled as an error */
 
+/* ---------- Verification line (case studies) ---------- */
+/* Renders the required `verified:` front-matter field. Several case-study
+   bodies say "see the verification line above" and point here. */
+
+.verified-line {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--brand);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-5);
+  max-width: var(--measure);
+}
+.verified-label {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--brand);
+  margin-bottom: var(--space-2);
+}
+
 .callout {
   background: var(--brand-tint);
   border-left: 3px solid var(--brand);
