@@ -201,10 +201,15 @@ writePage("work", {
 readdirSync("content/pages").filter((f) => f.endsWith(".md")).forEach((f) => {
   const slug = f.replace(/\.md$/, "");
   const { data, body } = parseFrontMatter(readFileSync(path.join("content/pages", f), "utf8"));
+  // Every page needs exactly one h1 (CLAUDE.md §5.9). Pages that don't open
+  // with their own heading get one from the front-matter title they already
+  // declare, rather than each author remembering to add it.
+  let html = marked.parse(body);
+  if (!/<h1[\s>]/i.test(html)) html = `<h1>${esc(data.title)}</h1>\n${html}`;
   writePage(slug, {
     title: `${data.title} — Michael Nault`,
     description: data.description || "",
-    content: marked.parse(body),
+    content: html,
     activeHref: `/${slug}/`,
   }, site);
 });
