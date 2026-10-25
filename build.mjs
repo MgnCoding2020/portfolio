@@ -109,6 +109,7 @@ function renderFooter(site) {
   <div class="container">
     <span>${esc(site.footer.privacyNote)} Last updated: ${site.footer.lastUpdated}.</span>
     <div class="footer-links">
+      <a href="/how-i-work/">How I work</a>
       <a href="mailto:${s.email}">Email</a>
       <a href="${s.linkedin}">LinkedIn</a>
       <a href="${s.github}">GitHub</a>
@@ -163,6 +164,27 @@ const caseStudies = readdirSync("content/case-studies").filter((f) => f.endsWith
   return { data, body };
 });
 
+const isClientWork = (c) => (c.data.audience || []).includes("web");
+const byFeatured = (a, b) =>
+  (Number(a.data.featured) || 99) - (Number(b.data.featured) || 99) ||
+  a.data.title.localeCompare(b.data.title);
+
+// Reading order for the whole set, so each case study can point at the next
+// one. Without this every case study ends in the footer: a reader who just
+// finished the strongest page on the site has nowhere to go but Back.
+const readingOrder = [...caseStudies].sort(byFeatured);
+const nextCase = (cs) =>
+  readingOrder[(readingOrder.findIndex((c) => c.data.slug === cs.data.slug) + 1) % readingOrder.length];
+
+// A next-step panel. Client-work pages send readers to the client door;
+// everything else sends them to the resume (CLAUDE.md §1's two doors).
+const nextPanel = (heading, body, buttons) =>
+  `<div class="panel next-step">
+    <h2 class="mt-0">${heading}</h2>
+    <p>${body}</p>
+    <div class="cta-row mb-0">${buttons}</div>
+  </div>`;
+
 caseStudies.forEach((cs) => {
   const badge = `<span class="badge ${badgeClass(cs.data.status)}">${esc(cs.data.status)}</span>`;
   const tags = (cs.data.audience || []).map((a) => `<span class="tag">${esc(a)}</span>`).join(" ");
@@ -178,7 +200,16 @@ caseStudies.forEach((cs) => {
       <p class="mb-0">${esc(cs.data.verified)}</p>
     </div>
     <div class="card-tags mb-6">${tags}</div>
-    ${renderCaseStudyBody(cs.body)}`;
+    ${renderCaseStudyBody(cs.body)}
+    ${nextPanel(
+      "Keep reading",
+      `Next: <a href="/work/${nextCase(cs).data.slug}/">${esc(nextCase(cs).data.title)}</a>`,
+      isClientWork(cs)
+        ? `<a href="/work-with-me/" class="btn btn-primary">Work with me</a>
+           <a href="mailto:${site.social.email}" class="btn btn-secondary">Email me</a>`
+        : `<a href="/resume/" class="btn btn-primary">Resume</a>
+           <a href="mailto:${site.social.email}" class="btn btn-secondary">Email me</a>`
+    )}`;
   writePage(`work/${cs.data.slug}`, {
     title: `${cs.data.title} — Michael Nault`,
     description: cs.data.summary,
@@ -192,10 +223,6 @@ caseStudies.forEach((cs) => {
 // study once per tag -- Workspace showed up three times on a five-study page,
 // making the work look both larger than it is and visibly repetitive.
 // Tags stay on the cards, so the per-audience signal isn't lost.
-const isClientWork = (c) => (c.data.audience || []).includes("web");
-const byFeatured = (a, b) =>
-  (Number(a.data.featured) || 99) - (Number(b.data.featured) || 99) ||
-  a.data.title.localeCompare(b.data.title);
 const doorGroup = (id, heading, blurb, items) => items.length
   ? `<h2 id="${id}">${heading}</h2><p class="text-muted">${blurb}</p>` +
     `<div class="card-grid mb-7">${items.map(cardHtml).join("\n")}</div>`
@@ -223,6 +250,17 @@ readdirSync("content/pages").filter((f) => f.endsWith(".md")).forEach((f) => {
   // declare, rather than each author remembering to add it.
   let html = marked.parse(body);
   if (!/<h1[\s>]/i.test(html)) html = `<h1>${esc(data.title)}</h1>\n${html}`;
+  // Optional `next:` front matter -- "heading | body | label href, label href"
+  // -- so a page declares its own onward step instead of ending in the footer.
+  if (data.next) {
+    const [heading, bodyText, links] = String(data.next).split("|").map((p) => p.trim());
+    const buttons = links.split(",").map((pair, i) => {
+      const [label, href] = pair.trim().split(/\s+/);
+      const cls = i ? "btn-secondary" : "btn-primary";
+      return `<a href="${href}" class="btn ${cls}">${esc(label.replace(/_/g, " "))}</a>`;
+    }).join("\n");
+    html += nextPanel(esc(heading), esc(bodyText), buttons);
+  }
   writePage(slug, {
     title: `${data.title} — Michael Nault`,
     description: data.description || "",

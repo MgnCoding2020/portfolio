@@ -270,7 +270,7 @@ Weights: 400 and 600 only. Reading measure: `max-width: 68ch` for text columns.
 - **Container:** max 1100px, centred, with 16px side gutters on phones and 24px from 768px up.
 - **Breakpoints:** 480px (small phones), 768px (tablets), 1024px (desktop). Design phone-first.
 - **Grid:** case-study cards in 1 column on phones, 2 from 768px, 3 from 1024px. Text pages are one column.
-- **Header:** name on the left; nav links (Work, Work with me, About, Resume) on the right; on phones they wrap to a second row. **No hamburger menu**, so no JavaScript is needed.
+- **Header:** name on the left; nav links (Work, Resume, About, Work with me -- job door first, client door last, per §1) on the right; on phones they wrap to a second row. **No hamburger menu**, so no JavaScript is needed.
 - **Footer:** email, LinkedIn, GitHub, privacy note, "Last updated."
 
 ### 5.5 Wireframes for the four key templates

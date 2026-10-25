@@ -264,6 +264,12 @@
 /* ---------- Callout ---------- */
 /* Honest notes, caveats -- a visually distinct aside, never styled as an error */
 
+/* ---------- Next-step panel ---------- */
+/* Ends every page with somewhere to go. Shares .panel's surface; only the
+   separation from the body copy above it differs. */
+
+.next-step { margin-top: var(--space-7); }
+
 /* ---------- Verification line (case studies) ---------- */
 /* Renders the required `verified:` front-matter field. Several case-study
    bodies say "see the verification line above" and point here. */

@@ -1,6 +1,7 @@
 ---
 title: "Work with me"
 description: "Websites and simple tools for small businesses and authors."
+next: Start a conversation | Tell me what you are trying to build and I will tell you honestly whether I am the right fit. | Email_me mailto:naultmichael@gmail.com
 ---
 
 <!-- DRAFT: first pass per CLAUDE.md §3 spec. No prices, per §3 rule -- leave off until a written price sheet and 2-3 paid projects exist. -->
