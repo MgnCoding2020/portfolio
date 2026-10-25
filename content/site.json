@@ -4,9 +4,9 @@
   "subline": "Six years in Amazon operations taught me that a control only works when people follow it and you can prove it. Now I build the systems and the evidence, for employers and for small businesses.",
   "nav": [
     { "label": "Work", "href": "/work/" },
-    { "label": "Work with me", "href": "/work-with-me/" },
+    { "label": "Resume", "href": "/resume/" },
     { "label": "About", "href": "/about/" },
-    { "label": "Resume", "href": "/resume/" }
+    { "label": "Work with me", "href": "/work-with-me/" }
   ],
   "social": {
     "email": "naultmichael@gmail.com",
@@ -20,7 +20,7 @@
     { "stat": "6", "label": "GRC labs mapped to NIST 800-53, NIST 800-171, and PCI DSS 4.0.1", "source": "see /work/" }
   ],
   "footer": {
-    "privacyNote": "No cookies, no ad trackers. Uses cookieless Cloudflare Web Analytics -- see /how-i-work/.",
+    "privacyNote": "No cookies, no ad trackers. Uses cookieless Cloudflare Web Analytics.",
     "lastUpdated": null
   }
 }

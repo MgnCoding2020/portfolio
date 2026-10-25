@@ -109,6 +109,7 @@ function renderFooter(site) {
   <div class="container">
     <span>${esc(site.footer.privacyNote)} Last updated: ${site.footer.lastUpdated}.</span>
     <div class="footer-links">
+      <a href="/how-i-work/">How I work</a>
       <a href="mailto:${s.email}">Email</a>
       <a href="${s.linkedin}">LinkedIn</a>
       <a href="${s.github}">GitHub</a>
