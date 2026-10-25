@@ -324,6 +324,10 @@ writePage("", {
   jsonLd: `<script type="application/ld+json">${personJsonLd}</script>`,
   content: `<h1 class="display-heading">${esc(site.headline)}</h1>
     <p class="subline">${esc(site.subline)}</p>
+    <div class="looking-for">
+      <p class="looking-for-label">Looking for</p>
+      <p class="mb-0">${esc(site.lookingFor)}</p>
+    </div>
     <div class="cta-row">
       <a href="/work/" class="btn btn-primary">See the work</a>
       <a href="/resume/" class="btn btn-secondary">Resume</a>
@@ -332,7 +336,6 @@ writePage("", {
     <div class="proof-strip mb-7">${proof}</div>
     <h2>Featured case studies</h2>
     <div class="card-grid mb-7">${featured.map(cardHtml).join("\n")}</div>
-    <div class="callout mb-7"><p>${esc(site.lookingFor)}</p></div>
     <div class="panel">
       <h2 class="mt-0">Also: websites and tools for small businesses</h2>
       <p class="mb-0">I also build small, working things for real people. <a href="/work-with-me/">See how I work with small businesses &rarr;</a></p>

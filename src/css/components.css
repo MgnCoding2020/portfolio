@@ -264,6 +264,26 @@
 /* ---------- Callout ---------- */
 /* Honest notes, caveats -- a visually distinct aside, never styled as an error */
 
+/* ---------- Looking for (home hero) ---------- */
+/* A recruiter's first question is "is this person even a match?". This sits in
+   the hero so level, function and location land in the first few seconds,
+   rather than below three case-study cards where it used to be. */
+
+.looking-for {
+  border-left: 3px solid var(--brand);
+  padding: var(--space-3) 0 var(--space-3) var(--space-4);
+  margin-bottom: var(--space-5);
+  max-width: var(--measure);
+}
+.looking-for-label {
+  font-size: var(--fs-small);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--brand);
+  margin-bottom: var(--space-1);
+}
+
 /* ---------- Next-step panel ---------- */
 /* Ends every page with somewhere to go. Shares .panel's surface; only the
    separation from the body copy above it differs. */
