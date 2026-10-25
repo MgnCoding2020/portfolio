@@ -1,6 +1,7 @@
 ---
 title: "About"
 description: "Michael Nault: from Amazon operations to GRC and IT, built hands-on."
+next: See the work | The case studies show the work behind all of this, each one marked with what is verified and what is not. | See_the_work /work/, Resume /resume/
 ---
 
 <!-- DRAFT: verbatim from CLAUDE.md §10, "Draft copy to start from (Michael edits these into his own voice)". Not yet edited. -->

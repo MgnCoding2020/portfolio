@@ -1,6 +1,7 @@
 ---
 title: "How I work"
 description: "AI-assisted, verification-first — and how this site itself is built and secured."
+next: See it applied | Every case study carries a verification line saying what was checked and when. | See_the_work /work/
 ---
 
 <!-- DRAFT: first pass, combining CLAUDE.md §10's AI statement draft with the "how this site is built" content from Phase 3. Edit into your own voice. -->
