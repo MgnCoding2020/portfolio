@@ -181,19 +181,30 @@ caseStudies.forEach((cs) => {
   }, site);
 });
 
-// Work index, grouped by audience tag
-const TAG_ORDER = ["grc", "m365", "iam", "endpoint", "security", "web", "automation"];
-const TAG_LABELS = { grc: "GRC", m365: "M365", iam: "IAM", endpoint: "Endpoint", security: "Security", web: "Web", automation: "Automation" };
-const groups = {};
-caseStudies.forEach((c) => (c.data.audience || []).forEach((a) => (groups[a] = groups[a] || []).push(c)));
-const jump = TAG_ORDER.filter((t) => groups[t]).map((t) => `<a href="#${t}">${TAG_LABELS[t]}</a>`).join(" &middot; ");
-const sections = TAG_ORDER.filter((t) => groups[t]).map((t) =>
-  `<h2 id="${t}">${TAG_LABELS[t]}</h2><div class="card-grid">${groups[t].map(cardHtml).join("\n")}</div>`
-).join("\n");
+// Work index: the site's two doors (CLAUDE.md §1), each case study appearing
+// exactly once. This was previously grouped by audience tag, which rendered a
+// study once per tag -- Workspace showed up three times on a five-study page,
+// making the work look both larger than it is and visibly repetitive.
+// Tags stay on the cards, so the per-audience signal isn't lost.
+const isClientWork = (c) => (c.data.audience || []).includes("web");
+const byFeatured = (a, b) =>
+  (Number(a.data.featured) || 99) - (Number(b.data.featured) || 99) ||
+  a.data.title.localeCompare(b.data.title);
+const doorGroup = (id, heading, blurb, items) => items.length
+  ? `<h2 id="${id}">${heading}</h2><p class="text-muted">${blurb}</p>` +
+    `<div class="card-grid mb-7">${items.map(cardHtml).join("\n")}</div>`
+  : "";
+const sections =
+  doorGroup("for-employers", "For employers",
+    "GRC, compliance, and IT work — each one marks what's verified and what isn't.",
+    caseStudies.filter((c) => !isClientWork(c)).sort(byFeatured)) +
+  doorGroup("client-work", "Client work",
+    "Built and delivered for a real client, with their permission.",
+    caseStudies.filter(isClientWork).sort(byFeatured));
 writePage("work", {
   title: "Work — Michael Nault",
   description: "Case studies from GRC, IT, and client work, tagged by who each one speaks to most.",
-  content: `<h1>Work</h1><p>Case studies from GRC, IT, and client work — tagged by who each one speaks to most.</p><p>Jump to: ${jump}</p>${sections}`,
+  content: `<h1>Work</h1><p>Case studies from GRC, IT, and client work — tagged by who each one speaks to most.</p>${sections}`,
   activeHref: "/work/",
 }, site);
 
