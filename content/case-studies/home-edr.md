@@ -8,7 +8,7 @@ verified: "Confirmed directly in the repos as of 2026-10-21: 12 PowerShell monit
 audience: [endpoint, grc]
 stack: [PowerShell]
 repo: https://github.com/MgnCoding2020/HomeEDR-and-Governance-Security
-featured: 3
+featured: 4
 ---
 
 <!-- DRAFT: third case study, written per CLAUDE.md §3 template. Diagram is a placeholder -- no visual design yet (content-first step, §5.2 step 3). -->
