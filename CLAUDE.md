@@ -35,7 +35,7 @@ Use this, or Michael's own rewrite, as the home page headline and subline. Every
 | Strength | Evidence | Where it shows |
 |---|---|---|
 | Real audit-compliance results, not just labs | SOX weekly compliance ~63–70% → sustained 99%+ in one month; unresolved exceptions 50+ pods → 1–2 per floor; ICQA DPMO ~37k → ~10k; stow DPMO held at 5–7k, under a 10k limit | Home proof strip, About |
-| Builds working tools, not just documents | Workspace (about 4,800 lines; 3 data backends; check suite with 277 checks); WinSysConfig; the payroll system | Case studies, live demo |
+| Builds working tools, not just documents | Workspace (about 4,700 lines; 3 data backends; check suite with 454 checks); WinSysConfig; the payroll system | Case studies, live demo |
 | Honesty about what's verified | Both repos label unverified work; GitHub labels projects as simulations | "How I work" page, every case-study status box |
 | Security-minded engineering | CSP and no-network design in WinSysConfig; stored-XSS found and fixed in Workspace (once Workspace task F3 lands) | Case studies, "How this site is built" |
 | Can explain things plainly | Teaching notes inside Workspace and WinSysConfig | Writing style across the site |
@@ -93,7 +93,7 @@ Use this, or Michael's own rewrite, as the home page headline and subline. Every
 ### Home page, top to bottom
 
 1. **Name + position** (headline and subline above). Buttons: *See the work* · *Resume* · *Email me*.
-2. **Proof strip**: three short facts with numbers, for example "SOX audit compliance: ~63–70% → 99%+ in one month (Amazon, 2023)", "Workspace: a SharePoint-style platform, 277 automated checks", "GRC labs mapped to NIST 800-53, NIST 800-171 and PCI DSS 4.0.1." (Count the labs yourself before adding a number.)
+2. **Proof strip**: three short facts with numbers, for example "SOX audit compliance: ~63–70% → 99%+ in one month (Amazon, 2023)", "Workspace: a SharePoint-style platform, 454 automated checks", "GRC labs mapped to NIST 800-53, NIST 800-171 and PCI DSS 4.0.1." (Count the labs yourself before adding a number.)
 3. **Featured case studies**: three cards (GRC Security Program, Workspace, Home EDR). Each card: title, one line, audience tags, status badge. Workspace may show an **In progress** badge until its full case study is written.
 4. **What I'm looking for**: one honest paragraph (entry-level GRC/compliance, M365 admin or IAM; Orlando or remote; open to mentorship-heavy roles).
 5. **"Also: websites and tools for small businesses"**: a visually separate band with one line, the Little Saporito Press card, and a link to `/work-with-me/`.
@@ -496,7 +496,7 @@ On every push: `npm ci`, `npm run build`, `node check.mjs`. Cloudflare builds se
 
 ## 10. Writing guide
 
-- **Voice:** first person, plain, specific. Short sentences. Numbers over adjectives ("277 checks", not "comprehensive testing").
+- **Voice:** first person, plain, specific. Short sentences. Numbers over adjectives ("454 checks", not "comprehensive testing").
 - **Confidence without inflation:** "I built", "I mapped", "I verified on 2026-09-29." Never "expert," "mastered," "enterprise-grade."
 - **Name the simulations:** "Burn and Churn Coffee is a fictional company I invented to practise building a full program."
 - **AI-assisted work:** say it once, clearly, on `/how-i-work/`, and stand behind every line. Draft:
@@ -554,7 +554,7 @@ One case study per 1–2 sessions: write → diagram → screenshots → review.
 
 1. **GRC Security Program** (with Vendor Risk and IAM Access Review as sections). Diagram: risk → control → evidence → validation → POA&M, with the vendor assessment feeding POAM-013. This one can go first, since its repos are finished.
 2. **STIG / NIST 800-171 Lab.** Diagram: STIG ID → PowerShell enforce → validate → evidence export → 800-171 requirement. Keep it short and precise.
-3. **Workspace.** At launch, a short **In progress** page is fine: what it is, the three backends, the live tenant test (2026-09-29), the 277 checks, and "timesheets module underway." The full case study (diagram: UI → provider interface → memory / IndexedDB / SharePoint, plus the "what went wrong" stories: seed dates aging out, the stored-XSS find and fix) comes **after those fixes are merged**, so every claim is true.
+3. **Workspace.** At launch, a short **In progress** page is fine: what it is, the three backends, the live tenant test (2026-09-29), the 454 checks, and "timesheets module underway." The full case study (diagram: UI → provider interface → memory / IndexedDB / SharePoint, plus the "what went wrong" stories: seed dates aging out, the stored-XSS find and fix) comes **after those fixes are merged**, so every claim is true.
 
 4. **Home EDR.** Diagram: baseline → scheduled snapshot → compare → drift report → archive, plus the evolution timeline. Link the Monitoring Lab as a short "lab notes" entry.
 5. **Little Saporito Press** (once permission is in). Lead with the brief-to-spec story, then security headers, accessibility and the temporary-seasonal-layer decision.
