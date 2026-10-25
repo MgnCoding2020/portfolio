@@ -1,6 +1,6 @@
 // build.mjs -- portfolio static site generator. content/ + src/ -> dist/.
 // See CLAUDE.md §6 for the intended shape; kept close to its ~200-line target.
-import { mkdirSync, writeFileSync, readFileSync, readdirSync, existsSync, cpSync } from "node:fs";
+import { mkdirSync, writeFileSync, readFileSync, readdirSync, existsSync, cpSync, rmSync } from "node:fs";
 import { execSync } from "node:child_process";
 import path from "node:path";
 import { createHash } from "node:crypto";
@@ -8,6 +8,12 @@ import { marked } from "marked";
 import { parseResume, renderResume } from "./src/resume.mjs";
 
 const DIST = "dist";
+// Build into a clean directory. Without this, anything ever deleted from
+// static/ or content/ lingers in a local dist/ forever -- so check.mjs and any
+// local inspection run against files that will not exist on the deployed site.
+// Cloudflare builds in a fresh container and never saw the stale copies, which
+// is exactly what makes the divergence easy to miss.
+rmSync(DIST, { recursive: true, force: true });
 const BASE_URL = "https://portfolio.naultmichael.workers.dev";
 const sitemapUrls = [];
 
@@ -232,14 +238,18 @@ readdirSync("content/pages").filter((f) => f.endsWith(".md")).forEach((f) => {
 const RESUME_DIR = "content/resume";
 const pdfManifest = existsSync(path.join(RESUME_DIR, "pdf-manifest.json"))
   ? JSON.parse(readFileSync(path.join(RESUME_DIR, "pdf-manifest.json"), "utf8")) : {};
+// Bases marked `private: true` are Michael's own: their source lives here for
+// version control and the PDF checks, but they build only into the gitignored
+// private/ directory, so they never appear on the site.
 const resumes = readdirSync(RESUME_DIR).filter((f) => f.endsWith(".md")).map((f) => {
   const text = readFileSync(path.join(RESUME_DIR, f), "utf8");
   const resume = parseResume(text);
   const hash = createHash("sha256").update(text.replace(/\r\n/g, "\n")).digest("hex");
+  if (resume.meta.private === "true") return null;
   if (!existsSync(path.join("static", "resume", `${resume.meta.file}.pdf`)) || pdfManifest[f] !== hash)
     throw new Error(`Build failed: the PDF for ${RESUME_DIR}/${f} is missing or out of date -- run "npm run resumes"`);
   return resume;
-});
+}).filter(Boolean);
 const siteResume = resumes.find((r) => r.meta.site === "true");
 if (!siteResume) throw new Error(`Build failed: no resume in ${RESUME_DIR} is marked "site: true"`);
 const downloads = [siteResume, ...resumes.filter((r) => r !== siteResume)].map((r, i) =>

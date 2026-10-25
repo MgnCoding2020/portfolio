@@ -1,0 +1,4 @@
+# The resume PDF was renamed when the GRC and IT bases split (2026-10-25).
+# Any copy of the old URL already sent to an employer keeps working and
+# lands on the current resume rather than a 404.
+/resume/Michael_Nault_Resume.pdf /resume/Michael_Nault_Resume_GRC.pdf 301

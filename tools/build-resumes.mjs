@@ -135,11 +135,17 @@ for (const f of readdirSync(SRC).filter((f) => f.endsWith(".md")).sort()) {
   const text = readFileSync(join(SRC, f), "utf8");
   const resume = parseResume(text);
   let ok = true;
-  const targets = [[join(PUBLIC, `${resume.meta.file}.pdf`), null, true]];
+  // `private: true` bases are Michael's own -- they keep their source in the
+  // repo (so they get version control and these same checks) but never produce
+  // a PDF under static/, so nothing about them reaches the site.
+  const isPrivate = resume.meta.private === "true";
+  const targets = isPrivate
+    ? [[join(PRIVATE, `${resume.meta.file}.pdf`), null, true]]
+    : [[join(PUBLIC, `${resume.meta.file}.pdf`), null, true]];
   if (phone) {
-    mkdirSync(PRIVATE, { recursive: true });
     targets.push([join(PRIVATE, `${resume.meta.file}_application.pdf`), phone, false]);
   }
+  if (isPrivate || phone) mkdirSync(PRIVATE, { recursive: true });
   for (const [out, ph, isPublic] of targets) {
     const page = await browser.newPage();
     await page.setContent(html(resume, ph), { waitUntil: "load" });
