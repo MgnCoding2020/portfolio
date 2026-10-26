@@ -137,7 +137,11 @@
 
 .tag {
   display: inline-block;
-  font-size: var(--fs-small);
+  /* Mono marks these as metadata rather than prose -- same role as .eyebrow
+     and the stat sources. Slightly smaller, since Plex Mono runs large. */
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
   color: var(--text-muted);
   background: var(--surface);
   border: 1px solid var(--border);
@@ -263,6 +267,48 @@
 
 /* ---------- Callout ---------- */
 /* Honest notes, caveats -- a visually distinct aside, never styled as an error */
+
+/* ---------- Shared primitives (visual brief, PR 1) ---------- */
+
+/* A mono label above a heading. Plex Mono is reserved for metadata --
+   eyebrows, tags, stat sources -- never for reading text. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: var(--space-2);
+}
+.band .eyebrow { color: var(--band-accent); }
+
+/* Full-bleed dark section. Uses box-shadow + clip-path rather than 100vw,
+   which overflows by the scrollbar's width and causes sideways scroll. */
+.band {
+  background-color: var(--band-bg);
+  background-image: radial-gradient(var(--band-dot) 1px, transparent 1px);
+  background-size: 22px 22px;
+  box-shadow: 0 0 0 100vmax var(--band-bg);
+  clip-path: inset(0 -100vmax);
+  color: var(--band-text);
+}
+.band h1, .band h2, .band h3 { color: var(--band-text); }
+.band p { color: var(--band-muted); }
+.band a:not(.btn) { color: var(--band-accent); }
+/* The default focus ring is --brand, which disappears on a dark band. */
+.band a:focus-visible, .band button:focus-visible { outline-color: var(--band-text); }
+
+/* Eyebrow + heading on the left, an optional "see all" link on the right. */
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+.section-head h2 { margin-bottom: 0; }
+.section-head .eyebrow { margin-bottom: var(--space-1); flex-basis: 100%; }
 
 /* ---------- Looking for (home hero) ---------- */
 /* A recruiter's first question is "is this person even a match?". This sits in

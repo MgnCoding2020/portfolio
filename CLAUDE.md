@@ -239,6 +239,21 @@ Colours below were checked for WCAG contrast; keep the pairs as listed.
 | `--brand-tint` | `#E8EEF6` | `#18263A` | Badge and highlight fills | `--brand`-coloured text on it: 9.84:1 / 9.41:1 (`#B9CDE8` in dark) |
 | `--border` | `#D9DEE5` | `#2A3646` | Hairlines, table rules | Decorative only |
 
+**Feature band tokens** (added 2026-10-26 per `docs/visual-improvement-brief.md` PR 1). Full-bleed dark sections -- the one place the site inverts. Ratios measured by script against `--band-bg`, not estimated:
+
+| Token | Light | Dark | Use | Contrast on `--band-bg` |
+|---|---|---|---|---|
+| `--band-bg` | `#14273F` | `#16212E` | Band background | -- |
+| `--band-text` | `#F2F5F9` | same | Text on bands | 13.80:1 / 14.87:1 |
+| `--band-muted` | `#C3CEDC` | same | Secondary text on bands | 9.47:1 / 10.21:1 |
+| `--band-accent` | `#9CC0EA` | same | Eyebrows, rules, links on bands | 8.01:1 / 8.63:1 |
+| `--band-line` | `rgba(255,255,255,.14)` | `#2A3646` | Borders on bands | Decorative only |
+| `--band-dot` | `rgba(255,255,255,.07)` | same | Dot-grid texture | Decorative only |
+| `--shadow-raised` | `0 10px 30px rgba(20,39,63,.10)` | `none` | Tiles overlapping a band | -- |
+| `--shadow-float` | `0 18px 40px rgba(0,0,0,.28)` | same | Cards floating on a band | -- |
+
+Note the focus ring: the default `--brand` ring vanishes against a band, so `.band` switches it to `--band-text` (§5.6 requires a visible ring on every interactive element).
+
 **Status badge colours** (text on fill; each badge also carries its word, never colour alone):
 
 | Badge | Light text / fill | Dark text / fill | Contrast |
