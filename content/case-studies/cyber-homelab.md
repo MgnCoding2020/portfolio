@@ -1,5 +1,6 @@
 ---
 title: "Cyber Home Lab: Identity Controls in a Live Tenant, Audited Against Themselves"
+card_title: Cyber Home Lab
 slug: cyber-homelab
 summary: "Entra ID and SharePoint governance built in a real Microsoft 365 tenant — then reviewed against itself, which is how I found that the audit log had never been turned on."
 date: 2026-09

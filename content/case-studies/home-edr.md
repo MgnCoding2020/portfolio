@@ -1,5 +1,6 @@
 ---
 title: "Home EDR: From Watching My Own PC to a Governance Pipeline"
+card_title: Home EDR
 slug: home-edr
 summary: "Scheduled PowerShell monitoring that started on my own PC, moved to a dedicated VM for clean evidence collection, and grew into a NIST 800-53 control-evidence pipeline, a 20-script incident-triage toolkit, and a 13-document playbook series."
 date: 2026-05

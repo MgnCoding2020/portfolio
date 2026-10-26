@@ -1,5 +1,6 @@
 ---
 title: "GRC Security Program: Burn and Churn Coffee"
+card_title: GRC Security Program
 slug: grc-security-program
 summary: "A full security program for a fictional coffee shop: risk register, 15 NIST 800-53 controls crosswalked to PCI DSS 4.0.1, an evidence pack with automated checks, a vendor risk assessment, and quarterly access reviews."
 date: 2026-06

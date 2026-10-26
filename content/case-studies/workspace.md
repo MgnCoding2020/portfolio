@@ -1,5 +1,6 @@
 ---
 title: "Workspace: A SharePoint-Style Intranet on Three Backends"
+card_title: Workspace intranet
 slug: workspace
 summary: "A data-driven intranet that runs identically from memory, the browser, or a real Microsoft 365 tenant — live-tenant verified, a stored XSS found and fixed across 60 sinks, 454 automated checks."
 date: 2026-10
