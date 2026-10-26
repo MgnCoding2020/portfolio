@@ -200,6 +200,51 @@
   </section>
 
   <section class="sg-section">
+    <h2>Eyebrow</h2>
+    <p class="eyebrow">Selected work</p>
+    <h3 style="margin-top:0">A heading it labels</h3>
+    <p style="max-width:640px">Plex Mono, uppercase, letter-spaced. Reserved for metadata
+      — eyebrows, tags, stat sources — never for reading text.</p>
+  </section>
+
+  <section class="sg-section">
+    <h2>Section head</h2>
+    <div class="section-head" style="max-width:640px">
+      <p class="eyebrow">Selected work</p>
+      <h2 style="font-size:var(--fs-h2)">Featured case studies</h2>
+      <a href="#">All case studies &rarr;</a>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Band</h2>
+    <p>Full-bleed dark section. Uses <code>box-shadow</code> + <code>clip-path</code> rather
+      than <code>100vw</code>, which overflows by the scrollbar width and causes sideways scroll.
+      Light text on <code>--band-bg</code>: 13.80:1, muted 9.47:1, accent 8.01:1.</p>
+    <div class="band" style="padding:var(--space-6)">
+      <p class="eyebrow">Eyebrow on a band</p>
+      <h3 style="margin-top:0">Heading on a band</h3>
+      <p style="max-width:540px">Body copy uses <code>--band-muted</code>. A
+        <a href="#">link on a band</a> uses <code>--band-accent</code>, and the focus ring
+        switches to <code>--band-text</code> so it stays visible against the dark.</p>
+      <a href="#" class="btn btn-primary">Primary</a>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Depth</h2>
+    <p>Light mode only; both drop to <code>none</code> in dark, where borders do the work (§5.3).</p>
+    <div style="display:flex;gap:var(--space-5);flex-wrap:wrap">
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:var(--space-5);box-shadow:var(--shadow-raised)">
+        <code>--shadow-raised</code><br>tiles overlapping a band
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:var(--space-5);box-shadow:var(--shadow-float)">
+        <code>--shadow-float</code><br>cards floating on a band
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-section">
     <h2>Callout</h2>
     <div class="callout" style="max-width:640px">
       <p>I'm early in this work and take on a small number of projects alongside my full-time job, so I can give each one proper attention.</p>
