@@ -107,16 +107,24 @@
     <header class="site-header" style="border-top:1px solid var(--border); border-radius:var(--radius); overflow:hidden">
       <div class="container">
         <a href="#" class="brand">Michael Nault</a>
+        <button type="button" class="theme-toggle">
+          <svg class="theme-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"></circle>
+            <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"></path>
+          </svg>
+          <span class="visually-hidden">Dark mode</span>
+        </button>
         <nav class="site-nav" aria-label="Main">
           <a href="#" aria-current="page">Work</a>
-          <a href="#">Work with me</a>
-          <a href="#">About</a>
           <a href="#">Resume</a>
-          <button type="button" class="theme-toggle" data-theme-toggle>Dark mode</button>
+          <a href="#">About</a>
+          <a href="#">Work with me</a>
         </nav>
       </div>
     </header>
-    <p class="sg-note">No hamburger menu (§5.4) — on a narrow viewport the nav just wraps to a second row.</p>
+    <p class="sg-note">No hamburger menu (§5.4) — on a narrow viewport the nav wraps to a second row
+      and the toggle stays up on the name row. The toggle is an icon button; its accessible name comes
+      from a visually hidden label that <code>theme.js</code> keeps in sync with the current theme.</p>
   </section>
 
   <section class="sg-section">

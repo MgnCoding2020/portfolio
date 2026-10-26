@@ -42,7 +42,10 @@
     if (!btn) return;
     var next = choice === "dark" ? "light" : "dark";
     btn.setAttribute("aria-pressed", String(choice === "dark"));
-    btn.textContent = next === "dark" ? "Dark mode" : "Light mode";
+    // Write into the label span, not the button: the button also holds an
+    // inline SVG icon, and setting textContent on it would delete the icon.
+    var label = btn.querySelector("[data-theme-label]");
+    (label || btn).textContent = next === "dark" ? "Dark mode" : "Light mode";
   }
 
   applyStored();

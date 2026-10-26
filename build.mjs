@@ -92,12 +92,23 @@ function renderHeader(site, activeHref) {
     const active = activeHref === l.href || (l.href !== "/" && activeHref.startsWith(l.href));
     return `<a href="${l.href}"${active ? ' aria-current="page"' : ""}>${esc(l.label)}</a>`;
   }).join("\n      ");
+  // The toggle sits on the name row at every width, not inside the nav. On a
+  // phone it previously wrapped onto a third line of its own, so the header
+  // ate ~185px before any content showed. Its label is visually hidden and
+  // updated by theme.js, so the icon survives (the script used to overwrite
+  // the button's entire textContent).
   return `<header class="site-header">
   <div class="container">
     <a href="/" class="brand">${esc(site.name)}</a>
+    <button type="button" class="theme-toggle" data-theme-toggle>
+      <svg class="theme-icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"></circle>
+        <path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"></path>
+      </svg>
+      <span class="visually-hidden" data-theme-label>Dark mode</span>
+    </button>
     <nav class="site-nav" aria-label="Main">
       ${links}
-      <button type="button" class="theme-toggle" data-theme-toggle>Dark mode</button>
     </nav>
   </div>
 </header>`;
