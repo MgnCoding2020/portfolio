@@ -338,6 +338,98 @@
 .section-head h2 { margin-bottom: 0; }
 .section-head .eyebrow { margin-bottom: var(--space-1); flex-basis: 100%; }
 
+/* ---------- Home hero band (visual brief, PR 3) ---------- */
+
+/* Pulls up under the header so the band starts at the chrome, and carries
+   extra bottom padding for the proof tiles to overlap into. */
+.hero-band {
+  margin-top: calc(-1 * var(--space-7));
+  padding: var(--space-8) 0 calc(var(--space-8) + var(--space-7));
+  margin-bottom: 0;
+}
+
+.hero-grid { display: grid; gap: var(--space-7); align-items: center; }
+
+@media (min-width: 1024px) {
+  /* The fix for the dead right half: content no longer stops at --measure
+     with nothing beside it. */
+  .hero-grid { grid-template-columns: 1.35fr 1fr; }
+}
+
+/* Display size only here, per the brief -- other pages keep --fs-h1. */
+.hero-band .display-heading {
+  font-size: clamp(2.25rem, 5.5vw, 3.5rem);
+  letter-spacing: -0.02em;
+  line-height: var(--lh-display);
+}
+.hero-band .subline { color: var(--band-muted); }
+.hero-band .looking-for { border-left-color: var(--band-accent); }
+.hero-band .looking-for-label { color: var(--band-accent); }
+
+/* Buttons invert on the band: the navy primary would vanish into it. */
+.hero-band .btn-primary {
+  background: var(--band-text);
+  color: var(--band-bg);
+  border-color: var(--band-text);
+}
+.hero-band .btn-secondary {
+  color: var(--band-text);
+  border-color: var(--band-line);
+  background: transparent;
+}
+.hero-band .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--band-text);
+}
+
+/* .cta-row's own margin-bottom is declared later in this file at equal
+   specificity, so the .mb-0 utility loses to it. Set it here instead. */
+.hero-band .cta-row { margin-bottom: 0; }
+
+.hero-figure { margin: 0; }
+.hero-figure img {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-float);
+}
+.hero-figure figcaption {
+  margin-top: var(--space-3);
+  font-size: var(--fs-small);
+  color: var(--band-muted);
+  max-width: 380px;
+}
+
+/* Raised tiles overlapping the band's bottom edge. */
+.proof-tiles { position: relative; margin-top: calc(-1 * var(--space-7)); }
+.proof-tiles .proof-stat {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--brand);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-raised);
+}
+/* Smaller, non-wrapping stat: "63-70% -> 99%+" used to break onto a second
+   line, making that column taller than the other two. */
+.proof-tiles .stat-number {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.proof-tiles .stat-source { font-family: var(--font-mono); font-size: 0.8125rem; }
+
+/* Client door: its own labelled band (CLAUDE.md §1), marked by a brand rule
+   rather than an apologetic "Also:" in the heading. */
+.client-band {
+  border-left: 3px solid var(--brand);
+  background: var(--surface);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: var(--space-5) var(--space-6);
+}
+
 /* ---------- Looking for (home hero) ---------- */
 /* A recruiter's first question is "is this person even a match?". This sits in
    the hero so level, function and location land in the first few seconds,

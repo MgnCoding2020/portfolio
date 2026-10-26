@@ -193,7 +193,7 @@ const nextPanel = (heading, body, buttons) =>
   `<div class="panel next-step">
     <h2 class="mt-0">${heading}</h2>
     <p>${body}</p>
-    <div class="cta-row mb-0">${buttons}</div>
+    <div class="cta-row">${buttons}</div>
   </div>`;
 
 caseStudies.forEach((cs) => {
@@ -333,22 +333,42 @@ writePage("", {
   title: `${site.name} — IT and GRC, built hands-on`,
   description: site.subline,
   jsonLd: `<script type="application/ld+json">${personJsonLd}</script>`,
-  content: `<h1 class="display-heading">${esc(site.headline)}</h1>
-    <p class="subline">${esc(site.subline)}</p>
-    <div class="looking-for">
-      <p class="looking-for-label">Looking for</p>
-      <p class="mb-0">${esc(site.lookingFor)}</p>
+  content: `<div class="hero-band band">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">${esc(site.heroEyebrow)}</p>
+          <h1 class="display-heading">${esc(site.headline)}</h1>
+          <p class="subline">${esc(site.subline)}</p>
+          <div class="looking-for">
+            <p class="looking-for-label">Looking for</p>
+            <p class="mb-0">${esc(site.lookingFor)}</p>
+          </div>
+          <div class="cta-row">
+            <a href="/work/" class="btn btn-primary">See the work</a>
+            <a href="/resume/" class="btn btn-secondary">Resume</a>
+            <a href="mailto:${site.social.email}" class="btn btn-secondary">Email me</a>
+          </div>
+        </div>
+        <figure class="hero-figure">
+          <a href="/work/stig-nist-800-171/">
+            <img src="/img/stig-nist-800-171/stig-compliance-chart.webp" alt="STIG Viewer compliance chart: 225 rules assessed, 137 open, 75 not a finding, 13 not applicable, 0 not reviewed, scoring 35 percent." width="382" height="384" loading="eager">
+          </a>
+          <figcaption>Real output, not a mockup: a pre-hardening baseline scan of a Windows 10 VM. 35% is the starting point the work begins from. <a href="/work/stig-nist-800-171/">Read the case study &rarr;</a></figcaption>
+        </figure>
+      </div>
     </div>
-    <div class="cta-row">
-      <a href="/work/" class="btn btn-primary">See the work</a>
-      <a href="/resume/" class="btn btn-secondary">Resume</a>
-      <a href="mailto:${site.social.email}" class="btn btn-secondary">Email me</a>
+    <div class="proof-tiles mb-7">
+      <div class="proof-strip">${proof}</div>
     </div>
-    <div class="proof-strip mb-7">${proof}</div>
-    <h2>Featured case studies</h2>
+    <div class="section-head">
+      <p class="eyebrow">Selected work</p>
+      <h2>Featured case studies</h2>
+      <a href="/work/">All case studies &rarr;</a>
+    </div>
     <div class="card-grid mb-7">${featured.map(cardHtml).join("\n")}</div>
-    <div class="panel">
-      <h2 class="mt-0">Also: websites and tools for small businesses</h2>
+    <div class="client-band">
+      <p class="eyebrow">Also</p>
+      <h2 class="mt-0">Websites and tools for small businesses</h2>
       <p class="mb-0">I also build small, working things for real people. <a href="/work-with-me/">See how I work with small businesses &rarr;</a></p>
     </div>`,
   activeHref: "/",
