@@ -5,7 +5,6 @@ contact: Orlando, FL | {phone} | naultmichael@gmail.com
 links: portfolio.naultmichael.workers.dev | linkedin.com/in/michael-nault-mgncoding2020 | github.com/MgnCoding2020
 file: Michael_Nault_Resume_GRC
 site: true
-label: GRC and compliance
 ---
 
 ## Summary
