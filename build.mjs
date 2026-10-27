@@ -133,6 +133,24 @@ const PAGE_SECTION = {
   // page's hard facts are scannable in the shape a reader already knows from
   // /work/. Takes the same "- **Label:** value" lines.
   glance: (body) => renderGlance(body, ""),
+  // Measured results as tiles: "- stat | label | source". The source field is
+  // required, not optional -- a score with no instrument and no date is the
+  // kind of unattributed claim this site exists to argue against.
+  tiles: (body) => {
+    const tiles = [...body.matchAll(/^-\s+(.+)$/gm)].map((m) => {
+      const [stat, label, source] = m[1].split("|").map((s) => s.trim());
+      if (!stat || !label || !source) {
+        throw new Error(`Build failed: tile "${m[1]}" needs "stat | label | source"`);
+      }
+      return `<div class="score-tile">
+        <div class="stat-number">${marked.parseInline(stat)}</div>
+        <div class="stat-label">${marked.parseInline(label)}</div>
+        <div class="stat-source">${marked.parseInline(source)}</div>
+      </div>`;
+    });
+    if (!tiles.length) throw new Error("Build failed: a tiles section has no tiles");
+    return `<div class="score-tiles">${tiles.join("\n")}</div>`;
+  },
 };
 
 function renderPageBody(body, data, ctx) {
