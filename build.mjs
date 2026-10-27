@@ -129,6 +129,10 @@ const PAGE_SECTION = {
   // matter -- the same component /work/ uses, so the client door's proof
   // carries its own status badge instead of being a bare link.
   proof: (body, ctx) => marked.parse(body) + ctx.proofCards(),
+  // The same labelled dt/dd box the case studies use for "At a glance", so a
+  // page's hard facts are scannable in the shape a reader already knows from
+  // /work/. Takes the same "- **Label:** value" lines.
+  glance: (body) => renderGlance(body, ""),
 };
 
 function renderPageBody(body, data, ctx) {
@@ -139,14 +143,34 @@ function renderPageBody(body, data, ctx) {
         return [pair.slice(0, i).trim(), pair.slice(i + 1).trim()];
       })
   );
-  return body.split(/\n(?=## )/).map((chunk) => {
+  // `aside: <heading>` pulls one section into a second column beside the rest
+  // (desktop only). Source order stays prose-then-aside, so the reading order
+  // is the same with no CSS and for a screen reader.
+  const asideHeading = String(data.aside || "").trim();
+  let asideSeen = false;
+  const main = [];
+  const aside = [];
+  body.split(/\n(?=## )/).forEach((chunk) => {
     const h = chunk.match(/^## (.+)\n([\s\S]*)$/);
-    if (!h) return marked.parse(chunk); // everything before the first h2
-    const kind = kinds.get(h[1].trim());
+    if (!h) return main.push(marked.parse(chunk)); // everything before the first h2
+    const heading = h[1].trim();
+    const kind = kinds.get(heading);
     const fn = kind && PAGE_SECTION[kind];
     if (kind && !fn) throw new Error(`Build failed: unknown section kind "${kind}"`);
-    return `<h2>${esc(h[1])}</h2>` + (fn ? fn(h[2], ctx) : marked.parse(h[2]));
-  }).join("\n");
+    // The aside's heading is an h2 like any other, so the document outline
+    // stays in order (§5.9) even though it renders off to the side.
+    const html = `<h2>${esc(h[1])}</h2>` + (fn ? fn(h[2], ctx) : marked.parse(h[2]));
+    if (asideHeading && heading === asideHeading) {
+      asideSeen = true;
+      aside.push(html);
+    } else {
+      main.push(html);
+    }
+  });
+  if (asideHeading && !asideSeen) {
+    throw new Error(`Build failed: aside "${asideHeading}" matches no section heading`);
+  }
+  return { main: main.join("\n"), aside: aside.join("\n") };
 }
 
 function renderHeader(site, activeHref) {
@@ -359,7 +383,8 @@ readdirSync("content/pages").filter((f) => f.endsWith(".md")).forEach((f) => {
       </div>
     </div>`
     : "";
-  let inner = renderPageBody(lead ? body.slice(cut + 1) : body, data, ctx);
+  const parts = renderPageBody(lead ? body.slice(cut + 1) : body, data, ctx);
+  let inner = parts.main;
   // Every page needs exactly one h1 (CLAUDE.md §5.9). Pages that don't open
   // with their own heading get one from the front-matter title they already
   // declare, rather than each author remembering to add it. It goes inside
@@ -368,7 +393,15 @@ readdirSync("content/pages").filter((f) => f.endsWith(".md")).forEach((f) => {
   // .page-body shares the case-study width system and section rhythm, so an
   // interior page gets the same two right edges and the same hairline between
   // sections instead of running together as one slab.
-  let html = band + `<div class="page-body">${inner}</div>`;
+  // With an aside, the body is narrower and the aside takes the second column,
+  // so the width system's --wide blocks would overrun it -- .page-cols scopes
+  // them back to the column they're in.
+  let html = band + (parts.aside
+    ? `<div class="page-cols">
+      <div class="page-body">${inner}</div>
+      <aside class="page-aside">${parts.aside}</aside>
+    </div>`
+    : `<div class="page-body">${inner}</div>`);
   // Optional `next:` front matter -- "heading | body | label href, label href"
   // -- so a page declares its own onward step instead of ending in the footer.
   if (data.next) {
