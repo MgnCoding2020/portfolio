@@ -130,11 +130,18 @@ function renderFooter(site) {
 }
 
 function cardHtml(c) {
-  const tags = (c.data.audience || []).map((a) => `<span class="tag">${esc(a)}</span>`).join(" ");
-  return `<a href="/work/${c.data.slug}/" class="case-card">
-    <h3>${esc(c.data.title)}</h3>
+  // Cap at 3: a fourth tag wraps onto a row of its own and leaves the card
+  // ragged. The full set still shows on the case study itself.
+  const tags = (c.data.audience || []).slice(0, 3)
+    .map((a) => `<span class="tag">${esc(a)}</span>`).join(" ");
+  // `card_title` is the short form for cards; the page keeps the full title.
+  // Without it, "Cyber Home Lab: Identity Controls in a Live Tenant, Audited
+  // Against Themselves" runs to three lines in a card.
+  const bc = badgeClass(c.data.status);
+  return `<a href="/work/${c.data.slug}/" class="case-card card-${bc}">
+    <h3>${esc(c.data.card_title || c.data.title)}</h3>
     <p>${esc(c.data.summary)}</p>
-    <div class="card-tags"><span class="badge ${badgeClass(c.data.status)}">${esc(c.data.status)}</span>${tags}</div>
+    <div class="card-tags"><span class="badge ${bc}">${esc(c.data.status)}</span>${tags}</div>
   </a>`;
 }
 
@@ -235,7 +242,8 @@ caseStudies.forEach((cs) => {
 // making the work look both larger than it is and visibly repetitive.
 // Tags stay on the cards, so the per-audience signal isn't lost.
 const doorGroup = (id, heading, blurb, items) => items.length
-  ? `<h2 id="${id}">${heading}</h2><p class="text-muted">${blurb}</p>` +
+  ? `<h2 id="${id}">${heading} <span class="count">${items.length}</span></h2>` +
+    `<p class="text-muted">${blurb}</p>` +
     `<div class="card-grid mb-7">${items.map(cardHtml).join("\n")}</div>`
   : "";
 const sections =

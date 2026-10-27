@@ -1,5 +1,6 @@
 ---
 title: "Little Saporito Press: A Children's Author's Site, Built From a Messy Brief"
+card_title: Little Saporito Press
 slug: little-saporito-press
 summary: "A static site for an independent children's author — book pages, a trailer, printable activities with in-page previews, real security headers, and accessibility-safe seasonal decorations that can be switched off."
 date: 2026-10

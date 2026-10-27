@@ -1,5 +1,6 @@
 ---
 title: "STIG Hardening and a NIST SP 800-171 Baseline Scan"
+card_title: STIG and 800-171 labs
 slug: stig-nist-800-171
 summary: "Two complementary Windows 10 labs: a broad automated SCAP baseline scan, and a small set of DISA STIG controls implemented and validated by hand with exported evidence, both mapped to NIST SP 800-171."
 date: 2026-06
