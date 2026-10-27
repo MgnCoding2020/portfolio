@@ -1,5 +1,12 @@
 # Site flow plan
 
+> **CLOSED 2026-10-27.** Every actionable item in this plan has been done, superseded, or explicitly rejected by Michael -- it is kept for its reasoning, not as a work list. **Do not pick up its `TODO(michael)` markers:** they are stale. Specifically:
+>
+> - **§1 positioning rewrite** -- *rejected.* Michael keeps "IT and GRC, built hands-on". The entry-IT framing is for his own applications; a resume is a supporting document and does not redefine the site. The subline change (dropping "and for small businesses") was made.
+> - **§7 Operations/Area Manager resume** -- *rejected.* This portfolio is not for that role. Do not resurrect it.
+> - **§ About / WinSysConfig** -- *done.* `/about/` now names WinSysConfig with an honest "no write-up yet" note (PR #56).
+> - Everything else was audited, implemented and verified across PRs #28-#61.
+
 > **Written 2026-10-24** after a full read of the live site, this repo and `CLAUDE.md`. For Claude Code: work through the numbered items **one PR each, in order**, following `CLAUDE.md` §13 (branch per task, `npm run build && node check.mjs`, verify every fact per §13.8). Copy changes are drafts for Michael to edit; anything marked `TODO(michael)` needs his call before merging.
 
 ## What's already done (branch `resume/entry-it-base`)

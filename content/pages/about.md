@@ -44,5 +44,5 @@ I learn by building, and then by auditing what I built. Three examples, each wit
 
 I'd especially value a team that mentors. I'm early enough in this that being taught properly is worth more to me than a title, and I'd rather be somewhere that expects questions than somewhere that assumes I have none.
 
-<!-- TODO(michael): the h1 and the "kind of team" paragraph are drafts in your voice-adjacent register, not yours. The h1 is the one line a recruiter reads first, so it should be. -->
+<!-- h1 and the "kind of team" paragraph reviewed and kept as-is by Michael 2026-10-27. -->
 <!-- Photo added 2026-10-27, Michael's own, About only per §5.7. Source kept out of the deployed site at private/about-photo-original.png; the served copy is cropped to 680x1070 WebP, 124 KB. -->
