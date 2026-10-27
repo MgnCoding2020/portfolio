@@ -3,7 +3,10 @@
   "name": "portfolio",
   "compatibility_date": "2026-10-20",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    // Without this, an unknown path returns an empty 404 body and dist/404.html
+    // is never served -- it had been built and shipped unused since launch.
+    "not_found_handling": "404-page"
   },
   "previews": {}
 }

@@ -312,6 +312,62 @@
   margin-top: var(--space-1);
 }
 
+/* ---------- Resume band (visual brief, PR 9) ---------- */
+/* The page used to open with a bare row of download buttons on white. The
+   band gives the downloads somewhere to sit and states the one thing worth
+   knowing before reading: page and PDF come from the same file. The resume's
+   own <header> still carries the h1, so there's no second one here. */
+
+.resume-band {
+  margin-top: calc(-1 * var(--space-7));
+  padding: var(--space-7) 0;
+  margin-bottom: var(--space-7);
+}
+.resume-band-inner { max-width: var(--measure); }
+.resume-band .resume-band-lead {
+  font-size: var(--fs-h3);
+  line-height: 1.5;
+  color: var(--band-muted);
+}
+.resume-band .resume-updated {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--band-muted);
+  margin: var(--space-4) 0 0;
+}
+/* Same inversion the home hero uses -- a navy primary button disappears
+   into a navy band. */
+.resume-band .btn-primary {
+  background: var(--band-text);
+  color: var(--band-bg);
+  border-color: var(--band-text);
+}
+.resume-band .btn-secondary {
+  color: var(--band-text);
+  border-color: var(--band-line);
+  background: transparent;
+}
+.resume-band .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--band-text);
+}
+.resume-band .cta-row { margin-bottom: 0; }
+
+/* ---------- Footer monogram (visual brief, PR 9) ---------- */
+
+.footer-note { display: flex; align-items: center; gap: var(--space-3); }
+.footer-mark {
+  flex: none;
+  color: var(--brand); /* the rect reads this via fill="currentColor" */
+  border-radius: var(--radius);
+}
+/* Set through CSS, not presentation attributes: var() is a CSS value
+   function and does not resolve inside fill="" or font-family="". */
+.footer-mark text {
+  fill: var(--bg);
+  font-family: var(--font-sans);
+}
+
 /* ---------- Score tiles (visual brief, PR 8) ---------- */
 /* Measured results, boxed. Distinct from .proof-strip, which is unboxed and
    overlaps the home band: these are standalone evidence, and each one carries

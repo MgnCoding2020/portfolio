@@ -17,12 +17,15 @@ rmSync(DIST, { recursive: true, force: true });
 const BASE_URL = "https://portfolio.naultmichael.workers.dev";
 const sitemapUrls = [];
 
-function lastUpdated() {
+function lastUpdated(file) {
   try {
-    return execSync("git log -1 --format=%cd --date=short", { encoding: "utf8" }).trim();
+    const target = file ? ` -- "${file}"` : "";
+    const d = execSync(`git log -1 --format=%cd --date=short${target}`, { encoding: "utf8" }).trim();
+    if (d) return d;
   } catch {
-    return new Date().toISOString().slice(0, 10);
+    // not a git checkout, or the file has no commits yet
   }
+  return new Date().toISOString().slice(0, 10);
 }
 
 function esc(s) {
@@ -220,9 +223,17 @@ function renderHeader(site, activeHref) {
 
 function renderFooter(site) {
   const s = site.social;
+  // The favicon's monogram, repeated as a quiet full stop at the end of every
+  // page. Decorative, not a link: the header already links home, and a 32px
+  // link would break the 44x44 hit-area rule in CLAUDE.md §5.6.
   return `<footer class="site-footer">
   <div class="container">
-    <span>${esc(site.footer.privacyNote)} Last updated: ${site.footer.lastUpdated}.</span>
+    <span class="footer-note">
+      <svg class="footer-mark" viewBox="0 0 64 64" width="28" height="28" aria-hidden="true" focusable="false">
+        <rect width="64" height="64" rx="14" fill="currentColor"></rect>
+        <text x="32" y="43" font-size="26" font-weight="700" text-anchor="middle">MN</text>
+      </svg>
+      ${esc(site.footer.privacyNote)} Last updated: ${site.footer.lastUpdated}.</span>
     <div class="footer-links">
       <a href="/how-i-work/">How I work</a>
       <a href="mailto:${s.email}">Email</a>
@@ -471,6 +482,7 @@ const resumes = readdirSync(RESUME_DIR).filter((f) => f.endsWith(".md")).map((f)
   if (resume.meta.private === "true") return null;
   if (!existsSync(path.join("static", "resume", `${resume.meta.file}.pdf`)) || pdfManifest[f] !== hash)
     throw new Error(`Build failed: the PDF for ${RESUME_DIR}/${f} is missing or out of date -- run "npm run resumes"`);
+  resume.sourceFile = f; // kept so the page can date itself from the source's own last commit
   return resume;
 }).filter(Boolean);
 const siteResume = resumes.find((r) => r.meta.site === "true");
@@ -481,7 +493,17 @@ const downloads = [siteResume, ...resumes.filter((r) => r !== siteResume)].map((
 writePage("resume", {
   title: "Resume — Michael Nault",
   description: `${siteResume.meta.name}'s resume: ${siteResume.meta.headline}.`,
-  content: `<div class="resume-actions">${downloads}</div>
+  content: `<div class="resume-band band">
+      <div class="resume-band-inner">
+        <p class="eyebrow">${esc(siteResume.meta.headline.split("|")[0].trim())}</p>
+        <p class="resume-band-lead">This page and the PDF are rendered from one Markdown file, so they
+          can't drift apart &mdash; the build fails if the PDF no longer matches its source.</p>
+        <div class="cta-row">${downloads}
+          <a href="mailto:${site.social.email}" class="btn btn-secondary">Email me</a>
+        </div>
+        <p class="resume-updated">Last updated ${esc(lastUpdated(`${RESUME_DIR}/${siteResume.sourceFile}`))}</p>
+      </div>
+    </div>
     ${renderResume(siteResume, { links: true })}
     <div class="panel resume-next">
       <h2 class="mt-0">The work behind the projects</h2>
@@ -556,7 +578,21 @@ const notFoundHtml = layoutTpl
   .replaceAll("{{canonical}}", `${BASE_URL}/404.html`)
   .replaceAll("{{baseurl}}", BASE_URL)
   .replaceAll("{{header}}", renderHeader(site, ""))
-  .replaceAll("{{content}}", `<h1>Page not found</h1><p>That page doesn't exist — <a href="/">back to the home page</a>.</p>`)
+  .replaceAll("{{content}}", `<div class="page-band band">
+      <div class="page-band-inner">
+        <p class="eyebrow">404</p>
+        <h1>That page isn't here</h1>
+        <p>The link may be out of date, or I may have moved something. Here's everything that is here.</p>
+      </div>
+    </div>
+    <div class="page-body">
+      <div class="service-grid">
+        <div class="service-card"><h3>Work</h3><p>Case studies from GRC, IT, and client work. <a href="/work/">See the work &rarr;</a></p></div>
+        <div class="service-card"><h3>Resume</h3><p>The HTML version, and a PDF from the same source. <a href="/resume/">Read the resume &rarr;</a></p></div>
+        <div class="service-card"><h3>About</h3><p>How I got from a warehouse floor to GRC. <a href="/about/">About me &rarr;</a></p></div>
+      </div>
+      <p>Still stuck? <a href="mailto:${site.social.email}">Email me</a> and tell me what you were looking for.</p>
+    </div>`)
   .replaceAll("{{footer}}", renderFooter(site));
 writeFileSync(path.join(DIST, "404.html"), notFoundHtml);
 
