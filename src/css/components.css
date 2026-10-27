@@ -460,6 +460,29 @@
   margin-bottom: var(--space-7);
 }
 .page-band-inner { max-width: var(--measure); }
+
+/* With a portrait, the band splits like the home hero. Without one it stays a
+   single column, so pages that set no photo are unaffected. */
+.page-band-grid { display: grid; gap: var(--space-6); align-items: center; }
+
+@media (min-width: 1024px) {
+  .page-band-grid.has-figure { grid-template-columns: 1.35fr auto; }
+}
+
+.band-figure { margin: 0; }
+.band-figure img {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-float);
+}
+@media (max-width: 1023px) {
+  /* Below the split it sits under the text, where a 260px portrait would
+     look stranded in the middle of a full-width band. */
+  .band-figure img { max-width: 200px; }
+}
 .page-band h1 { margin-bottom: var(--space-4); }
 /* The lead paragraph, sized up -- it's the page's one-line answer to
    "is this for me?", so it shouldn't be body-sized. */

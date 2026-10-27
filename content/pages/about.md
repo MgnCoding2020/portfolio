@@ -3,6 +3,8 @@ title: "About"
 description: "Michael Nault: from Amazon operations to GRC and IT, built hands-on."
 hero: true
 eyebrow: "Orlando, FL · Open to remote"
+photo: /img/about/michael-nault.webp
+photo_alt: "Michael Nault, standing in front of a stained-glass door in a dark green floral three-piece suit with a teal paisley tie and pocket square."
 sections: Credentials=glance
 aside: Credentials
 next: See the work | The case studies show the work behind all of this, each one marked with what is verified and what is not. | See_the_work /work/, Resume /resume/
@@ -43,4 +45,4 @@ I learn by building, and then by auditing what I built. Three examples, each wit
 I'd especially value a team that mentors. I'm early enough in this that being taught properly is worth more to me than a title, and I'd rather be somewhere that expects questions than somewhere that assumes I have none.
 
 <!-- TODO(michael): the h1 and the "kind of team" paragraph are drafts in your voice-adjacent register, not yours. The h1 is the one line a recruiter reads first, so it should be. -->
-<!-- TODO(michael): a photo is optional here and About-only per §5.7. If you want one, drop a 1600px-wide WebP at static/img/about/michael.webp and say so; I'll add the figure and alt text. -->
+<!-- Photo added 2026-10-27, Michael's own, About only per §5.7. Source kept out of the deployed site at private/about-photo-original.png; the served copy is cropped to 680x1070 WebP, 124 KB. -->
