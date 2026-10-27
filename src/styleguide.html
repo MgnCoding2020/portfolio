@@ -253,6 +253,23 @@
   </section>
 
   <section class="sg-section">
+    <h2>Page aside</h2>
+    <p>One section of a page pulled into a second column, for facts a reader wants to scan while
+      reading the prose. Declared with <code>aside: &lt;heading&gt;</code> front matter. Source order
+      stays prose-then-aside, so the reading order is the same with no CSS and for a screen reader;
+      only the &ge;1024px grid puts it alongside, where it also becomes sticky.</p>
+    <aside class="page-aside" style="max-width:360px">
+      <h2 style="font-size:var(--fs-h3)">Credentials</h2>
+      <div class="glance">
+        <dl>
+          <div class="glance-row"><dt>Based in</dt><dd>Orlando, FL, or remote</dd></div>
+          <div class="glance-row"><dt>Certifications</dt><dd>CompTIA Security+, Network+ and A+</dd></div>
+        </dl>
+      </div>
+    </aside>
+  </section>
+
+  <section class="sg-section">
     <h2>Service card</h2>
     <p>For offers, not projects: these link nowhere and carry no status, so they get a flat
       surface and no hover, which keeps <code>.case-card</code>'s lift meaning "this is a link."

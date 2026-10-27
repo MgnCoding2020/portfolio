@@ -43,6 +43,7 @@
   .glance,
   .case-card,
   .service-card,
+  .page-aside,
   .steps > li,
   figure,
   table,
@@ -70,5 +71,11 @@
 
   .table-wrap {
     overflow: visible;
+  }
+
+  /* Sticky positioning has no meaning on paper. */
+  .page-aside {
+    position: static !important;
+    border: 1px solid #999;
   }
 }

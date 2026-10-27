@@ -470,6 +470,56 @@
   margin-bottom: 0;
 }
 
+/* ---------- Two-column page (visual brief, PR 7) ---------- */
+/* One section pulled out as an aside, for pages whose hard facts a reader
+   wants to scan while reading the prose. Source order is prose-then-aside, so
+   the reading order is identical with no CSS and for a screen reader; only the
+   desktop grid puts the aside alongside. */
+
+.page-cols {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 1024px) {
+  .page-cols {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+  /* Follows the prose while it's being read, which is the point of pulling
+     the facts out of the flow in the first place. */
+  .page-cols .page-aside { position: sticky; top: var(--space-5); }
+}
+
+/* Inside a column, --wide is the column, not the container. */
+.page-cols .page-body > h2 { max-width: none; }
+
+.page-aside {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--brand);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+}
+/* The heading belongs to the box, so it drops the page's section hairline
+   and top space -- it isn't one more section in the prose column. */
+.page-aside h2 {
+  font-size: var(--fs-h3);
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+  color: var(--brand);
+}
+/* The glance box is already the surface here, so it shouldn't double up. */
+.page-aside .glance {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+}
+
 /* ---------- Service cards (visual brief, PR 6) ---------- */
 /* "What I build" was three bold-led paragraphs in a column. As cards they
    scan as three distinct offers, which is what a prospective client is
