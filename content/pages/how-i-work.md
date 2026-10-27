@@ -16,7 +16,7 @@ A control nobody verifies isn't a control. That applies to a security policy, an
 ## What this site scores
 
 - A+ | Mozilla HTTP Observatory | Score 125, 11 of 12 checks passed. Re-scanned 2026-10-27
-- 100 | Lighthouse accessibility, best practices and SEO | Mobile and desktop. Performance 99 mobile, 100 desktop, 2026-10-22
+- 100 | Lighthouse accessibility, best practices and SEO | Home and About, mobile and desktop. Performance 98–100, lowest on About where the photo is the largest paint. Re-run 2026-10-27
 - 1 | Third-party request on the whole site | Cloudflare Web Analytics, cookieless, allowed by name in the CSP
 - 0 | Cookies, ad trackers, fingerprinting | The theme toggle uses `localStorage`; nothing else is stored on your device
 
@@ -47,4 +47,4 @@ That's not an argument that nothing here has gaps — it's the opposite. The gap
 
 If you're reading this as a hiring manager: the verification habit above isn't a trick — it's the actual job. A control that nobody checks isn't a control, whether it's a security policy or a sentence on a resume. This site tries to hold itself to the same standard it'd apply to anything else.
 
-<!-- TODO(michael): the Lighthouse tile is dated 2026-10-22 and seven design PRs have merged since, including an image on /about/. Worth a re-run in DevTools; if the numbers move, update the tile. The Observatory grade was re-checked by API on 2026-10-27 and is current. -->
+<!-- Both tiles re-verified 2026-10-27: Observatory by API (A+, 125, 11/12); Lighthouse 12.8.2 headless against the live site -- home 99/100/100/100 mobile and 100 across desktop, About 98/100/100/100 mobile and 100 across desktop. -->
