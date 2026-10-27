@@ -432,6 +432,19 @@ Updated 2026-10-20: the repo is pushed and connected. Cloudflare's dashboard now
 
 **Known failure mode (hit and fixed 2026-10-21):** the first live deploy worked, but three subsequent merges to `main` never triggered an automatic rebuild -- the project showed "This project is disconnected from your Git account" under Settings → Builds. Root cause: the **Cloudflare Workers and Pages GitHub App** (a separate authorization from the per-project Git connection) was installed with "Only select repositories" access, and `portfolio` had never actually been added to that list -- only `gina-author-site` was. Fixed via GitHub → Settings → Applications → Cloudflare Workers and Pages → Configure → add `portfolio` to Repository access (this does not remove other repos already listed there). If a future push doesn't trigger a build, check that GitHub App's repo-access list first, before assuming the per-project build settings are wrong.
 
+**Known failure mode (hit 2026-10-27, upstream):** a Workers build can fail at the *deploy* step while the build step succeeds, with:
+
+```
+✘ [ERROR] A request to the Cloudflare API (/accounts/<id>/workers/scripts/portfolio/assets-upload-session) failed.
+  An unknown error has occurred. [code: 10013]
+```
+
+This is **Cloudflare's own asset-upload API, not this repo.** Tell them apart by the log: if `npm run build` printed "Built N pages" and the failure came after "Starting asset upload...", the site built fine. A second giveaway is the dashboard URL -- a failed preview has no `previews/<branch>/` segment in it, because the preview alias never got created.
+
+It is transient but can persist for an hour or more; tracked upstream in [workers-sdk#16447](https://github.com/cloudflare/workers-sdk/issues/16447), with no fix or workaround as of 2026-10-27. **The fix is to retrigger the build later** (an empty commit does it: `git commit --allow-empty`). It took four tries over 30 minutes to get a green preview on PR #53. Nothing on the live site breaks in the meantime -- a failed upload leaves the previous version serving.
+
+One red herring while reading these logs: wrangler's "Read 60 files from the assets directory" counts directory entries as well as files, so it will always exceed a local `find dist -type f | wc -l`. On PR #53 that was 41 files + 19 directories = 60. A mismatch there is not evidence of a stale build.
+
 ---
 
 ## 8. Security, privacy and SEO
