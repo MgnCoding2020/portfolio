@@ -375,11 +375,26 @@ readdirSync("content/pages").filter((f) => f.endsWith(".md")).forEach((f) => {
   // which is most of why they read flat.
   const cut = body.search(/\n## /);
   const lead = data.hero === "true" && cut > -1 ? body.slice(0, cut) : "";
+  // `photo:` + `photo_alt:` put a portrait beside the band's text, the same
+  // shape the home page's hero figure uses. On the dark band a colourful photo
+  // reads as the deliberate focal point; the same picture on white fought
+  // every other element on the page.
+  if (data.photo && !data.photo_alt) {
+    throw new Error(`Build failed: ${f} sets photo: but no photo_alt:`);
+  }
+  const figure = data.photo
+    ? `<figure class="band-figure">
+          <img src="${data.photo}" alt="${esc(data.photo_alt)}" width="680" height="1070" loading="eager">
+        </figure>`
+    : "";
   const band = lead
     ? `<div class="page-band band">
-      <div class="page-band-inner">
-        ${data.eyebrow ? `<p class="eyebrow">${esc(data.eyebrow)}</p>` : ""}
-        ${marked.parse(lead)}
+      <div class="page-band-grid${figure ? " has-figure" : ""}">
+        <div class="page-band-inner">
+          ${data.eyebrow ? `<p class="eyebrow">${esc(data.eyebrow)}</p>` : ""}
+          ${marked.parse(lead)}
+        </div>
+        ${figure}
       </div>
     </div>`
     : "";
@@ -468,6 +483,7 @@ const personJsonLd = JSON.stringify({
   name: site.name,
   jobTitle: "IT and GRC, entry level",
   url: BASE_URL + "/",
+  image: BASE_URL + "/img/about/michael-nault.webp",
   sameAs: [site.social.github, site.social.linkedin],
 });
 writePage("", {
