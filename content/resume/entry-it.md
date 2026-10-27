@@ -2,7 +2,7 @@
 name: Michael Nault
 headline: IT Support | Microsoft 365 | CompTIA A+ · Network+ · Security+
 contact: Orlando, FL | {phone} | naultmichael@gmail.com
-links: portfolio.naultmichael.workers.dev | linkedin.com/in/michael-nault-mgncoding2020 | github.com/MgnCoding2020
+links: naultmichael.com | linkedin.com/in/michael-nault-mgncoding2020 | github.com/MgnCoding2020
 file: Michael_Nault_Resume_IT
 private: true
 ---
