@@ -445,6 +445,16 @@ It is transient but can persist for an hour or more; tracked upstream in [worker
 
 One red herring while reading these logs: wrangler's "Read 60 files from the assets directory" counts directory entries as well as files, so it will always exceed a local `find dist -type f | wc -l`. On PR #53 that was 41 files + 19 directories = 60. A mismatch there is not evidence of a stale build.
 
+**Known failure mode (found and fixed 2026-10-27):** `dist/404.html` was built and deployed from launch onward and **never once served**. Workers static assets returns its own empty 9-byte `Not found` for an unmatched path unless the config says otherwise:
+
+```jsonc
+"assets": { "directory": "./dist", "not_found_handling": "404-page" }
+```
+
+Every quality gate in §9 passed the whole time, because the *built output* was correct -- the gap was in deploy configuration, which nothing inspected. `check.mjs` now asserts this key, and that guard was verified by breaking it on purpose. Worth generalising: the gates cover what the build produces, not how it is served.
+
+Two things make this hard to spot. `/404` (extensionless) serves the page with a **200**, so the asset looks fine when probed directly -- only a genuine miss reveals it. And **branch previews ignore `not_found_handling` even when production honours it** ([workers-sdk#16047](https://github.com/cloudflare/workers-sdk/issues/16047)), so a preview URL will still show the empty 404 after the fix is correct. Verify this one on production, with a random path (`curl -s -o /dev/null -w "%{http_code} %{size_download}" https://.../zzz123`); the fix is working when the body is a few KB rather than 9 bytes.
+
 ---
 
 ## 8. Security, privacy and SEO
