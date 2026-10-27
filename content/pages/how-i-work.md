@@ -1,10 +1,24 @@
 ---
 title: "How I work"
 description: "AI-assisted, verification-first — and how this site itself is built and secured."
+hero: true
+eyebrow: "Verification-first"
+sections: What this site scores=tiles | How this site is built=glance
 next: See it applied | Every case study carries a verification line saying what was checked and when. | See_the_work /work/
 ---
 
 <!-- DRAFT: first pass, combining CLAUDE.md §10's AI statement draft with the "how this site is built" content from Phase 3. Edit into your own voice. -->
+
+# I'd rather show the check than claim the result
+
+A control nobody verifies isn't a control. That applies to a security policy, and it applies to a sentence on a portfolio — so here is what this site measures about itself, and how it's put together.
+
+## What this site scores
+
+- A+ | Mozilla HTTP Observatory | Score 125, 11 of 12 checks passed. Re-scanned 2026-10-27
+- 100 | Lighthouse accessibility, best practices and SEO | Mobile and desktop. Performance 99 mobile, 100 desktop, 2026-10-22
+- 1 | Third-party request on the whole site | Cloudflare Web Analytics, cookieless, allowed by name in the CSP
+- 0 | Cookies, ad trackers, fingerprinting | The theme toggle uses `localStorage`; nothing else is stored on your device
 
 ## How I use AI
 
@@ -24,10 +38,13 @@ That's not an argument that nothing here has gaps — it's the opposite. The gap
 - **Stack:** plain HTML and CSS, assembled by one small Node build script (`build.mjs`), with Markdown content files as the source of truth. `marked` is the only runtime dependency, pinned to an exact version. No framework.
 - **JavaScript:** optional, only for a dark-mode toggle. Every page works fully with JavaScript turned off.
 - **Hosting:** Cloudflare Workers (static assets) — chosen specifically because it lets this site send real security headers (a Content Security Policy, not just a best-effort `<meta>` tag), which some free hosts can't do.
-- **Security headers:** a real `Content-Security-Policy`, `Strict-Transport-Security`, and related headers, defined in this repo's `_headers` file. [Mozilla HTTP Observatory](https://developer.mozilla.org/en-US/observatory/analyze?host=portfolio.naultmichael.workers.dev) scanned the live site at **A+ (11 of 12 checks passed)**. The one open item is Subresource Integrity on the Web Analytics script — deliberately left off, since Cloudflare serves that file from a non-versioned URL, and pinning a hash to it would make analytics quietly break the next time Cloudflare updates it.
+- **Security headers:** a real `Content-Security-Policy`, `Strict-Transport-Security`, and related headers, defined in this repo's `_headers` file. [Mozilla HTTP Observatory](https://developer.mozilla.org/en-US/observatory/analyze?host=portfolio.naultmichael.workers.dev) scores the live site A+. The one open item is Subresource Integrity on the Web Analytics script — deliberately left off, since Cloudflare serves that file from a non-versioned URL, and pinning a hash to it would make analytics quietly break the next time Cloudflare updates it.
 - **Privacy:** no cookies, no fingerprinting, no ad trackers. The one third-party request this site makes is [Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics/) — it's cookieless by design (no persistent identifier, no cross-site tracking) and exists so I can see traffic volume, not individual visitors. The Content Security Policy only allows that one host, by name, for exactly this reason — nothing else loads from anywhere but this site. (Case studies about other sites, like client work, describe what those sites actually load.)
-- **Accessibility targets:** WCAG 2.2 AA contrast in both light and dark themes, a visible focus ring on every interactive element, real heading order, and a Lighthouse score of 95+ across Performance, Accessibility, Best Practices, and SEO. Confirmed live: mobile 99/100/100/100, desktop 100/100/100/100.
+- **Accessibility targets:** WCAG 2.2 AA contrast in both light and dark themes, a visible focus ring on every interactive element, real heading order, and a Lighthouse score of 95+ across Performance, Accessibility, Best Practices, and SEO.
+- **Build gates:** the build and its check suite refuse to ship certain mistakes, rather than leaving them to be noticed later. An image without alt text, a resume PDF whose content hash no longer matches the Markdown it's printed from, an internal link to a page that doesn't exist, a phone number anywhere in the output — each one fails, and CI runs both on every push.
 
 ## One more thing
 
 If you're reading this as a hiring manager: the verification habit above isn't a trick — it's the actual job. A control that nobody checks isn't a control, whether it's a security policy or a sentence on a resume. This site tries to hold itself to the same standard it'd apply to anything else.
+
+<!-- TODO(michael): the Lighthouse tile is dated 2026-10-22 and seven design PRs have merged since, including an image on /about/. Worth a re-run in DevTools; if the numbers move, update the tile. The Observatory grade was re-checked by API on 2026-10-27 and is current. -->

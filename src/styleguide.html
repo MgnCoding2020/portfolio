@@ -253,6 +253,27 @@
   </section>
 
   <section class="sg-section">
+    <h2>Score tiles</h2>
+    <p>Measured results, boxed. Distinct from the proof strip, which is unboxed and overlaps the
+      home band &mdash; these are standalone evidence. Each tile <strong>requires</strong> a source
+      line naming the instrument and the date: the build rejects a tile written as
+      <code>stat | label</code> with no third field, because a score with no instrument and no date
+      is the kind of unattributed claim the site argues against.</p>
+    <div class="score-tiles">
+      <div class="score-tile">
+        <div class="stat-number">A+</div>
+        <div class="stat-label">Mozilla HTTP Observatory</div>
+        <div class="stat-source">Score 125, 11 of 12 checks passed. Re-scanned 2026-10-27</div>
+      </div>
+      <div class="score-tile">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Cookies, ad trackers, fingerprinting</div>
+        <div class="stat-source">The theme toggle uses <code>localStorage</code>; nothing else is stored</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-section">
     <h2>Page aside</h2>
     <p>One section of a page pulled into a second column, for facts a reader wants to scan while
       reading the prose. Declared with <code>aside: &lt;heading&gt;</code> front matter. Source order

@@ -312,6 +312,48 @@
   margin-top: var(--space-1);
 }
 
+/* ---------- Score tiles (visual brief, PR 8) ---------- */
+/* Measured results, boxed. Distinct from .proof-strip, which is unboxed and
+   overlaps the home band: these are standalone evidence, and each one carries
+   its instrument and date underneath, so no number sits unattributed. */
+
+.score-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+
+.score-tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--brand);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+}
+/* Smaller than --fs-display: four of these in a row, and the home page's
+   proof strip should stay the biggest numbers on the site. */
+.score-tile .stat-number {
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-semibold);
+  color: var(--brand);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+.score-tile .stat-label {
+  margin-top: var(--space-2);
+  font-weight: var(--fw-semibold);
+}
+.score-tile .stat-source {
+  margin-top: var(--space-2);
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+}
+.score-tile code {
+  font-size: 0.9em;
+  word-break: break-word;
+}
+
 /* ---------- Callout ---------- */
 /* Honest notes, caveats -- a visually distinct aside, never styled as an error */
 
@@ -755,6 +797,9 @@
 /* The proof card-grid is the last thing in its section, so it needs the
    bottom space the service grid and steps already carry. */
 .page-body > .card-grid { margin-bottom: var(--space-7); }
+
+/* Tiles are evidence blocks, not prose -- they run to the full column. */
+.page-body > .score-tiles { max-width: var(--wide); }
 
 /* Figures: lift them off the page so a screenshot reads as evidence. */
 .case-study-body figure img {
