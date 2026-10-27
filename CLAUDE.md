@@ -560,13 +560,13 @@ Michael has about **5 hours a week**, shared with the Workspace and WinSysConfig
 ### Phase 0: Prepare (week 1, about 4 h)
 
 - [x] **Subdomain — decided 2026-10-20, corrected 2026-10-21, superseded 2026-10-27.** The Workers subdomain turned out to be `naultmichael`, not the GitHub handle `mgncoding2020`. Michael then bought **`naultmichael.com`** (2026-10-27); that is now the site's address, with the `workers.dev` host still resolving. See §2.
-- [ ] Open the old Claude Design draft; note 3–5 layout ideas worth keeping in `docs/old-draft-notes.md`. Don't copy content.
+- [ ] ~~Open the old Claude Design draft; note 3–5 layout ideas worth keeping in `docs/old-draft-notes.md`.~~ **Dropped 2026-10-27.** The design is finished and has been through a full visual pass (PRs 1–9); mining a superseded draft now would be archaeology, not design input. Left unticked rather than pretended.
 - [x] **Gina's permission — obtained 2026-10-20.** She's Michael's mother-in-law and has consented to featuring littlesaporitopress.com: screenshots, the link, her first name, a description of the work. No further ask needed before writing the case study.
 - [x] **Amazon outside-employment check — not needed.** The site doesn't use Amazon's brand, name, or any internal information beyond what's already on the resume (role names, published metrics); it isn't soliciting Amazon clients or competing with Amazon's business. No conflict with their code of conduct.
 - [x] **Payroll case study permission — not needed.** It was never deployed to or used by the engineering firm; it exists only as a standalone `.html` file Michael built. Reframe the eventual write-up as a personal/prototype project rather than "client work" — not "built for a small engineering firm" in the case-study sense, since the firm never received or ran it. Revisit the angle (section 4, item #6) when it's written.
-- [ ] **Resume — needs consolidation.** Michael currently has multiple versions (IT/M365-leaning and GRC-leaning). Before `/resume/` can be built, pick or draft one resume strong enough to serve both doors, rather than publishing several. Flag as open.
-- [ ] Write the position line and the "What I'm looking for" paragraph in Michael's own words.
-- [ ] Collect: the consolidated resume PDF once it exists, a headshot (optional), GitHub/LinkedIn URLs.
+- [x] **Resume — consolidated 2026-10-25.** `content/resume/grc.md` is `site: true` and is the only public download; `entry-it.md` is `private: true` and builds only to gitignored `private/`. One source per resume, one renderer for page and PDF. See §2.
+- [x] Position line and "What I'm looking for" — reviewed and kept by Michael 2026-10-27. Headline, subline, hero eyebrow and `lookingFor` are all as he wants them for now; he'll adjust if something occurs to him.
+- [x] Collected: the GRC resume PDF, a photo for `/about/` (2026-10-27, his own), and the GitHub/LinkedIn URLs in `content/site.json`.
 
 **Note on Workspace (2026-10-20):** F1–F10 are done and U1–U3 are underway, ahead of where section 4 assumed. SharePoint connectivity hasn't been re-tested since the 2026-09-29 verification, so don't reuse that date as current without re-checking it when the Workspace case study is written.
 
@@ -574,11 +574,11 @@ Michael has about **5 hours a week**, shared with the Workspace and WinSysConfig
 
 ### Phase 1: Design and skeleton, live (weeks 2–3, about 8 h)
 
-- [ ] Create the repo with this file as `CLAUDE.md`, a README, MIT licence (code) and a note that written content is © Michael Nault.
-- [ ] Design steps 1–6 from section 5.2: brief, old-draft notes, content first, wireframes (**approval checkpoint**), tokens, components on a hidden `/styleguide/` page.
-- [ ] `build.mjs` with one layout, header, footer, `tokens.css` (light and dark), `base.css`.
-- [ ] Home page with the real headline, proof strip and "looking for" paragraph. Case-study cards can link to "coming soon."
-- [ ] `_headers`, `robots.txt`, `security.txt`, `404.html`, favicon.
+- [x] Repo created with `CLAUDE.md`, `README.md` and `LICENSE`.
+- [x] Design steps 1–6 from section 5.2 — `docs/design-brief.md`, real content first, `docs/wireframes/` (4 templates, approved), `tokens.css`, and every component on the hidden `/styleguide/` page. Step 2 (old-draft notes) was dropped; see Phase 0.
+- [x] `build.mjs` with one layout, header, footer, `tokens.css` (light and dark), `base.css`.
+- [x] Home page with the real headline, proof strip and "looking for" paragraph — the last now sits *in* the hero (visual brief PR 3), not below the cards.
+- [x] `_headers`, `robots.txt`, `security.txt`, `404.html`, favicon. (The 404 was built from here on but not actually *served* until 2026-10-27 — see §7's third failure mode.)
 - [x] **Connect Cloudflare; first deploy succeeded 2026-10-21.** Live at `portfolio.naultmichael.workers.dev`. CSP, HSTS, COOP, Permissions-Policy and nosniff all confirmed present on the live response headers; no `unsafe-inline` on the main site's `style-src`.
 - [x] **Ship it, quietly -- live 2026-10-22.** `https://portfolio.naultmichael.workers.dev`. Not announced yet (Phase 5 does that).
 
@@ -598,22 +598,22 @@ One case study per 1–2 sessions: write → diagram → screenshots → review.
 5. **Little Saporito Press** (once permission is in). Lead with the brief-to-spec story, then security headers, accessibility and the temporary-seasonal-layer decision.
 
 - [ ] Use the Project Talking Points doc (from an earlier session) as the outline for the job-facing ones: pitch, facts, terms, likely questions.
-- [ ] `/work/` index page, with tag sections so each door can filter to its own work.
+- [x] `/work/` index page — grouped by the two **doors** rather than by tag, because tag sections rendered each study once per tag (Workspace appeared three times on a five-study page). Tags stay on the cards.
 
 **Done when** the case studies are live, each with a status line, a diagram with alt text, and working links.
 
 ### Phase 3: About, How I work, Work with me, Resume (week 9, about 5 h)
 
-- [ ] `/work-with-me/` as described in section 3, without prices, linking to the Little Saporito Press case study.
+- [x] `/work-with-me/` as described in section 3, without prices, with the Little Saporito Press case-study card as its proof (visual brief PR 6).
 
-- [ ] `/about/` from the draft above, in Michael's voice.
-- [ ] `/how-i-work/`: the AI statement, the "state what isn't verified" principle, and "How this site is built": stack, headers and the scan result, no trackers, accessibility targets.
-- [ ] `/resume/`: an HTML version (better for search and screen readers) plus both PDFs, with a "last updated" date.
+- [x] `/about/` — built, with a Credentials aside and a photo (visual brief PR 7). The prose is still close to §10's draft; Michael has read it and is keeping it for now.
+- [x] `/how-i-work/`: the AI statement, the "state what isn't verified" principle, and "How this site is built" — with the scan result and Lighthouse scores as dated score tiles rather than prose (visual brief PR 8).
+- [x] `/resume/`: the HTML version plus **one** PDF — only the GRC resume is public by design (§2); the entry-IT one is private. Carries its source file's own last-commit date.
 
 ### Phase 4: Quality pass (week 10, about 5 h)
 
-- [ ] `check.mjs` complete, plus CI.
-- [ ] Full manual checklist from section 9.
+- [x] `check.mjs` complete, plus CI (`.github/workflows/check.yml`, `npm ci && npm run build && node check.mjs` on every push).
+- [x] Full manual checklist from section 9 — every item there is now ticked and dated.
 - [x] **Open Graph image; JSON-LD; sitemap.** JSON-LD was a real gap caught 2026-10-22 while verifying this checklist -- §8 called for it but it was never built. Added: a `Person` schema on the home page only (name, job title, `sameAs` to GitHub/LinkedIn), via a new `{{jsonld}}` layout slot. `check.mjs`'s inline-script ban gets one narrow exception for `type="application/ld+json"` (CSP's `script-src` doesn't apply to it -- inert data, not executable script). OG image and sitemap were already done.
 - [ ] Ask one person (ideally someone in IT or GRC) to read the home page and one case study, and note where they got confused.
 
