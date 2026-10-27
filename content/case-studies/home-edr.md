@@ -6,6 +6,7 @@ summary: "Scheduled PowerShell monitoring that started on my own PC, moved to a 
 date: 2026-05
 status: "Personal project"
 verified: "Confirmed directly in the repos as of 2026-10-21: 12 PowerShell monitoring scripts, 4 mapped NIST 800-53 controls with an auto-generated evidence matrix and a GitHub Action, and a POA&M whose findings are explicitly sourced from a dedicated VM lab (not the host). The triage toolkit's 20 scripts, the playbook series' 13 documents, and the monitoring lab's 6 Sysmon cases + 1 Wireshark capture were verified 2026-10-20 in an earlier pass."
+verified_summary: "Confirmed directly in the repos 2026-10-21. The POA&M findings come from a dedicated VM lab, not from the host machine."
 audience: [endpoint, grc]
 stack: [PowerShell]
 repo: https://github.com/MgnCoding2020/HomeEDR-and-Governance-Security
@@ -19,7 +20,7 @@ featured: 4
 - **Problem:** After hardening my own Windows machine, I had no way to know if something changed later — an installer, an update, or something worse.
 - **What I built:** Scheduled PowerShell monitoring that baselines a system and reports drift — first run against my own PC, then rebuilt against a dedicated VM so the governance layer could be collected cleanly. It grew into a NIST 800-53 control-evidence pipeline, a 20-script incident-triage toolkit, and a 13-document playbook series.
 - **Evidence:** 12 monitoring scripts; 4 controls (AU-6, CM-6, CM-7, SC-7) with an auto-generated evidence matrix and a GitHub Action that regenerates it; a POA&M with 5 tracked findings sourced from the VM lab; 20 triage scripts; 13 playbook documents; 6 Sysmon investigation cases and 1 Wireshark capture in a companion monitoring lab.
-- **Status:** Personal project, ongoing. See the verification line above.
+- **Status:** Personal project, ongoing.
 
 ## The problem
 

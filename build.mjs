@@ -68,22 +68,33 @@ function checkImagesHaveAlt(html, context) {
 }
 
 // "At a glance" renders as a dt/dd box (§5.6); every other section is plain markdown.
-function renderGlance(sectionBody) {
+// The Status row carries the full `verified:` text, which is where CLAUDE.md §3
+// puts it. It used to render above the story as a separate block, where on a
+// phone ~15 lines of verification stood between the summary and the first
+// sentence. §5.6 forbids hiding or shrinking it, so it stays in full here.
+function renderGlance(sectionBody, verified) {
   const rows = [];
   const re = /^- \*\*(.+?):\*\*\s*(.+)$/gm;
   let m;
   while ((m = re.exec(sectionBody))) {
-    rows.push(`<div class="glance-row"><dt>${esc(m[1])}</dt><dd>${marked.parseInline(m[2])}</dd></div>`);
+    const label = esc(m[1]);
+    let value = marked.parseInline(m[2]);
+    if (verified && m[1].trim().toLowerCase() === "status") {
+      value += `<p class="glance-verified"><span class="verified-pill">Verified</span> ${esc(verified)}</p>`;
+    }
+    rows.push(`<div class="glance-row"><dt>${label}</dt><dd>${value}</dd></div>`);
   }
   return `<div class="glance"><dl>${rows.join("")}</dl></div>`;
 }
 
-function renderCaseStudyBody(body) {
+function renderCaseStudyBody(body, verified) {
   return body.split(/\n(?=## )/).map((chunk) => {
     const h = chunk.match(/^## (.+)\n([\s\S]*)$/);
     if (!h) return marked.parse(chunk); // the draft HTML comment before the first heading
     const heading = `<h2>${esc(h[1])}</h2>`;
-    return heading + (h[1].trim() === "At a glance" ? renderGlance(h[2]) : marked.parse(h[2]));
+    return heading + (h[1].trim() === "At a glance"
+      ? renderGlance(h[2], verified)
+      : marked.parse(h[2]));
   }).join("\n");
 }
 
@@ -210,15 +221,22 @@ caseStudies.forEach((cs) => {
   // several bodies say "see the verification line above" -- so it has to be
   // rendered here, above the At a glance box, or that instruction points at
   // nothing and the site's core honesty claim is invisible to readers.
-  const content = `<div class="case-header">
-    <h1 class="mb-0">${esc(cs.data.title)}</h1>${badge}</div>
-    <p class="text-muted">${esc(cs.data.summary)}</p>
-    <div class="verified-line">
-      <p class="verified-label">Verified</p>
-      <p class="mb-0">${esc(cs.data.verified)}</p>
+  // The full verification text now lives in At a glance's Status row, where
+  // §3 puts it. The band carries a one-line summary instead, so the story
+  // starts within the first screen on a phone.
+  const content = `<div class="case-band band">
+      <div class="case-band-inner">
+        <div class="case-header">
+          <h1 class="mb-0">${esc(cs.data.title)}</h1>${badge}
+        </div>
+        <p class="case-summary">${esc(cs.data.summary)}</p>
+        ${cs.data.verified_summary
+          ? `<p class="case-verified"><span class="verified-pill">Verified</span> ${esc(cs.data.verified_summary)}</p>`
+          : ""}
+        <div class="card-tags">${tags}</div>
+      </div>
     </div>
-    <div class="card-tags mb-6">${tags}</div>
-    ${renderCaseStudyBody(cs.body)}
+    <div class="case-study-body">${renderCaseStudyBody(cs.body, cs.data.verified)}</div>
     ${nextPanel(
       "Keep reading",
       `Next: <a href="/work/${nextCase(cs).data.slug}/">${esc(nextCase(cs).data.title)}</a>`,

@@ -6,6 +6,7 @@ summary: "Two complementary Windows 10 labs: a broad automated SCAP baseline sca
 date: 2026-06
 status: "Simulation"
 verified: "Both labs' repos confirmed present and matching their documented figures as of 2026-10-21. The hardening lab's 4 controls and the baseline scan's findings were checked against each other directly -- they use different DISA STIG ID schemes with no crosswalk available, so they're presented here as two separate, complementary labs, not one scan-then-fix project. See 'What went wrong' below."
+verified_summary: "Both labs' repos confirmed 2026-10-21. They are two separate labs, with no ID crosswalk between them."
 audience: [grc, endpoint]
 stack: [PowerShell]
 repo: https://github.com/MgnCoding2020/stig-800-171-compliance-lab
@@ -18,7 +19,7 @@ repo: https://github.com/MgnCoding2020/stig-800-171-compliance-lab
 - **Problem:** Windows hardening guidance usually ends up as either a document nobody follows, or a one-time scan nobody acts on. Neither one produces evidence that a control actually works.
 - **What I built:** Two labs that cover both halves of that gap. A SCAP benchmark scan establishes a baseline across 225 Windows 10 STIG rules. Separately, 4 of those controls are implemented by hand, validated, and backed with exported evidence rather than just a checklist.
 - **Evidence:** 225 rules scanned (137 open findings, 75 not-a-finding, 13 N/A, ~35% baseline compliance); 4 controls implemented with PowerShell enforcement, validation, and evidence-export scripts for each.
-- **Status:** Simulation/lab work on a standalone VM, not a production system. See the verification line above.
+- **Status:** Simulation/lab work on a standalone VM, not a production system.
 
 ## The problem
 
