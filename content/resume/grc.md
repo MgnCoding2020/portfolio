@@ -2,7 +2,7 @@
 name: Michael Nault
 headline: GRC and IT Compliance | NIST SP 800-53 · PCI DSS · Microsoft Entra ID | Security+
 contact: Orlando, FL | {phone} | naultmichael@gmail.com
-links: portfolio.naultmichael.workers.dev | linkedin.com/in/michael-nault-mgncoding2020 | github.com/MgnCoding2020
+links: naultmichael.com | linkedin.com/in/michael-nault-mgncoding2020 | github.com/MgnCoding2020
 file: Michael_Nault_Resume_GRC
 site: true
 ---
@@ -27,7 +27,7 @@ Entry-level GRC and IT compliance candidate. At an Amazon new-site launch, raise
 
 ## Compliance Projects
 
-*Self-directed. The GRC program and hardening labs below are simulations for fictional organizations; the Entra ID and SharePoint work is in a live tenant. Full write-ups at portfolio.naultmichael.workers.dev*
+*Self-directed. The GRC program and hardening labs below are simulations for fictional organizations; the Entra ID and SharePoint work is in a live tenant. Full write-ups at naultmichael.com*
 
 ### GRC Security Program: Burn and Churn Coffee
 *2025 – 2026*

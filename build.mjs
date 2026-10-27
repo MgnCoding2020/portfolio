@@ -14,7 +14,7 @@ const DIST = "dist";
 // Cloudflare builds in a fresh container and never saw the stale copies, which
 // is exactly what makes the divergence easy to miss.
 rmSync(DIST, { recursive: true, force: true });
-const BASE_URL = "https://portfolio.naultmichael.workers.dev";
+const BASE_URL = "https://naultmichael.com";
 const sitemapUrls = [];
 
 function lastUpdated(file) {
