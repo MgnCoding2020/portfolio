@@ -42,10 +42,19 @@
      across a page break. */
   .glance,
   .case-card,
+  .service-card,
+  .steps > li,
   figure,
   table,
   .callout {
     break-inside: avoid;
+  }
+
+  /* The numeral's fill and the connecting rule are both backgrounds, which the
+     reset above strips. Outline the numeral so the sequence still reads. */
+  .steps > li::before {
+    border: 1px solid #000;
+    border-radius: 999px;
   }
 
   h1, h2, h3 {
