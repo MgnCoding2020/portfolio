@@ -116,6 +116,21 @@ if (!existsSync(headersPath)) {
   if (!headers.includes("frame-ancestors 'none'")) errors.push("_headers's CSP has no frame-ancestors 'none'");
 }
 
+// The 404 page has to be wired up, not just built. dist/404.html was shipped
+// unused from launch until 2026-10-27 because Workers static assets serves its
+// own empty 404 unless `not_found_handling` says otherwise -- and every check
+// here passed the whole time, because the built output was correct and the gap
+// was in deploy config. This is the one place that config is asserted.
+if (!existsSync(path.join(DIST, "404.html"))) {
+  errors.push("404.html is missing from dist/");
+}
+const wranglerPath = "wrangler.jsonc";
+if (!existsSync(wranglerPath)) {
+  errors.push("wrangler.jsonc is missing");
+} else if (!/"not_found_handling"\s*:\s*"404-page"/.test(readFileSync(wranglerPath, "utf8"))) {
+  errors.push('wrangler.jsonc: assets.not_found_handling must be "404-page", or dist/404.html is never served');
+}
+
 // security.txt must not have already expired
 const secTxtPath = path.join(DIST, ".well-known", "security.txt");
 if (!existsSync(secTxtPath)) {
