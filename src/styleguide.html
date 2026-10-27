@@ -253,6 +253,41 @@
   </section>
 
   <section class="sg-section">
+    <h2>Service card</h2>
+    <p>For offers, not projects: these link nowhere and carry no status, so they get a flat
+      surface and no hover, which keeps <code>.case-card</code>'s lift meaning "this is a link."
+      Built from the bold-led paragraphs of a <code>sections: &hellip;=cards</code> section.
+      Emphasis inside one always reads as a caveat, so it breaks onto its own line.</p>
+    <div class="service-grid">
+      <div class="service-card">
+        <h3>Websites</h3>
+        <p>Fast, secure, accessible sites you own, on free hosting.</p>
+      </div>
+      <div class="service-card">
+        <h3>Spreadsheet and process tools</h3>
+        <p>Turning emailed spreadsheets into a checked, repeatable process.</p>
+      </div>
+      <div class="service-card">
+        <h3>Microsoft 365 setup</h3>
+        <p>Users, MFA, sharing permissions. <em>Not available yet.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sg-section">
+    <h2>Numbered steps</h2>
+    <p>Still a real <code>&lt;ol&gt;</code> &mdash; the numerals come from a CSS counter, so the
+      ordered-list semantics survive for screen readers and in print. Numbered only where the
+      order genuinely carries information.</p>
+    <ol class="steps" role="list" style="max-width:640px">
+      <li>A short conversation about what you need.</li>
+      <li>A written one-page scope, so we both know what "done" looks like.</li>
+      <li>I build on a preview link you can check as it comes together.</li>
+      <li>Launch.</li>
+    </ol>
+  </section>
+
+  <section class="sg-section">
     <h2>Callout</h2>
     <div class="callout" style="max-width:640px">
       <p>I'm early in this work and take on a small number of projects alongside my full-time job, so I can give each one proper attention.</p>

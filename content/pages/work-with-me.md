@@ -1,10 +1,12 @@
 ---
 title: "Work with me"
 description: "Websites and simple tools for small businesses and authors."
+hero: true
+eyebrow: "Small business · Authors · Nonprofits"
+sections: What I build=cards | Proof=proof | How it works=steps | An honest note=callout
+proof: little-saporito-press
 next: Start a conversation | Tell me what you are trying to build and I will tell you honestly whether I am the right fit. | Email_me mailto:naultmichael@gmail.com
 ---
-
-<!-- DRAFT: first pass per CLAUDE.md §3 spec. No prices, per §3 rule -- leave off until a written price sheet and 2-3 paid projects exist. -->
 
 # Websites and simple tools for small businesses and authors
 
@@ -16,11 +18,11 @@ If you need a site you actually own, or a process that's eating up time with spr
 
 **Spreadsheet and process tools.** Turning emailed spreadsheets and manual re-typing into a checked, repeatable process — for example, timesheets into QuickBooks.
 
-**Microsoft 365 setup.** Users, MFA, sharing permissions, onboarding and offboarding. *(Coming once I'm insured and ready for this kind of client work — not yet available.)*
+**Microsoft 365 setup.** Users, MFA, sharing permissions, onboarding and offboarding. *Coming once I'm insured and ready for this kind of client work — not available yet.*
 
 ## Proof
 
-Little Saporito Press — a children's author's site, built from a messy planning brief to a secure, accessible, live site. [Read the case study →](/work/little-saporito-press/)
+One real client, start to finish: a messy planning brief turned into a secure, accessible site she owns.
 
 ## How it works
 
@@ -33,9 +35,3 @@ Little Saporito Press — a children's author's site, built from a messy plannin
 ## An honest note
 
 I'm early in this kind of work, and I take on a small number of projects alongside my full-time job, so I can give each one proper attention. If that timeline doesn't fit what you need, I'll tell you up front.
-
-## Get in touch
-
-<!-- Uses content/site.json social.email -->
-
-Email me — a quick note about what you're trying to build is a good place to start.

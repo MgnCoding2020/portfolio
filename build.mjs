@@ -98,6 +98,57 @@ function renderCaseStudyBody(body, verified) {
   }).join("\n");
 }
 
+// Static pages are prose by default. A page opts individual sections into a
+// component by naming them in its `sections:` front matter -- "Heading=kind"
+// pairs separated by |. The heading text stays the author's to reword; only
+// that one front-matter line has to follow it. This is the same idea as the
+// case-study renderer special-casing "At a glance", but declared per page
+// instead of hard-coded, so build.mjs doesn't hold any page's copy.
+const PAGE_SECTION = {
+  // Each bold-led paragraph becomes a card: "**Websites.** Fast, secure..."
+  // Anything that isn't bold-led passes through, so a stray paragraph in the
+  // section doesn't silently disappear.
+  cards: (body) => {
+    const cards = body.trim().split(/\n{2,}/).map((p) => {
+      const m = p.trim().match(/^\*\*(.+?)\*\*\s*([\s\S]*)$/);
+      if (!m) return `<div class="service-card">${marked.parse(p)}</div>`;
+      return `<div class="service-card">
+        <h3>${esc(m[1].replace(/\.$/, ""))}</h3>
+        <p>${marked.parseInline(m[2].replace(/\s*\n\s*/g, " ").trim())}</p>
+      </div>`;
+    });
+    return `<div class="service-grid">${cards.join("\n")}</div>`;
+  },
+  // Keeps the semantic <ol> -- CSS counters draw the numerals, so the steps
+  // still read as an ordered list in print. The explicit role is needed
+  // because the component sets `list-style: none`, which makes Safari drop
+  // list semantics for VoiceOver.
+  steps: (body) => marked.parse(body).replace(/^<ol>/, '<ol class="steps" role="list">'),
+  callout: (body) => `<div class="callout">${marked.parse(body)}</div>`,
+  // Prose lead-in, then the real case-study cards named in `proof:` front
+  // matter -- the same component /work/ uses, so the client door's proof
+  // carries its own status badge instead of being a bare link.
+  proof: (body, ctx) => marked.parse(body) + ctx.proofCards(),
+};
+
+function renderPageBody(body, data, ctx) {
+  const kinds = new Map(
+    String(data.sections || "").split("|").map((pair) => pair.trim()).filter(Boolean)
+      .map((pair) => {
+        const i = pair.lastIndexOf("=");
+        return [pair.slice(0, i).trim(), pair.slice(i + 1).trim()];
+      })
+  );
+  return body.split(/\n(?=## )/).map((chunk) => {
+    const h = chunk.match(/^## (.+)\n([\s\S]*)$/);
+    if (!h) return marked.parse(chunk); // everything before the first h2
+    const kind = kinds.get(h[1].trim());
+    const fn = kind && PAGE_SECTION[kind];
+    if (kind && !fn) throw new Error(`Build failed: unknown section kind "${kind}"`);
+    return `<h2>${esc(h[1])}</h2>` + (fn ? fn(h[2], ctx) : marked.parse(h[2]));
+  }).join("\n");
+}
+
 function renderHeader(site, activeHref) {
   const links = site.nav.map((l) => {
     const active = activeHref === l.href || (l.href !== "/" && activeHref.startsWith(l.href));
@@ -282,11 +333,42 @@ writePage("work", {
 readdirSync("content/pages").filter((f) => f.endsWith(".md")).forEach((f) => {
   const slug = f.replace(/\.md$/, "");
   const { data, body } = parseFrontMatter(readFileSync(path.join("content/pages", f), "utf8"));
+  const ctx = {
+    // Case-study cards for the slugs named in `proof:` front matter.
+    proofCards: () => {
+      const slugs = [].concat(data.proof || []).flatMap((s) => String(s).split(/[\s,]+/)).filter(Boolean);
+      const cards = slugs.map((s) => {
+        const cs = caseStudies.find((c) => c.data.slug === s);
+        if (!cs) throw new Error(`Build failed: ${f} names proof "${s}", which is not a case study`);
+        return cardHtml(cs);
+      });
+      return cards.length ? `<div class="card-grid">${cards.join("\n")}</div>` : "";
+    },
+  };
+  // `hero: true` lifts everything before the first h2 -- the h1 and its lead
+  // paragraph -- onto a full-bleed band, the same treatment the home page
+  // gets. Without it an interior page opens with a bare heading on white,
+  // which is most of why they read flat.
+  const cut = body.search(/\n## /);
+  const lead = data.hero === "true" && cut > -1 ? body.slice(0, cut) : "";
+  const band = lead
+    ? `<div class="page-band band">
+      <div class="page-band-inner">
+        ${data.eyebrow ? `<p class="eyebrow">${esc(data.eyebrow)}</p>` : ""}
+        ${marked.parse(lead)}
+      </div>
+    </div>`
+    : "";
+  let inner = renderPageBody(lead ? body.slice(cut + 1) : body, data, ctx);
   // Every page needs exactly one h1 (CLAUDE.md §5.9). Pages that don't open
   // with their own heading get one from the front-matter title they already
-  // declare, rather than each author remembering to add it.
-  let html = marked.parse(body);
-  if (!/<h1[\s>]/i.test(html)) html = `<h1>${esc(data.title)}</h1>\n${html}`;
+  // declare, rather than each author remembering to add it. It goes inside
+  // .page-body so the width system covers it like any other block.
+  if (!/<h1[\s>]/i.test(band + inner)) inner = `<h1>${esc(data.title)}</h1>\n${inner}`;
+  // .page-body shares the case-study width system and section rhythm, so an
+  // interior page gets the same two right edges and the same hairline between
+  // sections instead of running together as one slab.
+  let html = band + `<div class="page-body">${inner}</div>`;
   // Optional `next:` front matter -- "heading | body | label href, label href"
   // -- so a page declares its own onward step instead of ending in the footer.
   if (data.next) {

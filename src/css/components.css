@@ -449,6 +449,115 @@
   padding: var(--space-5) var(--space-6);
 }
 
+/* ---------- Interior page band (visual brief, PR 6) ---------- */
+/* The home page got its band in PR 3; interior pages opened with a bare h1 on
+   white, which is most of why they read flat. Shallower than the home hero --
+   this carries a title and one line, not a whole pitch. */
+
+.page-band {
+  margin-top: calc(-1 * var(--space-7));
+  padding: var(--space-7) 0;
+  margin-bottom: var(--space-7);
+}
+.page-band-inner { max-width: var(--measure); }
+.page-band h1 { margin-bottom: var(--space-4); }
+/* The lead paragraph, sized up -- it's the page's one-line answer to
+   "is this for me?", so it shouldn't be body-sized. */
+.page-band p:not(.eyebrow) {
+  font-size: var(--fs-h3);
+  line-height: 1.5;
+  color: var(--band-muted);
+  margin-bottom: 0;
+}
+
+/* ---------- Service cards (visual brief, PR 6) ---------- */
+/* "What I build" was three bold-led paragraphs in a column. As cards they
+   scan as three distinct offers, which is what a prospective client is
+   actually comparing. Deliberately not .case-card: these link nowhere and
+   carry no status, so they get a flat surface and no hover. */
+
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  margin-bottom: var(--space-7);
+}
+
+@media (min-width: 768px) {
+  .service-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.service-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--brand);
+  border-radius: var(--radius);
+  padding: var(--space-5);
+}
+.service-card h3 { margin-bottom: var(--space-3); }
+.service-card p { margin-bottom: 0; }
+/* The "not available yet" note on the M365 card. Emphasis inside a service
+   card is always that kind of caveat, so it breaks onto its own line rather
+   than hiding mid-sentence -- the honesty rule in CLAUDE.md §1. */
+.service-card em {
+  display: block;
+  margin-top: var(--space-3);
+  font-style: normal;
+  font-size: var(--fs-small);
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-3);
+}
+
+/* ---------- Numbered steps (visual brief, PR 6) ---------- */
+/* Still a real <ol> -- the numerals are drawn by a counter, so screen readers
+   and print keep the ordered-list semantics. §5.8's structure-is-information
+   rule applies: these are numbered because the order genuinely matters. */
+
+.steps {
+  list-style: none;
+  counter-reset: step;
+  padding-left: 0;
+  margin: 0 0 var(--space-7);
+  max-width: var(--measure);
+}
+.steps > li {
+  counter-increment: step;
+  position: relative;
+  padding-left: var(--space-7);
+  padding-bottom: var(--space-5);
+  margin-bottom: 0;
+}
+.steps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--space-6);
+  height: var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: var(--fw-semibold);
+  color: var(--brand);
+  background: var(--brand-tint);
+  border-radius: var(--radius-pill);
+}
+/* The connecting rule between numerals, so the five steps read as one
+   sequence rather than five separate notes. Not on the last one. */
+.steps > li::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--space-6) / 2);
+  top: var(--space-6);
+  bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+.steps > li:last-child { padding-bottom: 0; }
+.steps > li:last-child::after { display: none; }
+
 /* ---------- Looking for (home hero) ---------- */
 /* A recruiter's first question is "is this person even a match?". This sits in
    the hero so level, function and location land in the first few seconds,
@@ -515,40 +624,60 @@
   max-width: none;
 }
 
-/* ---------- One width system (visual brief, PR 5) ---------- */
+/* ---------- One width system (visual brief, PR 5; extended PR 6) ---------- */
 /* Prose reads at --measure; evidence-bearing blocks run to --wide. Two right
-   edges instead of the previous zigzag between ~800px and ~1050px. */
+   edges instead of the previous zigzag between ~800px and ~1050px.
+   Case studies and the interior static pages share this, so /about/ and
+   /work-with-me/ line up with /work/<slug>/ rather than each drifting. */
 
 .case-study-body > p,
 .case-study-body > ul,
 .case-study-body > ol,
-.case-study-body > blockquote { max-width: var(--measure); }
+.case-study-body > blockquote,
+.page-body > p,
+.page-body > ul,
+.page-body > ol,
+.page-body > blockquote { max-width: var(--measure); }
 
 .case-study-body > .glance,
 .case-study-body > figure,
 .case-study-body > pre,
 .case-study-body > .table-wrap,
-.case-study-body > table { max-width: var(--wide); }
+.case-study-body > table,
+.page-body > .glance,
+.page-body > figure,
+.page-body > pre,
+.page-body > .table-wrap,
+.page-body > table,
+.page-body > .card-grid,
+.page-body > .service-grid { max-width: var(--wide); }
 
 /* Section rhythm. Headings carry no top margin globally, so eight sections of
    prose ran together as one slab -- the "flat" reading. A hairline above each
    h2 (not the first) gives the page visible structure without decoration. */
-.case-study-body > h2 {
+.case-study-body > h2,
+.page-body > h2 {
   max-width: var(--wide);
   margin-top: var(--space-8);
   padding-top: var(--space-5);
   border-top: 1px solid var(--border);
   color: var(--brand);
 }
-.case-study-body > h2:first-child {
+.case-study-body > h2:first-child,
+.page-body > h2:first-child {
   margin-top: 0;
   padding-top: 0;
   border-top: 0;
 }
-.case-study-body > h3 {
+.case-study-body > h3,
+.page-body > h3 {
   max-width: var(--measure);
   margin-top: var(--space-6);
 }
+
+/* The proof card-grid is the last thing in its section, so it needs the
+   bottom space the service grid and steps already carry. */
+.page-body > .card-grid { margin-bottom: var(--space-7); }
 
 /* Figures: lift them off the page so a screenshot reads as evidence. */
 .case-study-body figure img {
