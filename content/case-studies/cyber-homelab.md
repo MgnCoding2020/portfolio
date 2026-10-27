@@ -6,6 +6,7 @@ summary: "Entra ID and SharePoint governance built in a real Microsoft 365 tenan
 date: 2026-09
 status: "In progress"
 verified: "Confirmed against the repo on 2026-10-25. Lab 02 (cloud identity) is marked Complete; Lab 06 (SharePoint) is In progress with Days 1-4 done and Days 5-6 outstanding; Lab 04 (Active Directory) is In progress; Lab 05 (STIG) is empty scaffolding and nothing here claims it. The audit-log timeline quoted below is the real transcript output committed at 05-sharepoint-admin/transcripts/02-search-unified-audit-log.txt. Conditional Access policies are configured in report-only and are not enforcing; Security Defaults is what enforces MFA in this tenant today."
+verified_summary: "Confirmed against the repo 2026-10-25. Two of its labs are still in progress, and Conditional Access is report-only, not enforcing."
 audience: [m365, iam, grc, security]
 stack: [Microsoft Entra ID, SharePoint Online, PowerShell, Exchange Online, Microsoft Purview]
 repo: https://github.com/MgnCoding2020/cyber-homelab
@@ -17,7 +18,7 @@ featured: 3
 - **Problem:** Every other GRC project I've built is a simulation for a company that doesn't exist. Paper controls can be written to pass their own review. A real tenant pushes back.
 - **What I built:** Identity and information-governance controls in a live Microsoft 365 tenant — privileged access moved from standing to just-in-time, an access review run to completion, SharePoint permissions broken out of inheritance, external sharing tightened per-site, and unified audit logging enabled and proven.
 - **Evidence:** 45 screenshots, PowerShell scripts with their session transcripts, exported Conditional Access policy JSON, a sign-in log export, and a POA&M — all committed to the repo.
-- **Status:** In progress, and genuinely so. See the verification line above for which labs are finished and which aren't.
+- **Status:** In progress, and genuinely so.
 
 ## The problem
 

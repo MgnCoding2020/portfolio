@@ -6,6 +6,7 @@ summary: "A data-driven intranet that runs identically from memory, the browser,
 date: 2026-10
 status: "In progress"
 verified: "Confirmed directly against the repo's own docs/STATUS.md as of 2026-10-21 (repo unchanged since its 2026-10-16 commit, so this is current, not stale): 3 backends, ~4,700 lines of app code, 454 passing Playwright checks. A live Microsoft 365 tenant was verified in September 2026 (sign-in, list reads/writes, a document library, a real Power Automate flow, real Entra-group persona derivation), confirmed directly by Michael — the trial subscription lapsed shortly after, and no live tenant is connected right now. Everything built in October (the F1-F10 fixes, the timesheet module) came after the trial lapsed, so none of it has been re-verified live. The stored-XSS fix (60 sinks) was verified by reproducing the exploit across 6 real surfaces."
+verified_summary: "Confirmed against the repo's own docs/STATUS.md 2026-10-21. No live tenant is connected right now."
 audience: [m365, iam, security]
 stack: [JavaScript, SharePoint REST, MSAL, Microsoft Graph, PowerShell, Playwright]
 repo: https://github.com/MgnCoding2020/workspace
@@ -19,7 +20,7 @@ featured: 2
 - **Problem:** A SharePoint-style intranet usually can't be demoed, reviewed, or iterated on without an actual Microsoft 365 tenant sitting behind it — expensive, slow to set up, and risky to experiment against directly.
 - **What I built:** One data interface with three interchangeable backends — in-memory, the browser's own storage, and a real SharePoint tenant — so the same UI runs instantly for review, and for real against Microsoft 365 when it matters.
 - **Evidence:** ~4,700 lines of application code; 454 automated Playwright checks passing; a live Microsoft 365 tenant verified (sign-in, list reads/writes, a document library, a real Power Automate flow, real persona derivation from Entra group membership); a stored XSS found and fixed across 60 sinks, reproduced on 6 real surfaces.
-- **Status:** In progress. No live tenant is connected right now — see the verified line above for why that's a subscription gap, not a code gap.
+- **Status:** In progress. No live tenant is connected right now
 
 ## The problem
 

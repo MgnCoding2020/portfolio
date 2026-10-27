@@ -52,7 +52,10 @@
     break-after: avoid;
   }
 
-  .badge {
+  /* Both lose their fill to the reset above, so the word needs an outline
+     to still read as a label rather than stray bold text. */
+  .badge,
+  .verified-pill {
     border: 1px solid #000;
   }
 

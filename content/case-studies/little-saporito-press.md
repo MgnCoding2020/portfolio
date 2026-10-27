@@ -6,6 +6,7 @@ summary: "A static site for an independent children's author — book pages, a t
 date: 2026-10
 status: "Client work"
 verified: "Confirmed directly against the live repo as of 2026-10-21 (13 commits, most recent 2026-10-17): the security headers in _headers, reduced-motion handling (covers the seasonal twinkle animation via a sitewide rule), the decorations on/off toggle, in-page PDF preview and download for both current printables, and the privacy page's own disclosure of Cloudflare Web Analytics and Google Fonts. Featured with the author's (Gina's) written permission — screenshots, the live-site link, her first name, and a description of the work. The repo link is also included since that repo is itself public (confirmed 2026-10-21)."
+verified_summary: "Confirmed against the live repo and the live site 2026-10-21. Featured with the author's written permission."
 audience: [web]
 stack: [HTML, CSS, JavaScript, Cloudflare Pages]
 repo: https://github.com/MgnCoding2020/gina-author-site

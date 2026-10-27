@@ -6,6 +6,7 @@ summary: "A full security program for a fictional coffee shop: risk register, 15
 date: 2026-06
 status: "Simulation"
 verified: "Control matrix, policies, evidence pack, and POA&M confirmed present in the repo as of 2026-10-20. Control count recounted row-by-row from control-matrix.md on 2026-10-25: 15 controls — 3 Implemented, 5 Partially Implemented, 7 Not Implemented, each open gap tracked to a POA&M item. An earlier pass said 11, taken from the repo README's summary line, which is stale relative to the matrix it describes. The evidence-check fix described below was merged to main on 2026-10-21 and re-confirmed on 2026-10-25: the three scripts are now byte-distinct on the default branch. The 30-day login-staleness threshold in access_review_check.py is still a judgment call pending a check against PR-003's stated cadence — see 'What went wrong' below."
+verified_summary: "Confirmed in the repo 2026-10-20. 15 controls, recounted row-by-row 2026-10-25: 3 implemented, 5 partial, 7 not yet, every open gap tracked to a POA&M item."
 audience: [grc, iam]
 stack: [Python, Markdown, CSV]
 repo: https://github.com/MgnCoding2020/grc-paper-project-coffee-shop
@@ -19,7 +20,7 @@ featured: 1
 - **Problem:** A small card-accepting business has no documented security program — no risk register, no mapped controls, no way to prove anything to an auditor or a partner.
 - **What I built:** A complete program for a fictional coffee shop — asset inventory, risk register, a 15-control matrix mapped to NIST SP 800-53 and crosswalked to PCI DSS 4.0.1, policies and procedures, an evidence pack with automated checks, a POA&M, a vendor risk assessment, and a quarterly access review.
 - **Evidence:** 4 policies, 4 procedures, 4 incident-response playbooks, 15 controls (3 implemented, 5 partially, 7 not — every gap tracked to a POA&M item), a companion vendor assessment with 4 tracked findings, and an access review across 5 systems — all present in the repo.
-- **Status:** Simulation, for a fictional business ("Burn and Churn Coffee"). See the verification line above.
+- **Status:** Simulation, for a fictional business ("Burn and Churn Coffee").
 
 ## The problem
 
