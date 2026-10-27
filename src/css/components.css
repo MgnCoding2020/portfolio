@@ -470,18 +470,22 @@
 }
 
 .band-figure { margin: 0; }
+/* 190px -> ~300px tall, which is about the height of the band's three lines
+   of text beside it. At 260px the portrait ran to 409px and drove the band to
+   ~500px for three lines, leaving the text floating in dead space and pushing
+   the page's actual content below the fold. */
 .band-figure img {
   display: block;
   width: 100%;
-  max-width: 260px;
+  max-width: 190px;
   height: auto;
   border-radius: var(--radius);
   box-shadow: var(--shadow-float);
 }
 @media (max-width: 1023px) {
-  /* Below the split it sits under the text, where a 260px portrait would
-     look stranded in the middle of a full-width band. */
-  .band-figure img { max-width: 200px; }
+  /* Below the split it sits under the text, where even 190px reads large in
+     the middle of a full-width band. */
+  .band-figure img { max-width: 150px; }
 }
 .page-band h1 { margin-bottom: var(--space-4); }
 /* The lead paragraph, sized up -- it's the page's one-line answer to
