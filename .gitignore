@@ -15,3 +15,7 @@ Thumbs.db
 
 # Application resumes (with phone) and the local phone setting -- never committed.
 /private/
+
+# Claude Code's local scheduler lock. Ignore the file, not the whole .claude/
+# directory, so shared project config can still be committed there later.
+.claude/scheduled_tasks.lock
