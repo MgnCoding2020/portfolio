@@ -547,6 +547,15 @@
   padding: var(--space-5) var(--space-6);
 }
 
+/* "Now" block on the home page: a hairline frame, no fill, so it stays quieter
+   than the client band directly below it. */
+.now-block {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4) var(--space-5);
+}
+.now-block .eyebrow { margin-bottom: var(--space-1); }
+
 /* ---------- Interior page band (visual brief, PR 6) ---------- */
 /* The home page got its band in PR 3; interior pages opened with a bare h1 on
    white, which is most of why they read flat. Shallower than the home hero --

@@ -15,6 +15,11 @@
     "github": "https://github.com/MgnCoding2020"
   },
   "lookingFor": "Entry-level roles in GRC and compliance, IT audit, Microsoft 365 administration or identity and access, in Orlando or remote. I'd especially value a team that mentors.",
+  "now": {
+    "date": "2026-11-02",
+    "text": "Aligning the security program for Burn and Churn Coffee, a fictional café, across three repos: a documented move from Google Workspace to Microsoft 365, eight vendor assessments, and a post-migration access review, now planned in Entra ID. Next, I'm building the café's website on Entra ID and Stripe test mode.",
+    "link": "https://github.com/MgnCoding2020/grc-paper-project-coffee-shop"
+  },
   "proofStrip": [
     { "stat": "63–70% → 99%+", "label": "SOX audit compliance, in one month", "source": "Amazon, 2023" },
     { "stat": "Security+", "label": "with CompTIA Network+, A+, and ITIL 4 Foundation", "source": "2025–2026" },

@@ -140,6 +140,18 @@ if (!existsSync(secTxtPath)) {
   if (!m || new Date(m[1].trim()) < new Date()) errors.push("security.txt's Expires date is missing or already in the past");
 }
 
+// The home page's "Now" block is dated, so it must not go stale quietly. Over
+// 60 days old fails; a future date fails too (likely a typo). Removing `now`
+// from site.json removes the block and this check with it.
+const NOW_MAX_DAYS = 60;
+const siteNow = JSON.parse(readFileSync("content/site.json", "utf8")).now;
+if (siteNow) {
+  const days = (Date.now() - new Date(siteNow.date + "T00:00:00Z")) / 86400000;
+  if (Number.isNaN(days)) errors.push(`site.json: now.date "${siteNow.date}" is not a YYYY-MM-DD date`);
+  else if (days > NOW_MAX_DAYS) errors.push(`site.json: now.date is ${Math.floor(days)} days old (limit ${NOW_MAX_DAYS}) -- update the "Now" block or remove it`);
+  else if (days < -1) errors.push(`site.json: now.date ${siteNow.date} is in the future`);
+}
+
 console.log(`Checked ${htmlFiles.length} pages.`);
 console.log(`${externalLinks.size} external link(s) referenced (not checked for liveness):`);
 for (const url of externalLinks) console.log("  " + url);
