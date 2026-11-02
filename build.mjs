@@ -517,6 +517,20 @@ const featured = caseStudies.filter((c) => c.data.featured).sort((a, b) => a.dat
 const proof = (site.proofStrip || []).map((p) =>
   `<div class="proof-stat"><div class="stat-number">${esc(p.stat)}</div><div class="stat-label">${esc(p.label)}</div><div class="stat-source">${esc(p.source)}</div></div>`
 ).join("");
+// "Now" block: optional, edited in site.json. Dated so it reads as a snapshot,
+// and check.mjs fails once that date is over 60 days old.
+let nowHtml = "";
+if (site.now) {
+  const { date, text, link } = site.now;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date || "") || !text) {
+    throw new Error('site.json: "now" needs a YYYY-MM-DD date and text');
+  }
+  const month = new Date(date + "T00:00:00Z").toLocaleString("en-US", { month: "long", year: "numeric", timeZone: "UTC" });
+  nowHtml = `<div class="now-block mb-7">
+      <p class="eyebrow">Now · <time datetime="${date}">${month}</time></p>
+      <p class="mb-0">${esc(text)}${link ? ` <a href="${esc(link)}">See the program on GitHub &rarr;</a>` : ""}</p>
+    </div>`;
+}
 const personJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Person",
@@ -563,6 +577,7 @@ writePage("", {
       <a href="/work/">All case studies &rarr;</a>
     </div>
     <div class="card-grid mb-7">${featured.map(cardHtml).join("\n")}</div>
+    ${nowHtml}
     <div class="client-band">
       <p class="eyebrow">Also</p>
       <h2 class="mt-0">Websites and tools for small businesses</h2>
