@@ -9,7 +9,7 @@ site: true
 
 ## Summary
 
-Entry-level GRC and IT compliance candidate. At an Amazon new-site launch, raised weekly SOX audit compliance from about 63–70% to 99%+ within one month and held it. Builds hands-on compliance programs — risk registers, control matrices mapped to NIST SP 800-53 and PCI DSS 4.0.1, audit evidence, POA&Ms, vendor risk assessments and access reviews — and administers a live Microsoft Entra ID and SharePoint tenant with exported evidence. CompTIA Security+, Network+, A+ and ITIL 4; finishing a B.S. in Cybersecurity and Information Assurance (WGU, January 2028).
+Entry-level GRC and IT compliance candidate. At an Amazon new-site launch, raised weekly inventory audit (IRDR) compliance, part of the ICQA audits behind Amazon's SOX inventory controls, from about 63–70% to 99%+ within one month and held it. Builds hands-on compliance programs — risk registers, control matrices mapped to NIST SP 800-53 and PCI DSS 4.0.1, audit evidence, POA&Ms, vendor risk assessments and access reviews — and administers a live Microsoft Entra ID and SharePoint tenant with exported evidence. CompTIA Security+, Network+, A+ and ITIL 4; finishing a B.S. in Cybersecurity and Information Assurance (WGU, January 2028).
 
 ## Certifications and Education
 
@@ -19,7 +19,7 @@ Entry-level GRC and IT compliance candidate. At an Amazon new-site launch, raise
 
 ## Skills
 
-- **Governance, risk and compliance:** risk registers, control matrices, NIST SP 800-53 and 800-171, PCI DSS 4.0.1 crosswalk, POA&M tracking, audit evidence, vendor risk assessment, SOX audit compliance
+- **Governance, risk and compliance:** risk registers, control matrices, NIST SP 800-53 and 800-171, PCI DSS 4.0.1 crosswalk, POA&M tracking, audit evidence, vendor risk assessment, inventory audits supporting SOX controls
 - **Identity and access:** access reviews, Privileged Identity Management, least privilege, RBAC, Microsoft Entra ID, MFA, Conditional Access (report-only testing), Microsoft 365 and SharePoint
 - **Audit and monitoring:** unified audit logging, eDiscovery and legal hold, Sysmon, Wireshark, Nmap
 - **Technical controls:** DISA STIG hardening, SCAP Compliance Checker and STIG Viewer, Windows 10/11 and Server 2022
@@ -70,7 +70,7 @@ Entry-level GRC and IT compliance candidate. At an Amazon new-site launch, raise
 - Pick and pack customer orders across singles, multi-item and SLAM stations to rate and quality standards.
 
 **Quality Process Assistant, New Site Launch (TYS1)** | Jul 2023 – Apr 2024
-- Raised weekly SOX audit compliance from about 63–70% to 99%+ within one month, and held it, through structured tracking and training on every shift.
+- Raised weekly inventory audit (IRDR) compliance from about 63–70% to 99%+ within one month, and held it, through structured tracking and training on every shift; these ICQA audits support Amazon's SOX inventory controls.
 - Wrote exception-handling SOPs that cut unresolved inventory exceptions from 50+ pods across four floors to 1–2 per floor.
 - Analyzed ICQA count error trends and drove process fixes that cut DPMO from about 37k to 10k.
 - Walked the building daily to find stalled inventory, reporting counts, photos and changes to the Operations Manager and AGM.

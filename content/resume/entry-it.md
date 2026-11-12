@@ -34,7 +34,7 @@ IT support candidate with CompTIA A+, Network+, Security+ and ITIL 4, finishing 
 - Pick and pack customer orders across singles, multi-item and SLAM stations to rate and quality standards.
 
 **Quality Process Assistant, New Site Launch (TYS1)** | Jul 2023 – Apr 2024
-- Raised weekly SOX audit compliance from about 63–70% to 99%+ within one month, and held it, through structured tracking and training on every shift.
+- Raised weekly inventory audit (IRDR) compliance from about 63–70% to 99%+ within one month, and held it, through structured tracking and training on every shift; these ICQA audits support Amazon's SOX inventory controls.
 - Wrote exception-handling SOPs that cut unresolved inventory exceptions from 50+ pods across four floors to 1–2 per floor.
 - Analyzed count error trends and drove process fixes that cut ICQA DPMO from about 37k to 10k.
 - Created trouble tickets to route inventory and quality issues to the departments that owned them.

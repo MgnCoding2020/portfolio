@@ -21,7 +21,7 @@
     "link": "https://github.com/MgnCoding2020/grc-paper-project-coffee-shop"
   },
   "proofStrip": [
-    { "stat": "63–70% → 99%+", "label": "SOX audit compliance, in one month", "source": "Amazon, 2023" },
+    { "stat": "63–70% → 99%+", "label": "Inventory audit compliance (IRDR), in one month", "source": "Amazon, 2023" },
     { "stat": "Security+", "label": "with CompTIA Network+, A+, and ITIL 4 Foundation", "source": "2025–2026" },
     { "stat": "6", "label": "GRC labs mapped to NIST 800-53, NIST 800-171, and PCI DSS 4.0.1", "source": "public repos on GitHub" }
   ],

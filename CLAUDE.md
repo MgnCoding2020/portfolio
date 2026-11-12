@@ -34,7 +34,7 @@ Use this, or Michael's own rewrite, as the home page headline and subline. Every
 
 | Strength | Evidence | Where it shows |
 |---|---|---|
-| Real audit-compliance results, not just labs | SOX weekly compliance ~63–70% → sustained 99%+ in one month; unresolved exceptions 50+ pods → 1–2 per floor; ICQA DPMO ~37k → ~10k; stow DPMO held at 5–7k, under a 10k limit | Home proof strip, About |
+| Real audit-compliance results, not just labs | Weekly inventory audit (IRDR) compliance ~63–70% → sustained 99%+ in one month; unresolved exceptions 50+ pods → 1–2 per floor; ICQA DPMO ~37k → ~10k; stow DPMO held at 5–7k, under a 10k limit | Home proof strip, About |
 | Builds working tools, not just documents | Workspace (about 4,700 lines; 3 data backends; check suite with 454 checks); WinSysConfig; the payroll system | Case studies, live demo |
 | Honesty about what's verified | Both repos label unverified work; GitHub labels projects as simulations | "How I work" page, every case-study status box |
 | Security-minded engineering | CSP and no-network design in WinSysConfig; stored-XSS found and fixed in Workspace (once Workspace task F3 lands) | Case studies, "How this site is built" |
@@ -79,7 +79,7 @@ Use this, or Michael's own rewrite, as the home page headline and subline. Every
 /work/                  All projects, filterable by audience tag (works without JS: tag sections)
 /work/<slug>/           One case study per project
 /work-with-me/          The client door: what I build for small businesses, how it works, how to start
-/about/                 The story: operations → SOX → GRC; WGU; certifications
+/about/                 The story: operations → inventory audits (SOX controls) → GRC; WGU; certifications
 /how-i-work/            AI-assisted, verification-first; how this site is built and secured
 /resume/                HTML resume (the `site: true` base, Entry IT) + a PDF per base in content/resume/
 /demo/workspace/        The Workspace single-file demo (memory provider, demo banner)
@@ -93,7 +93,7 @@ Use this, or Michael's own rewrite, as the home page headline and subline. Every
 ### Home page, top to bottom
 
 1. **Name + position** (headline and subline above). Buttons: *See the work* · *Resume* · *Email me*.
-2. **Proof strip**: three short facts with numbers, for example "SOX audit compliance: ~63–70% → 99%+ in one month (Amazon, 2023)", "Workspace: a SharePoint-style platform, 454 automated checks", "GRC labs mapped to NIST 800-53, NIST 800-171 and PCI DSS 4.0.1." (Count the labs yourself before adding a number.)
+2. **Proof strip**: three short facts with numbers, for example "Inventory audit (IRDR) compliance: ~63–70% → 99%+ in one month (Amazon, 2023)", "Workspace: a SharePoint-style platform, 454 automated checks", "GRC labs mapped to NIST 800-53, NIST 800-171 and PCI DSS 4.0.1." (Count the labs yourself before adding a number.)
 3. **Featured case studies**: three cards (GRC Security Program, Workspace, Home EDR). Each card: title, one line, audience tags, status badge. Workspace may show an **In progress** badge until its full case study is written.
 4. **What I'm looking for**: one honest paragraph (entry-level GRC/compliance, M365 admin or IAM; Orlando or remote; open to mentorship-heavy roles).
 5. **"Also: websites and tools for small businesses"**: a visually separate band with one line, the Little Saporito Press card, and a link to `/work-with-me/`.
@@ -544,7 +544,7 @@ On every push: `npm ci`, `npm run build`, `node check.mjs`. Cloudflare builds se
 ### Draft copy to start from (Michael edits these into his own voice)
 
 **About (opening):**
-> I started at Amazon in 2020 as an associate, and from 2021 I was a Stow Process Assistant, leading start-ups and coaching a team of 60–80 associates. When I moved to quality at a new site, our weekly SOX audit compliance sat around 63–70%. I set up structured tracking and trained associates on every shift, and within a month we were at 99% and stayed there. That's when I learned that controls are a people problem as much as a technical one, and that I like the work of making them stick.
+> I started at Amazon in 2020 as an associate, and from 2021 I was a Stow Process Assistant, leading start-ups and coaching a team of 60–80 associates. When I moved to quality at a new site, our weekly inventory audit compliance (a metric called IRDR) sat around 63–70%. I asked our site's data analyst why it mattered, and learned that these audits support Amazon's SOX controls over inventory, the numbers that end up in the financial statements. I set up structured tracking and trained associates on every shift, and within a month we were at 99% and stayed there. That's when I learned that controls are a people problem as much as a technical one, and that I like the work of making them stick.
 >
 > I'm now finishing a B.S. in Cybersecurity and Information Assurance at WGU, with CompTIA A+, Network+, Security+ and ITIL 4 Foundation. I learn by building: a SharePoint-style intranet, a Windows settings tool that journals every change, and security programs for fictional businesses mapped to NIST and PCI.
 

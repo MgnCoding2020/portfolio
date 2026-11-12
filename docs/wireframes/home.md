@@ -19,7 +19,7 @@ Design step 4 (CLAUDE.md §5.2) — plain greybox layout, no visual design yet. 
 |                                                                  |
 +----------------------------------------------------------------+
 |  63-70% -> 99%+     |      454          |         6             |
-|  SOX audit           |  automated checks |  GRC labs mapped to  |
+|  Inventory audit     |  automated checks |  GRC labs mapped to  |
 |  compliance, in       |  in Workspace,    |  NIST 800-53,        |
 |  one month            |  verified Oct 2026|  NIST 800-171, PCI   |
 |  (Amazon, 2023)       |                   |  DSS 4.0.1            |
@@ -78,7 +78,7 @@ Design step 4 (CLAUDE.md §5.2) — plain greybox layout, no visual design yet. 
 | [ Email me ]               |
 +----------------------------+
 | 63-70% -> 99%+              |
-| SOX audit compliance,       |
+| Inventory audit compliance, |
 | in one month                |
 |-----------------------------|
 | 454                         |
