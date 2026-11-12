@@ -26,7 +26,7 @@ I learned that on a warehouse floor before I ever learned it from a framework.
 
 ## How I got here
 
-I started at Amazon in 2020 as an associate, and from 2021 I was a Stow Process Assistant, leading daily start-ups for 60–80 associates and coaching on quality. When I moved to quality at a new site launch, our weekly SOX audit compliance sat around 63–70%. I set up structured tracking and trained associates on every shift, and within a month we were at 99% and stayed there.
+I started at Amazon in 2020 as an associate, and from 2021 I was a Stow Process Assistant, leading daily start-ups for 60–80 associates and coaching on quality. When I moved to quality at a new site launch, our weekly inventory audit compliance (a metric called IRDR) sat around 63–70%. I asked our site's data analyst why it mattered, and learned that these audits support Amazon's SOX controls over inventory, the numbers that end up in the financial statements. I set up structured tracking and trained associates on every shift, and within a month we were at 99% and stayed there.
 
 That's when I learned that controls are a people problem as much as a technical one, and that I like the work of making them stick. A control that nobody follows isn't a control, and one you can't evidence may as well not exist.
 

@@ -53,7 +53,7 @@ The case studies don't change. They stay the proof. What changes is how the site
   - "6 GRC labs… see /work/" sends readers to a page with 3 GRC cards. That mismatch is exactly what the site's own verification rule warns against.
 
   Proposed set:
-  1. SOX audit compliance, 63–70% → 99%+ in one month (keep).
+  1. Inventory audit (IRDR) compliance, 63–70% → 99%+ in one month (keep).
   2. "A+ · Network+ · Security+ · ITIL 4", labelled "CompTIA and ITIL certified" (2025–2026). For entry IT this is the first thing screened.
   3. "5 case studies", labelled "each one marks what's verified and what isn't". Count the case studies at build time from `content/case-studies/` instead of hard-coding, so it can't go stale.
 - Give "What I'm looking for" an `<h2>`. Right now it's a floating callout between sections.
