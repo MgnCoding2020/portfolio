@@ -9,7 +9,7 @@ private: true
 
 ## Summary
 
-IT support candidate with CompTIA A+, Network+, Security+ and ITIL 4, finishing a B.S. in Cybersecurity and Information Assurance (WGU, January 2028). Six years at Amazon in floor leadership, quality audits and SOP training, plus three years of direct customer support. Hands-on with Microsoft 365, Entra ID, Windows and PowerShell through self-built labs.
+IT support candidate with CompTIA A+, Network+, Security+ and ITIL 4, finishing a B.S. in Cybersecurity and Information Assurance (WGU, January 2028). Six years at Amazon in floor leadership, quality audits and SOP training, plus three years of direct customer support. Hands-on with Microsoft 365, Entra ID, Windows and PowerShell in self-built labs.
 
 ## Certifications and Education
 
@@ -22,7 +22,7 @@ IT support candidate with CompTIA A+, Network+, Security+ and ITIL 4, finishing 
 - **Support:** ITIL 4 incident and request concepts, ticket creation and routing, escalation, end-user training, documentation
 - **Windows and systems:** Windows 10/11, Server 2022, Active Directory basics, Hyper-V, hardware/peripheral troubleshooting
 - **Microsoft 365 and identity:** users, groups and licenses, Entra ID, MFA, RBAC, least privilege, Conditional Access, SharePoint
-- **Networking and security:** TCP/IP, DNS, DHCP, subnetting, Wireshark, Nmap, DISA STIG hardening, SCAP scanning, Sysmon
+- **Networking and security:** TCP/IP, DNS, DHCP, subnetting, Wireshark, Nmap, STIG, SCAP, Sysmon, Autopsy
 - **Scripting and tools:** PowerShell, Power Automate, Python (basic), Git and GitHub
 
 ## Professional Experience
@@ -34,7 +34,7 @@ IT support candidate with CompTIA A+, Network+, Security+ and ITIL 4, finishing 
 - Pick and pack customer orders across singles, multi-item and SLAM stations to rate and quality standards.
 
 **Quality Process Assistant, New Site Launch (TYS1)** | Jul 2023 – Apr 2024
-- Raised weekly inventory audit (IRDR) compliance from about 63–70% to 99%+ within one month, and held it, through structured tracking and training on every shift; these ICQA audits support Amazon's SOX inventory controls.
+- Raised weekly inventory audit (IRDR) compliance, part of Amazon's SOX inventory controls, from about 63–70% to 99%+ in one month and held it.
 - Wrote exception-handling SOPs that cut unresolved inventory exceptions from 50+ pods across four floors to 1–2 per floor.
 - Analyzed count error trends and drove process fixes that cut ICQA DPMO from about 37k to 10k.
 - Created trouble tickets to route inventory and quality issues to the departments that owned them.
@@ -53,18 +53,18 @@ IT support candidate with CompTIA A+, Network+, Security+ and ITIL 4, finishing 
 *Feb 2017 – Aug 2020*
 
 **Pest Prevention Specialist and Customer Support**
-- Primary contact for 215–280 recurring clients by phone and on site: scheduled service, resolved issues, collected payments, and kept records for state licensing.
+- Primary contact for 215–280 recurring clients by phone and on site: scheduling, issues, payments, licensing records.
 
 ## Technical Projects (self-directed)
 
-### Microsoft 365 / Entra ID Administration Lab
+### Microsoft 365 / Entra ID Lab (live tenant)
 *2025 – 2026*
-- Created users, groups, licenses and scoped admin roles; tested Conditional Access in report-only mode.
+- Moved standing admin access to just-in-time (PIM), ran an access review; found audit logging off, enabled and proved it.
 
 ### Workspace: SharePoint-style intranet
 *2026*
-- Connected to a live Microsoft 365 tenant via MSAL and SharePoint; fixed a stored XSS flaw; 454 automated checks.
+- SharePoint-style intranet verified on a live tenant via MSAL; fixed a stored XSS flaw; 454 checks.
 
 ### Windows Hardening and Monitoring Labs
 *2025 – 2026*
-- DISA STIG scan of a Windows 10 VM (137 of 225 rules open); a separate lab hardened 4 controls; scheduled drift monitoring.
+- DISA STIG scan of a Windows 10 VM (137 of 225 rules open); separately hardened 4 controls; drift monitoring.
